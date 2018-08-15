@@ -241,11 +241,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\interactive\door.cs" />
+    <Compile Include="Assets\interactive\interBase.cs" />
+    <Compile Include="Assets\interactive\Switch.cs" />
     <Compile Include="Assets\OtherHp.cs" />
     <Compile Include="Assets\Player\Ability\Scripts\Boom.cs" />
     <Compile Include="Assets\Player\Ability\Scripts\Bullet.cs" />
     <Compile Include="Assets\Player\Ability\Scripts\Luanch.cs" />
     <Compile Include="Assets\Player\Player.cs" />
+    <Compile Include="Assets\Tools\Scripts\MapBrush.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />

@@ -32,17 +32,15 @@ public class Player : MonoBehaviour {
 
         if (hurted)
         {
-
-
-          
             time += Time.deltaTime;
             count += Time.deltaTime;
-            if (count > 0.2) {
+            if (count > 0.4) {
                 hurtRedImg.GetComponent<Image>().color = new Color(1, 0, 0, 0.5f);
-                hurtRedImg.GetComponent<Image>().CrossFadeColor(Color.clear, 0.2f, false, true);
+                hurtRedImg.GetComponent<Image>().CrossFadeColor(Color.clear, 0.2f, true, true);
+				  hurtRedImg.GetComponent<Image>().CrossFadeColor(Color.red, 0.2f, true, true);
               //  hurtRedImg.GetComponent<Image>().color = new Color(color.r, color.g, color.b, Random.value);
                 count = 0;
-        }
+            }
             if (time >= 3) { hurted = false;time = 0; Color color = hurtRedImg.GetComponent<Image>().color;
                 hurtRedImg.GetComponent<Image>().color = new Color(1,0,0, 0);
             }
