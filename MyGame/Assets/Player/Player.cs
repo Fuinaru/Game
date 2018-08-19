@@ -2,22 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
 
-
+using ToolF;
 public class Player : MonoBehaviour {
+  
 
-	public int maxHp=5;
+    public int maxHp=5;
     public int Hp=5;
     public GameObject HpContorl;
     bool hurted = false;
-    public Image hurtRedImg;
     private float time=0;
-    private float count=0;
-    Color color ;
+    ForInclude LowHPTool = new ForInclude();
+    ForInclude HurtedTool = new ForInclude();
+
+    [System.Serializable]
+    public struct LowHpEffect
+    {
+        public Image lowHpRedImg;
+        public Color minColor;
+        public Color maxColor;
+        public float speed;
+    };
+    public LowHpEffect lowHpEffect;
+
+
     private void Start()
     {
         HpContorl.transform.GetComponent<Slider>().maxValue=maxHp;
-        color = hurtRedImg.GetComponent<Image>().color;
     }
     // Update is called once per frame
     void Update () {
@@ -29,29 +41,76 @@ public class Player : MonoBehaviour {
         {
             Damage(-1);
         }
-
-        if (hurted)
-        {
-            time += Time.deltaTime;
-            count += Time.deltaTime;
-            if (count > 0.4) {
-                hurtRedImg.GetComponent<Image>().color = new Color(1, 0, 0, 0.5f);
-                hurtRedImg.GetComponent<Image>().CrossFadeColor(Color.clear, 0.2f, true, true);
-				  hurtRedImg.GetComponent<Image>().CrossFadeColor(Color.red, 0.2f, true, true);
-              //  hurtRedImg.GetComponent<Image>().color = new Color(color.r, color.g, color.b, Random.value);
-                count = 0;
-            }
-            if (time >= 3) { hurted = false;time = 0; Color color = hurtRedImg.GetComponent<Image>().color;
-                hurtRedImg.GetComponent<Image>().color = new Color(1,0,0, 0);
-            }
-        }
+        hurtCount();
+        LowHp();
+        PlayerFlash();
     }
     public void Damage(int a) {
       if(!hurted) Hp-=a;
         HpContorl.GetComponent<Slider>().value=Hp;
     }
     public void getHurted() {
-        hurted = true;
+        hurted = true;  
+    }
+    private void hurtCount() {
+        if (hurted)
+        {
+            time += Time.deltaTime;
+            if (time >= 3)
+            {
+                hurted = false; time = 0;
+
+                Renderer[] rds = transform.GetComponentsInChildren<Renderer>();
+                //逐一遍历他的子物体中的Renderer
+                foreach (Renderer render in rds)
+                {
+                    //逐一遍历子物体的子材质（renderer中的material）
+                    foreach (Material material in render.materials)
+                    {
+
+                        material.color = Color.white;
+                        //ColorA2BCir(lowHpEffect.lowHpRedImg.material, material.color, Color.white, 20f);
+
+                    }
+                }
+            }
+        }
+    }
+    private void PlayerFlash()
+    {
+        if (hurted)
+        {
+            Renderer[] rds = transform.GetComponentsInChildren<Renderer>();
+            //逐一遍历他的子物体中的Renderer
+            foreach (Renderer render in rds)
+            {
+                //逐一遍历子物体的子材质（renderer中的material）
+                foreach (Material material in render.materials)
+                {
+
+                    HurtedTool.ColorA2BCir(material, new Color(1, 0, 0, 0.7f), Color.white, 20);
+                    //ColorA2BCir(lowHpEffect.lowHpRedImg.material, material.color, Color.white, 20f);
+
+                }
+            }
+        }
       
     }
+    private bool IsLowHp() {
+        return Hp <= 2;
+    }
+
+  private  bool comp = true;
+    private void LowHp() {
+        
+        if (IsLowHp())
+        {
+
+            LowHPTool.ColorA2BCir(lowHpEffect.lowHpRedImg, lowHpEffect.minColor, lowHpEffect.maxColor, lowHpEffect.speed);
+        }
+        else LowHPTool.ColorA2B(lowHpEffect.lowHpRedImg, Color.clear, lowHpEffect.speed);
+    }
+
+
+
 }

@@ -241,9 +241,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\interactive\door.cs" />
-    <Compile Include="Assets\interactive\interBase.cs" />
-    <Compile Include="Assets\interactive\Switch.cs" />
+    <Compile Include="Assets\ForInclude.cs" />
+    <Compile Include="Assets\interactive\SwitchDoor\door.cs" />
+    <Compile Include="Assets\interactive\SwitchDoor\Switch.cs" />
     <Compile Include="Assets\OtherHp.cs" />
     <Compile Include="Assets\Player\Ability\Scripts\Boom.cs" />
     <Compile Include="Assets\Player\Ability\Scripts\Bullet.cs" />
