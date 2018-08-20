@@ -82,7 +82,7 @@ public class MapBrush : MonoBehaviour {
 					mapLine += map [i,j].ToString();
 					mapLine += ",";
 				}
-				mapLine += "\n";
+				mapLine += "\r\n";
 				//逐行写入
 				byte[] data = System.Text.Encoding.Default.GetBytes (mapLine); 
 				fs.Write(data, 0, data.Length);
@@ -104,7 +104,7 @@ public class MapBrush : MonoBehaviour {
 			{
 				string[] nums = line.ToString ().Split (',');
 
-				for (int j = 0; j < nums.Length-2; j++) {
+				for (int j = 0; j < nums.Length-1; j++) {
 					map [i,j] = int.Parse(nums [j]);
 
 					Debug.Log ((nums.Length-1)+","+i+","+j);
