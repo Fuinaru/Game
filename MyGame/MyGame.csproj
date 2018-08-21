@@ -241,17 +241,29 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AdventureGame\Lib\Player\Player\Player.cs" />
-    <Compile Include="Assets\AdventureGame\Scripts\Ability\Boom.cs" />
-    <Compile Include="Assets\AdventureGame\Scripts\Ability\Bullet.cs" />
-    <Compile Include="Assets\AdventureGame\Scripts\Ability\Luanch.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\item\ItemForGet.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\OtherHp.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Player\Ability\Boom.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Player\Ability\Bullet.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Player\Ability\Luanch.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Player\Player.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\SwitchDoor\door.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\SwitchDoor\Switch.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Tool\ForInclude.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Tool\ScreenShake.cs" />
     <Compile Include="Assets\Tools\Scripts\MapBrush.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\AdventureGame\Complement\readme.txt" />
+    <None Include="Assets\AdventureGame\Effects\readme.txt" />
+    <None Include="Assets\AdventureGame\Environment\readme.txt" />
+    <None Include="Assets\AdventureGame\Lib\readme.txt" />
+    <None Include="Assets\AdventureGame\Models\readme.txt" />
+    <None Include="Assets\AdventureGame\Plugins\readme.txt" />
+    <None Include="Assets\AdventureGame\Scenes\readme.txt" />
+    <None Include="Assets\AdventureGame\Scripts\readme.txt" />
+    <None Include="Assets\AdventureGame\Shaders\readme.txt" />
+    <None Include="Assets\AdventureGame\UI\readme.txt" />
     <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
     <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
     <None Include="Assets\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
