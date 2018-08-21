@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEditor;
 
 public class MapBrush : MonoBehaviour {
+	public GameObject brushObj;
+	public GameObject mapObj;
 	public Camera camera;
 	public GameObject tile;
 	int tileNum=1;
@@ -44,14 +46,25 @@ public class MapBrush : MonoBehaviour {
 				tiles.Add(obj);
 			}  
 		}  
+
+		//更新笔刷预览
+		refreshBrushPreview(tileNum-1);
+
+	}
+
+
+	void clearChild(Transform tran){
+
+		int childCount = tran.childCount;
+		for (int i = 0; i < childCount ; i++) {
+			Destroy (tran.GetChild (i).gameObject);
+		}
+
 	}
 
 
 	void clearMap(){
-		int childCount = transform.childCount;
-		for (int n = 0; n < childCount ; n++) {
-			Destroy (transform.GetChild (n).gameObject);
-		}
+		clearChild (mapObj.transform);
 		for (int i = 0; i < map.GetLength (1); i++) {
 			for (int j = 0; j < map.GetLength (0); j++) {
 				map [i, j] = 0;
@@ -62,9 +75,9 @@ public class MapBrush : MonoBehaviour {
 
 	void generateTile(int x,int z,int num){
 		Debug.Log ((float)x + " " + (float)z);
-		GameObject obj=Instantiate (tiles[num-1], new Vector3((float)x,0,(float)z), transform.rotation)as GameObject;
+		GameObject obj=Instantiate (tiles[num-1], new Vector3((float)x,0,(float)z), mapObj.transform.rotation)as GameObject;
 		obj.name = "(" + x.ToString () + "," + z.ToString () + ")";
-		obj.transform.parent = this.transform;
+		obj.transform.parent = mapObj.transform;
 	}
 
 	void regenerateTile(){
@@ -102,7 +115,7 @@ public class MapBrush : MonoBehaviour {
 						generateTile ((int)hit.point.x, (int)hit.point.z,tileNum);
 						map [(int)hit.point.x, (int)hit.point.z] = tileNum;
 					} else {
-						Destroy(this.transform.Find ("(" + ((int)hit.point.x).ToString () 
+						Destroy(mapObj.transform.Find ("(" + ((int)hit.point.x).ToString () 
 							+ "," + ((int)hit.point.z).ToString () + ")").gameObject);
 						generateTile ((int)hit.point.x, (int)hit.point.z,tileNum);
 						map [(int)hit.point.x, (int)hit.point.z] = tileNum;
@@ -120,7 +133,7 @@ public class MapBrush : MonoBehaviour {
 			if (Physics.Raycast (ray, out hit,100,layerMask)) {
 				Debug.DrawLine (ray.origin, hit.point, Color.red);
 				if ((int)hit.point.x < map.GetLength (0) && (int)hit.point.z < map.GetLength (1)) {
-					Destroy(this.transform.Find ("(" + ((int)hit.point.x).ToString () 
+					Destroy(mapObj.transform.Find ("(" + ((int)hit.point.x).ToString () 
 						+ "," + ((int)hit.point.z).ToString () + ")").gameObject);
 					map [(int)hit.point.x, (int)hit.point.z] = 0;
 
@@ -188,13 +201,43 @@ public class MapBrush : MonoBehaviour {
 		GUILayout.Label ("当前:"+tile.name);
 		for (int i = 0; i < tiles.Count; i++) {
 			if (GUILayout.Button (tiles[i].name, GUILayout.Width (80))) {
-				tileNum = i+1;
-				tile = tiles [i];
+				changeBrush (i);
+
+
 
 			}
 		}
 
 	}
 
+	//更新笔刷预览
+	void refreshBrushPreview(int i){
+		//清空笔刷预览
+		clearChild(brushObj.transform);
+		//笔刷加载预览
+		GameObject obj=Instantiate(tiles[i],brushObj.transform.position,brushObj.transform.rotation);
+		obj.transform.parent = brushObj.transform;
+		//笔刷物体层级
+		obj.layer = 9;
+		//子孙所有层级为9
+		Transform[] sons;
+		sons = obj.GetComponentsInChildren<Transform> ();
+		foreach (Transform son in sons) {
+			son.gameObject.layer = 9;
+		}
+
+	}
+
+
+	//更换笔刷
+	void changeBrush(int i){
+
+		tileNum = i+1;
+		tile = tiles [i];
+
+		refreshBrushPreview (i);
+
+
+	}
 
 }
