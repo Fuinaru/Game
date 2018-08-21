@@ -6,8 +6,8 @@ using UnityEditor;
 
 using ToolF;
 public class Player : MonoBehaviour {
-  
 
+    private ScreenShake shake = new ScreenShake();
     public int maxHp=5;
     public int Hp=5;
     public GameObject HpContorl;
