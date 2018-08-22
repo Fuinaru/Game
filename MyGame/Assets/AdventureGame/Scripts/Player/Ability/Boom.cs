@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Boom : MonoBehaviour
 {
-    private ScreenShake shake=new ScreenShake();
+
+    private CameraShakeEffect shakeScreen = new CameraShakeEffect();
     public float radius = 3.0F;
     public float power = 1.1F;
     public float aliveTime = 5f;
@@ -35,8 +36,8 @@ public class Boom : MonoBehaviour
           
             d = transform.localScale;
             transform.localScale = new Vector3(d.x * power, d.y * power, d.z * power);
-            // shake.ShakeScreen(0.5f,1,20);
-            shake.ShakeScreen(1,1,5);
+  
+            shakeScreen.shakeScreen();
             if (d.x >= radius) Destroy(gameObject);
         }
 

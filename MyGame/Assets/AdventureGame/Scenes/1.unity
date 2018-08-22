@@ -222,12 +222,7 @@ Transform:
 GameObject:
   m_PrefabParentObject: {fileID: 100002, guid: 49a0e923d39ec3c4c8bb97699e2f2903, type: 2}
   m_PrefabInternal: {fileID: 2073989763}
---- !u!20 &363473348 stripped
-Camera:
-  m_PrefabParentObject: {fileID: 2000000, guid: 49a0e923d39ec3c4c8bb97699e2f2903,
-    type: 2}
-  m_PrefabInternal: {fileID: 2073989763}
---- !u!114 &363473349
+--- !u!114 &363473344
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -235,10 +230,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 363473343}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9153ac9ffabdc4449971c4dd6d1f9ab3, type: 3}
+  m_Script: {fileID: 11500000, guid: dc8503368d0b0c946a72f677a6c72667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 363473348}
+  shakeTime: 1
+--- !u!20 &363473348 stripped
+Camera:
+  m_PrefabParentObject: {fileID: 2000000, guid: 49a0e923d39ec3c4c8bb97699e2f2903,
+    type: 2}
+  m_PrefabInternal: {fileID: 2073989763}
 --- !u!1001 &577959275
 Prefab:
   m_ObjectHideFlags: 0

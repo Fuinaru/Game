@@ -249,8 +249,8 @@
     <Compile Include="Assets\AdventureGame\Scripts\Player\Player.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\SwitchDoor\door.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\SwitchDoor\Switch.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Tool\CameraShakeEffect.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Tool\ForInclude.cs" />
-    <Compile Include="Assets\AdventureGame\Scripts\Tool\ScreenShake.cs" />
     <Compile Include="Assets\Tools\Scripts\MapBrush.cs" />
   </ItemGroup>
   <ItemGroup>
