@@ -109,6 +109,10 @@ public class Player : MonoBehaviour {
         }
         else LowHPTool.ColorA2B(lowHpEffect.lowHpRedImg, Color.clear, lowHpEffect.speed);
     }
+    public Transform ReturnTransform() {
+
+        return GetComponent<Transform>();
+    }
 
 
 

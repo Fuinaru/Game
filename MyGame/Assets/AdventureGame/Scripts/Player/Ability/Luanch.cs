@@ -27,6 +27,7 @@ public class Luanch : MonoBehaviour
     {
             if (Input.GetKeyDown(openFire) && nexttime < Time.time&&bulletNum>0)
         {
+           
             nexttime = firetime + Time.time;
             GameObject go = Instantiate(bullet, transform.position, transform.rotation) as GameObject;
             go.GetComponent<Rigidbody>().AddRelativeForce(0, 0, 1200);
