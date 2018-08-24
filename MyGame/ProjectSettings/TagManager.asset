@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Boom
   - Bullet
+  - Ground
+  - Monster
   layers:
   - Default
   - TransparentFX

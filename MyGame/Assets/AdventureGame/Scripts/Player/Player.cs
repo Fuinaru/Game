@@ -15,7 +15,8 @@ public class Player : MonoBehaviour {
     ForInclude LowHPTool = new ForInclude();
     ForInclude HurtedTool = new ForInclude();
 
-    [System.Serializable]
+
+   [System.Serializable]
     public struct LowHpEffect
     {
         public Image lowHpRedImg;
@@ -45,7 +46,7 @@ public class Player : MonoBehaviour {
         PlayerFlash();
     }
     public void Damage(int a) {
-      if(!hurted) Hp-=a;
+        if (!hurted) { Hp -= a; getHurted(); }
         HpContorl.GetComponent<Slider>().value=Hp;
     }
     public void getHurted() {
@@ -109,11 +110,9 @@ public class Player : MonoBehaviour {
         }
         else LowHPTool.ColorA2B(lowHpEffect.lowHpRedImg, Color.clear, lowHpEffect.speed);
     }
-    public Transform ReturnTransform() {
+    public Transform ReturnTransform()
+    {
 
         return GetComponent<Transform>();
     }
-
-
-
-}
+    }

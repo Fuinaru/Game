@@ -241,8 +241,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AdventureGame\Lib\monster\MonsterAi.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Follow3DObject.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\item\ItemForGet.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterFoolAi.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\OtherHp.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Player\Ability\Boom.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Player\Ability\Bullet.cs" />

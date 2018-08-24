@@ -32,13 +32,30 @@ public float aliveTime=5f;
     }
     private void OnCollisionEnter(Collision collision)
     {
-        scale = transform.localScale;
-        pos = transform.position;
+        Transform trans = collision.transform;
+        if (trans.tag == "Player")
+        {
+            trans.GetComponent<Player>().Damage(2);
+            trans.GetComponent<Player>().getHurted();
+        }
+
+
+        if (trans.tag == "Monster" || trans.tag == "Others")
+            trans.GetComponent<MonsterFoolAi>().Damage(2);
+    
+
+
+    pos = transform.position;
         Destroy(gameObject.GetComponent<Collider>());
         Destroy(gameObject.GetComponent<Rigidbody>());
-        if (!isChild) { transform.parent = collision.transform; isChild = true; }
+        if (!isChild) { transform.SetParent(trans); isChild = true; }
+      
+      //  scale = transform.lossyScale;
+        //   transform.localScale = new Vector3(scale.x / transform.parent.localScale.x, scale.y / transform.parent.localScale.y, scale.z / transform.parent.localScale.z);
+       
         transform.position = pos;
-      //  transform.localScale = scale;
+    
+       // transform.localScale = scale;
 
         //  Destroy(gameObject);
 

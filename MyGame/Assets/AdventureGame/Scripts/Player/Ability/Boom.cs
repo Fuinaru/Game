@@ -46,12 +46,11 @@ public class Boom : MonoBehaviour
     {
         if (hit.tag == "Player")
         { hit.GetComponent<Player>().Damage(2);
-            hit.GetComponent<Player>().getHurted();
         }
 
-      
+
         if (hit.tag == "Monster" || hit.tag == "Others")
-            hit.GetComponent<OtherHp>().HpChange(-2);
+            hit.GetComponent<MonsterFoolAi>().Damage(2);
     }
 }
 
