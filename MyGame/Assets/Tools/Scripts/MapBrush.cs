@@ -6,20 +6,26 @@ using UnityEditor;
 
 public class MapBrush : MonoBehaviour {
 	public GameObject brushObj;
-	public GameObject mapObj;
+	public GameObject mapDataObj;
+	public GameObject mapBaseObj;
 	public Camera camera;
 	public GameObject tile;
 	int tileNum=1;
 	public List<GameObject> tiles;
-	int[,] map = new int[20,20];
+	public int mapHeight = 20;
+	public int mapWidth = 20;
+	int[,] map;
 	// Use this for initialization
 	void Awake () {
 		//初始化地图数组
-		for (int i = 0; i < map.GetLength (0); i++) {
-			for (int j = 0; j < map.GetLength (1); j++) {
+		map= new int[mapWidth,mapHeight];
+		mapBaseObj.transform.localScale = new Vector3 (mapWidth/10f, 1, mapHeight/10f);
+		for (int i = 0; i < mapWidth; i++) {
+			for (int j = 0; j < mapHeight; j++) {
 				map [i, j] = 0;
 			}
 		}
+
 		//初始化tiles
 
 		tiles = new List<GameObject> ();
@@ -64,9 +70,9 @@ public class MapBrush : MonoBehaviour {
 
 
 	void clearMap(){
-		clearChild (mapObj.transform);
-		for (int i = 0; i < map.GetLength (1); i++) {
-			for (int j = 0; j < map.GetLength (0); j++) {
+		clearChild (mapDataObj.transform);
+		for (int i = 0; i < mapWidth; i++) {
+			for (int j = 0; j < mapHeight; j++) {
 				map [i, j] = 0;
 			}
 		}
@@ -75,14 +81,14 @@ public class MapBrush : MonoBehaviour {
 
 	void generateTile(int x,int z,int num){
 		Debug.Log ((float)x + " " + (float)z);
-		GameObject obj=Instantiate (tiles[num-1], new Vector3((float)x,0,(float)z), mapObj.transform.rotation)as GameObject;
+		GameObject obj=Instantiate (tiles[num-1], new Vector3((float)x,0,(float)z), mapDataObj.transform.rotation)as GameObject;
 		obj.name = "(" + x.ToString () + "," + z.ToString () + ")";
-		obj.transform.parent = mapObj.transform;
+		obj.transform.parent = mapDataObj.transform;
 	}
 
 	void regenerateTile(){
-		for (int i = 0; i < map.GetLength (1); i++) {
-			for (int j = 0; j < map.GetLength (0); j++) {
+		for (int i = 0; i < mapWidth; i++) {
+			for (int j = 0; j < mapHeight; j++) {
 				if (map [i, j] != 0) {
 					generateTile (i, j,map [i, j]);
 				}
@@ -110,12 +116,13 @@ public class MapBrush : MonoBehaviour {
 			int layerMask = 1 << 8;
 			if (Physics.Raycast (ray, out hit,100,layerMask)) {
 				Debug.DrawLine (ray.origin, hit.point, Color.green);
-				if ((int)hit.point.x < map.GetLength (0) && (int)hit.point.z < map.GetLength (1)) {
+				if ((int)hit.point.x < mapWidth && (int)hit.point.z < mapHeight) {
+					Debug.Log ((int)hit.point.x + "," + (int)hit.point.z);
 					if (map [(int)hit.point.x, (int)hit.point.z] == 0) {
 						generateTile ((int)hit.point.x, (int)hit.point.z,tileNum);
 						map [(int)hit.point.x, (int)hit.point.z] = tileNum;
 					} else {
-						Destroy(mapObj.transform.Find ("(" + ((int)hit.point.x).ToString () 
+						Destroy(mapDataObj.transform.Find ("(" + ((int)hit.point.x).ToString () 
 							+ "," + ((int)hit.point.z).ToString () + ")").gameObject);
 						generateTile ((int)hit.point.x, (int)hit.point.z,tileNum);
 						map [(int)hit.point.x, (int)hit.point.z] = tileNum;
@@ -132,11 +139,12 @@ public class MapBrush : MonoBehaviour {
 			int layerMask = 1 << 8;
 			if (Physics.Raycast (ray, out hit,100,layerMask)) {
 				Debug.DrawLine (ray.origin, hit.point, Color.red);
-				if ((int)hit.point.x < map.GetLength (0) && (int)hit.point.z < map.GetLength (1)) {
-					Destroy(mapObj.transform.Find ("(" + ((int)hit.point.x).ToString () 
+				if ((int)hit.point.x < mapHeight && (int)hit.point.z < mapWidth) {
+					if (map [(int)hit.point.x, (int)hit.point.z] != 0) {
+						Destroy (mapDataObj.transform.Find ("(" + ((int)hit.point.x).ToString ()
 						+ "," + ((int)hit.point.z).ToString () + ")").gameObject);
-					map [(int)hit.point.x, (int)hit.point.z] = 0;
-
+						map [(int)hit.point.x, (int)hit.point.z] = 0;
+					}
 				}
 			}
 		}
@@ -155,9 +163,9 @@ public class MapBrush : MonoBehaviour {
 			FileStream fs = new FileStream(Application.dataPath+"/Resource/Maps/"+"Map.map", FileMode.OpenOrCreate);
 
 
-			for (int i = 0; i < map.GetLength (1); i++) {
+			for (int i = 0; i < mapWidth; i++) {
 				string mapLine = "";
-				for (int j = 0; j < map.GetLength (0); j++) {
+				for (int j = 0; j < mapHeight; j++) {
 					mapLine += map [i,j].ToString();
 					mapLine += ",";
 				}
