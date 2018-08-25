@@ -60,19 +60,7 @@ public class Player : MonoBehaviour {
             {
                 hurted = false; time = 0;
 
-                Renderer[] rds = transform.GetComponentsInChildren<Renderer>();
-                //逐一遍历他的子物体中的Renderer
-                foreach (Renderer render in rds)
-                {
-                    //逐一遍历子物体的子材质（renderer中的material）
-                    foreach (Material material in render.materials)
-                    {
-
-                        material.color = Color.white;
-                        //ColorA2BCir(lowHpEffect.lowHpRedImg.material, material.color, Color.white, 20f);
-
-                    }
-                }
+                HurtedTool.materialBecomeWhite(transform);
             }
         }
     }
@@ -80,19 +68,7 @@ public class Player : MonoBehaviour {
     {
         if (hurted)
         {
-            Renderer[] rds = transform.GetComponentsInChildren<Renderer>();
-            //逐一遍历他的子物体中的Renderer
-            foreach (Renderer render in rds)
-            {
-                //逐一遍历子物体的子材质（renderer中的material）
-                foreach (Material material in render.materials)
-                {
-
-                    HurtedTool.ColorA2BCir(material, new Color(1, 0, 0, 0.7f), Color.white, 20);
-                    //ColorA2BCir(lowHpEffect.lowHpRedImg.material, material.color, Color.white, 20f);
-
-                }
-            }
+            HurtedTool.flash(transform,new Color(1, 0, 0, 0.7f), Color.white, 20);
         }
       
     }
@@ -108,7 +84,7 @@ public class Player : MonoBehaviour {
 
             LowHPTool.ColorA2BCir(lowHpEffect.lowHpRedImg, lowHpEffect.minColor, lowHpEffect.maxColor, lowHpEffect.speed);
         }
-        else LowHPTool.ColorA2B(lowHpEffect.lowHpRedImg, Color.clear, lowHpEffect.speed);
+        else LowHPTool.Color2B(lowHpEffect.lowHpRedImg, Color.clear, lowHpEffect.speed);
     }
     public Transform ReturnTransform()
     {

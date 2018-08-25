@@ -36,7 +36,6 @@ public float aliveTime=5f;
         if (trans.tag == "Player")
         {
             trans.GetComponent<Player>().Damage(2);
-            trans.GetComponent<Player>().getHurted();
         }
 
 

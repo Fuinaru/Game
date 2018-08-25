@@ -13,17 +13,18 @@ public class MonsterFoolAi : MonoBehaviour {
     public float viewMaxDistance = 10;
     private Vector3 dir;
     public bool IsFindPlayer=false;
-    public int maxHp = 5;
-    public int Hp = 5;
+    public int maxHp = 6;
+    public int Hp = 6;
     public GameObject HpContorl;
     public bool hurted = false;
     private float time = 0;
-    ForInclude HurtedTool = new ForInclude();
-
+    ForInclude EffectTool = new ForInclude();
+    private bool isDestory = false;
 
     void Start () {
         if (player == null) m_Player = GameObject.FindWithTag("Player").transform;
         else m_Player = player.ReturnTransform();
+        Hp = maxHp;
 	}
 
     // Update is called once per frame
@@ -31,15 +32,16 @@ public class MonsterFoolAi : MonoBehaviour {
          dir = m_Player.position - transform.position;
         Debug.Log(dir.magnitude);
         isFindPlayer();
-        if (IsFindPlayer)
+        if (IsFindPlayer&&!isDestory)
         {
-            Debug.Log("faxian");
+           // Debug.Log("faxian");
             transform.LookAt(m_Player);
       
            GetComponent<Rigidbody>().velocity=dir.normalized*10* speed * Time.deltaTime;
         }
         hurtCount();
         Flash();
+        if (Hp <= 0) goToDie();
     }
    void isFindPlayer() {
         if (dir.magnitude > viewMaxDistance)
@@ -50,8 +52,9 @@ public class MonsterFoolAi : MonoBehaviour {
 
     public void Damage(int a)
     {
-        if (!hurted) { Hp -= a; getHurted(); }
-      //  HpContorl.GetComponent<Slider>().value = Hp;
+        // if (!hurted) { Hp -= a; getHurted(); }
+        Hp -= a; getHurted();
+        //  HpContorl.GetComponent<Slider>().value = Hp;
     }
     public void getHurted()
     {
@@ -62,45 +65,32 @@ public class MonsterFoolAi : MonoBehaviour {
         if (hurted)
         {
             time += Time.deltaTime;
-            if (time >= 3)
+            if (time >= 3&&!isDestory)
             {
                 hurted = false; time = 0;
 
-                Renderer[] rds = transform.GetComponentsInChildren<Renderer>();
-                //逐一遍历他的子物体中的Renderer
-                foreach (Renderer render in rds)
-                {
-                    //逐一遍历子物体的子材质（renderer中的material）
-                    foreach (Material material in render.materials)
-                    {
-
-                        material.color = Color.white;
-                        //ColorA2BCir(lowHpEffect.lowHpRedImg.material, material.color, Color.white, 20f);
-
-                    }
-                }
+                EffectTool.materialBecomeWhite(transform);
             }
         }
     }
     private void Flash()
     {
-        if (hurted)
+        if (hurted&&!isDestory)
         {
-            Renderer[] rds = transform.GetComponentsInChildren<Renderer>();
-            //逐一遍历他的子物体中的Renderer
-            foreach (Renderer render in rds)
-            {
-                //逐一遍历子物体的子材质（renderer中的material）
-                foreach (Material material in render.materials)
-                {
-
-                    HurtedTool.ColorA2BCir(material, new Color(1, 0, 0, 0.7f), Color.white, 20);
-                    //ColorA2BCir(lowHpEffect.lowHpRedImg.material, material.color, Color.white, 20f);
-
-                }
-            }
+            EffectTool.flash(transform, new Color(1, 0, 0, 0.7f), Color.white, 20);
         }
 
+    }
+    public void goToDie() {
+        if (!isDestory)
+        {
+            Destroy(gameObject.GetComponent<Collider>());
+            Destroy(gameObject.GetComponent<Rigidbody>());
+            isDestory = true;
+        }
+
+        EffectTool.Color2B(GetComponentInChildren<Renderer>().material, new Color(1, 1, 1, 0), 20);
+        if (EffectTool.isChildrenColorB(transform, new Color(1, 1, 1, 0))) Destroy(gameObject);
     }
 
 }
