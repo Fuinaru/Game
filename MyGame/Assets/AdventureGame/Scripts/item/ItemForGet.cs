@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Fungus;
 public class ItemForGet : MonoBehaviour {
 
     // Use this for initialization
@@ -28,6 +28,7 @@ public class ItemForGet : MonoBehaviour {
         {
             if (type == Type1.boom) { other.GetComponentInChildren<Luanch>().getBoom(num); Destroy(gameObject); }
             if (type == Type1.bullet) { other.GetComponentInChildren<Luanch>().getBullet(num); Destroy(gameObject); }
+            Flowchart.BroadcastFungusMessage("itemGet");
         }
     }
 }

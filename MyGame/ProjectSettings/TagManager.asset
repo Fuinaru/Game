@@ -8,6 +8,9 @@ TagManager:
   - Bullet
   - Ground
   - Monster
+  - Enemy
+  - Laser
+  - BulletItem
   layers:
   - Default
   - TransparentFX
