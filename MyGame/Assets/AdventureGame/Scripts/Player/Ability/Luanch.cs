@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-public class Luanch : MonoBehaviour
+public class Luanch : myGameObject
 {
 
     public GameObject bullet;
@@ -25,7 +25,8 @@ public class Luanch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            if (Input.GetKeyDown(openFire) && nexttime < Time.time&&bulletNum>0)
+        if (GameManager.isTimePause) return;
+        if (Input.GetKeyDown(openFire) && nexttime < Time.time&&bulletNum>0)
         {
            
             nexttime = firetime + Time.time;

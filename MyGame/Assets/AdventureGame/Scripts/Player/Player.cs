@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
-
-using ToolF;
-public class Player : MonoBehaviour {
+using Fungus;
+public class Player : myGameObject
+{
 
     public int maxHp=5;
     public int Hp=5;
@@ -33,6 +33,7 @@ public class Player : MonoBehaviour {
     }
     // Update is called once per frame
     void Update () {
+        if (GameManager.isTimePause) { return; }
         if (Input.GetKeyDown(KeyCode.Keypad0))
         {
             Damage(1);
@@ -44,6 +45,8 @@ public class Player : MonoBehaviour {
         hurtCount();
         LowHp();
         PlayerFlash();
+
+       // if (transform.position.y > 30) Flowchart.BroadcastFungusMessage("flyhigh");
     }
     public void Damage(int a) {
         if (!hurted) { Hp -= a; getHurted(); }
@@ -58,9 +61,8 @@ public class Player : MonoBehaviour {
             time += Time.deltaTime;
             if (time >= 3)
             {
-                hurted = false; time = 0;
-
                 HurtedTool.materialBecomeWhite(transform);
+                if(HurtedTool. isChildrenColorB(transform,Color.white)) hurted = false; time = 0;
             }
         }
     }
@@ -68,7 +70,7 @@ public class Player : MonoBehaviour {
     {
         if (hurted)
         {
-            HurtedTool.flash(transform,new Color(1, 0, 0, 0.7f), Color.white, 20);
+            HurtedTool.flash(transform,new Color(1, 0, 0, 0.7f), Color.white, 10);
         }
       
     }

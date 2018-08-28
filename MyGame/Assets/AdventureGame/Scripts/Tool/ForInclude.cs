@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-namespace ToolF
-{
+
 
 
     public class ForInclude : MonoBehaviour
@@ -54,10 +53,11 @@ namespace ToolF
                     foreach (Material material in render.materials)
                     {
 
-                        if (material.color == color) return true;
+                        if (material.color != color) return false;
                         //ColorA2BCir(lowHpEffect.lowHpRedImg.material, material.color, Color.white, 20f);
 
                     }
+            return true;
             }
             return false;
         }
@@ -131,4 +131,3 @@ namespace ToolF
             }
         }
     }
-}

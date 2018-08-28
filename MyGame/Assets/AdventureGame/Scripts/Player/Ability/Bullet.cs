@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour {
+public class Bullet : myGameObject
+{
 public float aliveTime=5f;
+    public int atk = 1;
     private Vector3 scale;
     private Vector3 pos;
     private bool isChild = false;
@@ -33,14 +35,11 @@ public float aliveTime=5f;
     private void OnCollisionEnter(Collision collision)
     {
         Transform trans = collision.transform;
-        if (trans.tag == "Player")
-        {
-            trans.GetComponent<Player>().Damage(2);
-        }
+     
 
 
         if (trans.tag == "Monster" || trans.tag == "Others")
-            trans.GetComponent<MonsterFoolAi>().Damage(2);
+            trans.GetComponent<MonsterFoolAi>().Damage(atk);
     
 
 

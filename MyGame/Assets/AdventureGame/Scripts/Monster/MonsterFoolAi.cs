@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ToolF;
 using UnityEngine.UI;
-public class MonsterFoolAi : MonoBehaviour {
+public class MonsterFoolAi : myGameObject
+{
 
     // Use this for initialization
     public Player player;
@@ -15,9 +15,12 @@ public class MonsterFoolAi : MonoBehaviour {
     public bool IsFindPlayer=false;
     public int maxHp = 6;
     public int Hp = 6;
+    public int atk =1;
+    public int flickPower = 5;
     public GameObject HpContorl;
     public bool hurted = false;
     private float time = 0;
+    private bool isAttacking = false;
     ForInclude EffectTool = new ForInclude();
     private bool isDestory = false;
 
@@ -29,21 +32,38 @@ public class MonsterFoolAi : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-         dir = m_Player.position - transform.position;
+        if (GameManager.isTimePause) return;
+        dir = m_Player.position - transform.position;
         Debug.Log(dir.magnitude);
         isFindPlayer();
         if (IsFindPlayer&&!isDestory)
         {
            // Debug.Log("faxian");
             transform.LookAt(m_Player);
-      
-           GetComponent<Rigidbody>().velocity=dir.normalized*10* speed * Time.deltaTime;
+
+           if(!isAttacking) GetComponent<Rigidbody>().velocity=dir.normalized*10* speed * Time.deltaTime;
         }
         hurtCount();
         Flash();
         if (Hp <= 0) goToDie();
     }
-   void isFindPlayer() {
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.tag == "Player") {
+            collision.transform.GetComponent<Rigidbody>().velocity = dir.normalized * flickPower;
+            collision.transform.GetComponent<Player>().Damage(atk);
+            isAttacking = true;
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.transform.tag == "Player")
+        {
+
+            isAttacking = false;
+        }
+    }
+    void isFindPlayer() {
         if (dir.magnitude > viewMaxDistance)
             IsFindPlayer = false;
         else if (hurted || dir.magnitude < viewMinDistance) IsFindPlayer = true;

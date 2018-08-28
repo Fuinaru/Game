@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boom : MonoBehaviour
+public class Boom : myGameObject
 {
 
     public float radius = 3.0F;
     public float power = 1.1F;
+    public int atk = 2;
     public float aliveTime = 5f;
     public Vector3 pos;
     // Use this for initialization
@@ -44,12 +45,12 @@ public class Boom : MonoBehaviour
     private void OnTriggerEnter(Collider hit)
     {
         if (hit.tag == "Player")
-        { hit.GetComponent<Player>().Damage(2);
+        { hit.GetComponent<Player>().Damage(atk);
         }
 
 
         if (hit.tag == "Monster" || hit.tag == "Others")
-            hit.GetComponent<MonsterFoolAi>().Damage(2);
+            hit.GetComponent<MonsterFoolAi>().Damage(atk);
     }
 }
 

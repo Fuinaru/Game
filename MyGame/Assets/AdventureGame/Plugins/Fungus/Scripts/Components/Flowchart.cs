@@ -96,6 +96,7 @@ namespace Fungus
 
         protected virtual void LevelWasLoaded()
         {
+   
             // Reset the flag for checking for an event system as there may not be one in the newly loaded scene.
             eventSystemPresent = false;
         }
@@ -105,6 +106,13 @@ namespace Fungus
             CheckEventSystem();
         }
 
+        void Update()
+        {
+            if (HasExecutingBlocks()) GameManager.isTimePause = true;
+            else GameManager.isTimePause = false;
+
+
+        }
         // There must be an Event System in the scene for Say and Menu input to work.
         // This method will automatically instantiate one if none exists.
         protected virtual void CheckEventSystem()
@@ -149,7 +157,8 @@ namespace Fungus
             CleanupComponents();
             UpdateVersion();
 
-            StringSubstituter.RegisterHandler(this);   
+            StringSubstituter.RegisterHandler(this);
+         
         }
 
         protected virtual void OnDisable()
@@ -160,7 +169,8 @@ namespace Fungus
             UnityEngine.SceneManagement.SceneManager.activeSceneChanged -= SceneManager_activeSceneChanged;
             #endif
 
-            StringSubstituter.UnregisterHandler(this);   
+            StringSubstituter.UnregisterHandler(this);
+         
         }
 
         protected virtual void UpdateVersion()
