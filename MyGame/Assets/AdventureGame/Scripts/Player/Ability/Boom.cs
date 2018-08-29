@@ -9,7 +9,8 @@ public class Boom : myGameObject
     public float power = 1.1F;
     public int atk = 2;
     public float aliveTime = 5f;
-    public Vector3 pos;
+ 
+    public float flickPower=5;
     // Use this for initialization
     //Vector3 explosionPos;
     Collider[] colliders;
@@ -27,7 +28,6 @@ public class Boom : myGameObject
         //explosionPos = transform.position;
         //colliders = Physics.OverlapSphere(explosionPos, radius);
         aliveTime -= Time.deltaTime;
-        pos = transform.position;
         if (aliveTime <= 0)
         {
             gameObject.GetComponent<Collider>().isTrigger = true;
@@ -44,13 +44,28 @@ public class Boom : myGameObject
 }
     private void OnTriggerEnter(Collider hit)
     {
+       
         if (hit.tag == "Player")
-        { hit.GetComponent<Player>().Damage(atk);
+        {
+            //Vector3 dir = hit.transform.position - transform.position;
+            //dir = new Vector3(dir.x, 0, dir.z).normalized;
+            //dir *= 2;
+            //dir.y = 0.5f;
+           
+            //hit.GetComponent<Rigidbody>().velocity = dir * flickPower;
+            hit.GetComponent<Player>().Damage(atk);   
         }
 
 
-        if (hit.tag == "Monster" || hit.tag == "Others")
+        if (hit.tag == "Monster")
+        {
+            //Vector3 dir = hit.transform.position - transform.position;
+            //dir = new Vector3(dir.x, 0, dir.z).normalized;
+            //dir *= 2;
+            //dir.y = 0.5f;
+            //hit.GetComponent<Rigidbody>().velocity = dir.normalized * flickPower;
             hit.GetComponent<MonsterFoolAi>().Damage(atk);
+        }
     }
 }
 

@@ -764,7 +764,7 @@
     <Compile Include="Assets\AdventureGame\Plugins\Fungus\Thirdparty\Usfxr\Scripts\SfxrSynth.cs" />
     <Compile Include="Assets\AdventureGame\Plugins\FungusExamples\FungusLua\Bindings\CustomScript.cs" />
     <Compile Include="Assets\AdventureGame\Plugins\FungusExamples\MonoBehEvents\SpriteColorChangeFromFungusMouseEvent.cs" />
-    <Compile Include="Assets\AdventureGame\Scripts\Follow3DObject.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\creatFollowingUI.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\item\ItemForGet.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterFoolAi.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\OtherHp.cs" />

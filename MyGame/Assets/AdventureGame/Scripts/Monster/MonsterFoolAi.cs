@@ -17,7 +17,7 @@ public class MonsterFoolAi : myGameObject
     public int Hp = 6;
     public int atk =1;
     public int flickPower = 5;
-    public GameObject HpContorl;
+    private GameObject HpContorl;
     public bool hurted = false;
     private float time = 0;
     private bool isAttacking = false;
@@ -28,7 +28,9 @@ public class MonsterFoolAi : myGameObject
         if (player == null) m_Player = GameObject.FindWithTag("Player").transform;
         else m_Player = player.ReturnTransform();
         Hp = maxHp;
-	}
+        HpContorl=GetComponent<creatFollowingUI>().tar;
+        HpContorl.transform.GetComponent<Slider>().maxValue = maxHp;
+    }
 
     // Update is called once per frame
     void Update() {
@@ -74,7 +76,7 @@ public class MonsterFoolAi : myGameObject
     {
         // if (!hurted) { Hp -= a; getHurted(); }
         Hp -= a; getHurted();
-        //  HpContorl.GetComponent<Slider>().value = Hp;
+          HpContorl.GetComponent<Slider>().value = Hp;
     }
     public void getHurted()
     {

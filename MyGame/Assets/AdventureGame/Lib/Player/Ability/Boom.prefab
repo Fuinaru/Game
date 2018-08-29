@@ -113,8 +113,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 3.5
   power: 1.2
+  atk: 2
   aliveTime: 5
-  pos: {x: 0, y: 0, z: 0}
+  flickPower: 10
 --- !u!135 &135187933329917878
 SphereCollider:
   m_ObjectHideFlags: 1
