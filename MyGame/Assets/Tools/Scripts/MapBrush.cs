@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEditor;
 
 public class MapBrush : MonoBehaviour {
+	public bool isPreLoadMap = true;
 	public bool isEditMode=true;
 	public GameObject brushObj;
 	public GameObject mapDataObj;
@@ -57,6 +58,13 @@ public class MapBrush : MonoBehaviour {
 		//更新笔刷预览
 		refreshBrushPreview(tileNum-1);
 
+	}
+
+	void Start(){
+
+		if (isPreLoadMap) {
+			loadMap ();
+		}
 	}
 
 
@@ -195,23 +203,8 @@ public class MapBrush : MonoBehaviour {
 			}
 			if (GUILayout.Button ("读取", GUILayout.Width (40))) {
 
+				loadMap ();
 
-				clearMap ();
-				StreamReader sr = new StreamReader (Application.dataPath + "/Resource/Maps/" + "/Map.map");
-				string line;
-				int i = 0;
-				while ((line = sr.ReadLine ()) != null) {
-					string[] nums = line.ToString ().Split (',');
-
-					for (int j = 0; j < nums.Length - 1; j++) {
-						map [i, j] = int.Parse (nums [j]);
-
-						Debug.Log ((nums.Length - 1) + "," + i + "," + j);
-					}
-					i++;
-				}
-
-				regenerateTile ();
 			}
 			if (GUILayout.Button ("清空", GUILayout.Width (40))) {
 				clearMap ();
@@ -230,6 +223,30 @@ public class MapBrush : MonoBehaviour {
 		}
 
 	}
+
+	void loadMap(){
+
+		clearMap ();
+		StreamReader sr = new StreamReader (Application.dataPath + "/Resource/Maps/" + "/Map.map");
+		string line;
+		int i = 0;
+		while ((line = sr.ReadLine ()) != null) {
+			string[] nums = line.ToString ().Split (',');
+
+			for (int j = 0; j < nums.Length - 1; j++) {
+				map [i, j] = int.Parse (nums [j]);
+
+				Debug.Log ((nums.Length - 1) + "," + i + "," + j);
+			}
+			i++;
+		}
+
+		regenerateTile ();
+
+	}
+
+
+
 
 	//更新笔刷预览
 	void refreshBrushPreview(int i){
