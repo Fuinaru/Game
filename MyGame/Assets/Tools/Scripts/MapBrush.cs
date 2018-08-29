@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEditor;
 
 public class MapBrush : MonoBehaviour {
+	public bool isEditMode=true;
 	public GameObject brushObj;
 	public GameObject mapDataObj;
 	public GameObject mapBaseObj;
@@ -99,14 +100,22 @@ public class MapBrush : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		//平移
-		if (Input.GetKey (KeyCode.Mouse2)) {
-			camera.transform.position += new Vector3 (-Input.GetAxis ("Mouse X")*0.6f, 0, -Input.GetAxis ("Mouse Y")*0.6f);
+
+		if (isEditMode) {
+
+
+			//平移
+			if (Input.GetKey (KeyCode.Mouse2)) {
+				camera.transform.position += new Vector3 (-Input.GetAxis ("Mouse X") * 0.6f, 0, -Input.GetAxis ("Mouse Y") * 0.6f);
+			}
+			//缩放
+			if (Mathf.Abs (Input.GetAxis ("Mouse ScrollWheel")) > 0.1) {
+				camera.transform.position += new Vector3 (0, Input.GetAxis ("Mouse ScrollWheel") * 2f, 0);
+			}
+		
 		}
-		//缩放
-		if (Mathf.Abs(Input.GetAxis ("Mouse ScrollWheel"))>0.1) {
-			camera.transform.position += new Vector3 (0, Input.GetAxis ("Mouse ScrollWheel")*2f, 0);
-		}
+
+
 
 
 		//生成
@@ -155,64 +164,68 @@ public class MapBrush : MonoBehaviour {
 
 
 	void OnGUI(){
-		if (tiles == null) {
-
-			tiles = new List<GameObject> ();
-		}
-		if (GUILayout.Button("保存",GUILayout.Width(40))) {
-			FileStream fs = new FileStream(Application.dataPath+"/Resource/Maps/"+"Map.map", FileMode.OpenOrCreate);
 
 
-			for (int i = 0; i < mapWidth; i++) {
-				string mapLine = "";
-				for (int j = 0; j < mapHeight; j++) {
-					mapLine += map [i,j].ToString();
-					mapLine += ",";
+		if (isEditMode) {
+
+			if (tiles == null) {
+
+				tiles = new List<GameObject> ();
+			}
+			if (GUILayout.Button ("保存", GUILayout.Width (40))) {
+				FileStream fs = new FileStream (Application.dataPath + "/Resource/Maps/" + "Map.map", FileMode.OpenOrCreate);
+
+
+				for (int i = 0; i < mapWidth; i++) {
+					string mapLine = "";
+					for (int j = 0; j < mapHeight; j++) {
+						mapLine += map [i, j].ToString ();
+						mapLine += ",";
+					}
+					mapLine += "\r\n";
+					//逐行写入
+					byte[] data = System.Text.Encoding.Default.GetBytes (mapLine); 
+					fs.Write (data, 0, data.Length);
 				}
-				mapLine += "\r\n";
-				//逐行写入
-				byte[] data = System.Text.Encoding.Default.GetBytes (mapLine); 
-				fs.Write(data, 0, data.Length);
+
+				fs.Flush ();
+				fs.Close ();
+
+
+			}
+			if (GUILayout.Button ("读取", GUILayout.Width (40))) {
+
+
+				clearMap ();
+				StreamReader sr = new StreamReader (Application.dataPath + "/Resource/Maps/" + "/Map.map");
+				string line;
+				int i = 0;
+				while ((line = sr.ReadLine ()) != null) {
+					string[] nums = line.ToString ().Split (',');
+
+					for (int j = 0; j < nums.Length - 1; j++) {
+						map [i, j] = int.Parse (nums [j]);
+
+						Debug.Log ((nums.Length - 1) + "," + i + "," + j);
+					}
+					i++;
+				}
+
+				regenerateTile ();
+			}
+			if (GUILayout.Button ("清空", GUILayout.Width (40))) {
+				clearMap ();
 			}
 
-			fs.Flush();
-			fs.Close();
+
+			GUILayout.Label ("当前:" + tile.name);
+			for (int i = 0; i < tiles.Count; i++) {
+				if (GUILayout.Button (tiles [i].name, GUILayout.Width (80))) {
+					changeBrush (i);
 
 
-		}
-		if (GUILayout.Button("读取",GUILayout.Width(40))) {
 
-
-			clearMap ();
-			StreamReader sr = new StreamReader(Application.dataPath+"/Resource/Maps/"+"/Map.map");
-			string line;
-			int i = 0;
-			while ((line = sr.ReadLine()) != null) 
-			{
-				string[] nums = line.ToString ().Split (',');
-
-				for (int j = 0; j < nums.Length-1; j++) {
-					map [i,j] = int.Parse(nums [j]);
-
-					Debug.Log ((nums.Length-1)+","+i+","+j);
 				}
-				i++;
-			}
-
-			regenerateTile ();
-		}
-		if (GUILayout.Button ("清空",GUILayout.Width(40))) {
-			clearMap ();
-		}
-
-
-		GUILayout.Label ("当前:"+tile.name);
-		for (int i = 0; i < tiles.Count; i++) {
-			if (GUILayout.Button (tiles[i].name, GUILayout.Width (80))) {
-				changeBrush (i);
-
-
-
 			}
 		}
 
