@@ -28,7 +28,7 @@ public class MonsterFoolAi : myGameObject
         if (player == null) m_Player = GameObject.FindWithTag("Player").transform;
         else m_Player = player.ReturnTransform();
         Hp = maxHp;
-        HpContorl=GetComponent<creatFollowingUI>().tar;
+        HpContorl=GetComponent<creatFollowingUI>().Tar;
         HpContorl.transform.GetComponent<Slider>().maxValue = maxHp;
     }
 
@@ -36,7 +36,7 @@ public class MonsterFoolAi : myGameObject
     void Update() {
         if (GameManager.isTimePause) return;
         dir = m_Player.position - transform.position;
-        Debug.Log(dir.magnitude);
+      //  Debug.Log(dir.magnitude);
         isFindPlayer();
         if (IsFindPlayer&&!isDestory)
         {
@@ -76,7 +76,7 @@ public class MonsterFoolAi : myGameObject
     {
         // if (!hurted) { Hp -= a; getHurted(); }
         Hp -= a; getHurted();
-          HpContorl.GetComponent<Slider>().value = Hp;
+        HpContorl.GetComponent<Slider>().value = Hp;
     }
     public void getHurted()
     {

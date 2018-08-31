@@ -6,16 +6,16 @@ public class creatFollowingUI : MonoBehaviour
 
     public GameObject target;
     public Vector3 offset = new Vector3(0, 2.5f, 0);
-    public GameObject tar;
+    public GameObject Tar;
 
     // Use this for initialization
     void Start()
     {
         if (target != null)
         {
-             tar = Instantiate(target);
+             Tar = Instantiate(target);
         }
-        tar.transform.SetParent(GameObject.Find("Canvas").transform);
+        Tar.transform.SetParent(GameObject.Find("Canvas").transform);
 
          
     }
@@ -24,12 +24,12 @@ public class creatFollowingUI : MonoBehaviour
     {
         if (target != null)
         {
-            tar.transform.position = Camera.main.WorldToScreenPoint(transform.position + offset);
+            Tar.transform.position = Camera.main.WorldToScreenPoint(transform.position + offset);
         }
     }
     private void OnDestroy()
     {
-        Destroy(tar);
+        Destroy(Tar);
     }
 
 }
