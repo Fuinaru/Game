@@ -3084,7 +3084,25 @@ Prefab:
       propertyPath: m_MoveSpeedMultiplier
       value: 0.7
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 4907048726748752, guid: d80d385c7ff259b44baae8978c62b81b, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4255239710255784, guid: d80d385c7ff259b44baae8978c62b81b, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887447338263010, guid: d80d385c7ff259b44baae8978c62b81b, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 95651198187828374, guid: d80d385c7ff259b44baae8978c62b81b,
+        type: 2}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 43e3038b35ab33543a0fd23bc88ae6cf, type: 3}
+    m_RemovedComponents:
+    - {fileID: 95289450566698310, guid: d80d385c7ff259b44baae8978c62b81b, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: d80d385c7ff259b44baae8978c62b81b, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1513558957

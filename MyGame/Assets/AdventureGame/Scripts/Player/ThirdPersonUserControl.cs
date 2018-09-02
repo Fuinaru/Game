@@ -46,7 +46,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         // Fixed update is called in sync with physics
         private void FixedUpdate()
         {
-            if (GameManager.isTimePause) { m_Move = Vector3.zero; m_Character.Move(m_Move, false, m_Jump); ; return; }
+            if (GameManager.isTimePause) { m_Move = Vector3.zero; m_Character.Move(m_Move, false, m_Jump);  return; }
             // if (gameManager)
             // read inputs
             float h = CrossPlatformInputManager.GetAxis("Horizontal");
