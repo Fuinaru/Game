@@ -26,8 +26,8 @@ public class ItemForGet : MonoBehaviour {
         playEffect = true;
         if (other.tag == "Player")
         {
-            if (type == Type1.boom) { other.GetComponentInChildren<Luanch>().getBoom(num); Destroy(gameObject); }
-            if (type == Type1.bullet) { other.GetComponentInChildren<Luanch>().getBullet(num); Destroy(gameObject); }
+            if (type == Type1.boom) { other.GetComponentInChildren<PlayerLaunch>().getBoom(num); Destroy(gameObject); }
+            if (type == Type1.bullet) { other.GetComponentInChildren<PlayerLaunch>().getBullet(num); Destroy(gameObject); }
             Flowchart.BroadcastFungusMessage("itemGet");
         }
     }

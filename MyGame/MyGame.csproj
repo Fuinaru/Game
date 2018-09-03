@@ -764,13 +764,19 @@
     <Compile Include="Assets\AdventureGame\Plugins\Fungus\Thirdparty\Usfxr\Scripts\SfxrSynth.cs" />
     <Compile Include="Assets\AdventureGame\Plugins\FungusExamples\FungusLua\Bindings\CustomScript.cs" />
     <Compile Include="Assets\AdventureGame\Plugins\FungusExamples\MonoBehEvents\SpriteColorChangeFromFungusMouseEvent.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Ability\BaseLaunch.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Ability\Boom.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Ability\Bullet.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Ability\MonsterLaunch.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Ability\PlayerLaunch.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Base\HPObject.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Base\myGameObject.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\creatFollowingUI.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\item\ItemForGet.cs" />
-    <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterFoolAi.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Monster\BaseMonster.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterOne.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterTwo.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\OtherHp.cs" />
-    <Compile Include="Assets\AdventureGame\Scripts\Player\Ability\Boom.cs" />
-    <Compile Include="Assets\AdventureGame\Scripts\Player\Ability\Bullet.cs" />
-    <Compile Include="Assets\AdventureGame\Scripts\Player\Ability\Luanch.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Player\Player.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Player\ThirdPersonUserControl.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\SwitchDoor\door.cs" />
@@ -778,7 +784,7 @@
     <Compile Include="Assets\AdventureGame\Scripts\Tool\CameraShakeEffect.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Tool\ForInclude.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Tool\GameManager.cs" />
-    <Compile Include="Assets\AdventureGame\Scripts\Tool\myGameObject.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Tool\Tools.cs" />
     <Compile Include="Assets\Tools\Scripts\MapBrush.cs" />
   </ItemGroup>
   <ItemGroup>

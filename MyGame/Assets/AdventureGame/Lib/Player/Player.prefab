@@ -7496,7 +7496,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4907048726748752}
-  - component: {fileID: 95289450566698310}
   m_Layer: 0
   m_Name: BarrelMan
   m_TagString: Untagged
@@ -11029,7 +11028,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1962572015554188}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.32, y: 3.93, z: 13.92}
+  m_LocalPosition: {x: 7.35, y: -0.09, z: 3.79}
   m_LocalScale: {x: 7.7411146, y: 7.7411156, z: 7.7411156}
   m_Children:
   - {fileID: 4907048726748752}
@@ -16279,23 +16278,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!95 &95289450566698310
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1887447338263010}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 43e3038b35ab33543a0fd23bc88ae6cf, type: 3}
-  m_Controller: {fileID: 9100000, guid: e2cf68ff4b1ffda45a77f7307dd789b9, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!95 &95651198187828374
 Animator:
   serializedVersion: 3
@@ -16352,13 +16334,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7a80d520cacc042b5fe14f373d8173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MovingTurnSpeed: 360
-  m_StationaryTurnSpeed: 180
+  m_MovingTurnSpeed: 5000
+  m_StationaryTurnSpeed: 2000
   m_JumpPower: 0
   m_GravityMultiplier: 2
   m_RunCycleLegOffset: 0.2
-  m_MoveSpeedMultiplier: 0.8
-  m_AnimSpeedMultiplier: 1
+  m_MoveSpeedMultiplier: 0.7
+  m_AnimSpeedMultiplier: 1.1
   m_GroundCheckDistance: 0.3
 --- !u!114 &114682526457520172
 MonoBehaviour:

@@ -8,9 +8,11 @@ public class GameManager : MonoBehaviour
     public static int CurrentStage = 3;
     public bool s = false;
       static public bool isTimePause = true;
-       // public bool m_isTimePause = false;
-        // Use this for initialization
-        void Start()
+    static public bool isGameOver = false;
+    public GameObject gameover;
+    // public bool m_isTimePause = false;
+    // Use this for initialization
+    void Start()
         {
           //  isTimePause = m_isTimePause;
 
@@ -19,9 +21,12 @@ public class GameManager : MonoBehaviour
         // Update is called once per frame
         void Update()
         {
-        //   isTimePause = m_isTimePause;
-        isTimePause = s;
-        if (isTimePause) Time.timeScale = 0;
+        if (isGameOver) {
+            gameover.transform.SetSiblingIndex(999);
+
+            // isTimePause = true;
+            gameover.SetActive(true); }
+
         }
     public void GameStart()
     {
