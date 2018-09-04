@@ -767,8 +767,11 @@
     <Compile Include="Assets\AdventureGame\Scripts\Ability\BaseLaunch.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Ability\Boom.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Ability\Bullet.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Ability\Item.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Ability\MonsterLaunch.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Ability\PlayerLaunch.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Bag\BagItem.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Bag\BagSystem.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Base\HPObject.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Base\myGameObject.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\creatFollowingUI.cs" />
@@ -820,7 +823,13 @@
     <None Include="Assets\AdventureGame\Plugins\readme.txt" />
     <None Include="Assets\AdventureGame\Scenes\readme.txt" />
     <None Include="Assets\AdventureGame\Scripts\readme.txt" />
+    <None Include="Assets\AdventureGame\Shaders\Hatching.shader" />
+    <None Include="Assets\AdventureGame\Shaders\NewSurfaceShader.shader" />
+    <None Include="Assets\AdventureGame\Shaders\Normal.shader" />
+    <None Include="Assets\AdventureGame\Shaders\ViewDir.shader" />
+    <None Include="Assets\AdventureGame\Shaders\mDirNormal.shader" />
     <None Include="Assets\AdventureGame\Shaders\readme.txt" />
+    <None Include="Assets\AdventureGame\Shaders\test.shader" />
     <None Include="Assets\AdventureGame\UI\readme.txt" />
     <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
     <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />

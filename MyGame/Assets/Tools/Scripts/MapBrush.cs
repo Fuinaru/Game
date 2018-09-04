@@ -89,7 +89,7 @@ public class MapBrush : MonoBehaviour {
 	}
 
 	void generateTile(int x,int z,int num){
-		Debug.Log ((float)x + " " + (float)z);
+		//Debug.Log ((float)x + " " + (float)z);
 		GameObject obj=Instantiate (tiles[num-1], new Vector3((float)x,0,(float)z), mapDataObj.transform.rotation)as GameObject;
 		obj.name = "(" + x.ToString () + "," + z.ToString () + ")";
 		obj.transform.parent = mapDataObj.transform;
@@ -121,7 +121,7 @@ public class MapBrush : MonoBehaviour {
 				camera.transform.position += new Vector3 (0, Input.GetAxis ("Mouse ScrollWheel") * 2f, 0);
 			}
 		
-		}
+		
 
 
 
@@ -134,7 +134,7 @@ public class MapBrush : MonoBehaviour {
 			if (Physics.Raycast (ray, out hit,100,layerMask)) {
 				Debug.DrawLine (ray.origin, hit.point, Color.green);
 				if ((int)hit.point.x < mapWidth && (int)hit.point.z < mapHeight) {
-					Debug.Log ((int)hit.point.x + "," + (int)hit.point.z);
+					//Debug.Log ((int)hit.point.x + "," + (int)hit.point.z);
 					if (map [(int)hit.point.x, (int)hit.point.z] == 0) {
 						generateTile ((int)hit.point.x, (int)hit.point.z,tileNum);
 						map [(int)hit.point.x, (int)hit.point.z] = tileNum;
@@ -166,9 +166,9 @@ public class MapBrush : MonoBehaviour {
 			}
 		}
 
+        }
 
-
-	}
+    }
 
 
 	void OnGUI(){

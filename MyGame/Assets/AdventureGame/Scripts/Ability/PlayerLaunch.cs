@@ -7,49 +7,75 @@ public class PlayerLaunch : BaseLuanch
 
     public int bulletNum = 5;
     public int boomNum = 3;
+    public BagSystem bagSystem;
+    public GameObject Eone;
+    public GameObject Etwo;
 
-    KeyCode openFire = KeyCode.F;
-    KeyCode setBoom = KeyCode.B;
-    public Text bulletNumText;
-    public Text boomNumText;
+    public static GameObject SBullet;
+    public static GameObject SBoom;
+    KeyCode A = KeyCode.J;
+    KeyCode B = KeyCode.K;
+    public static Transform trans;
+
+
     // Use this for initialization
     void Start()
     {
-        updateUI();
+        SBullet = bullet;
+        SBoom = boom;
     }
 
     // Update is called once per frame
     void Update()
     {
+        trans = transform;
         if (GameManager.isTimePause) return;
-        if (Input.GetKeyDown(openFire) && bulletNum > 0 && BulletCoolEnd())
+        if (Input.GetKeyDown(A) &&  BulletCoolEnd())
         {
-            Shoot();
-            bulletNum--;
-            updateUI();
+            Debug.Log("keyDown");
+            nexttime = bulletCoolTime + Time.time;
+            UseWeapon(Eone);
         }
-        if (Input.GetKeyDown(setBoom) && boomNum > 0 && BoomCoolEnd())
+        if (Input.GetKeyDown(B) &&  BoomCoolEnd())
         {
             nexttimeB = boomCoolTime + Time.time;
-            SetBoom();
-            boomNum--;
-            updateUI();
+            UseWeapon(Etwo);
         }
     }
-    public void getBullet(int a)
-    {
-        bulletNum += a;
-        updateUI();
+    void UseWeapon(GameObject o) {
+        try {
+            Debug.Log("useWeapon");
+            Transform i;
+            i = o.transform.GetChild(0);
+            useItem(i);
+
+        } catch { }
+
     }
-    public void getBoom(int a)
+    public void getItem(BagItem.ItemType type, int a)
     {
-        boomNum += a;
-        updateUI();
+        bagSystem.AddItem(type, a);
     }
-    void updateUI()
+
+    public void useItem(Transform i)
     {
-        bulletNumText.text = "子弹：" + bulletNum;
-        boomNumText.text = "炸弹：" + boomNum;
+        BagItem o = i.GetComponent<BagItem>();
+        Debug.Log("useItem");
+        if (o.itemType == BagItem.ItemType.bullet)
+        {
+            Debug.Log("bullet");
+            GameObject go = Instantiate(bullet, transform.position, transform.rotation) as GameObject;
+            go.GetComponent<Rigidbody>().AddRelativeForce(0, 0, 1200);
+        }
+        if (o.itemType == BagItem.ItemType.boom)
+        {
+            Debug.Log("Boom");
+            GameObject go = Instantiate(boom, transform.position, transform.rotation) as GameObject;
+            go.GetComponent<Rigidbody>().AddRelativeForce(0, 0, 100);
+        }
+
+        o.itemNum--;
+        o.updateText();
     }
 
 

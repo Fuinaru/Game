@@ -4,8 +4,8 @@ using UnityEngine.UI;
 public class BaseLuanch : myGameObject
 {
 
-    public GameObject bullet;
-    public GameObject boom;
+    public  GameObject bullet;
+    public  GameObject boom;
     public float bulletCoolTime = 0.2f;
     protected float nexttime = 0.0f;
     public float boomCoolTime = 1f;
@@ -30,6 +30,7 @@ public class BaseLuanch : myGameObject
         GameObject go = Instantiate(boom, transform.position, transform.rotation) as GameObject;
         go.GetComponent<Rigidbody>().AddRelativeForce(0, 0, 100);
     }
+
     public bool BulletCoolEnd()
     {
 

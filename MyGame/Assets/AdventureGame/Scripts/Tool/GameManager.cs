@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     // Use this for initialization
     void Start()
         {
-          //  isTimePause = m_isTimePause;
+        //  isTimePause = m_isTimePause;
 
         }
 

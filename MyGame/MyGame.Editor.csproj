@@ -393,7 +393,13 @@
     <None Include="Assets\AdventureGame\Plugins\readme.txt" />
     <None Include="Assets\AdventureGame\Scenes\readme.txt" />
     <None Include="Assets\AdventureGame\Scripts\readme.txt" />
+    <None Include="Assets\AdventureGame\Shaders\Hatching.shader" />
+    <None Include="Assets\AdventureGame\Shaders\NewSurfaceShader.shader" />
+    <None Include="Assets\AdventureGame\Shaders\Normal.shader" />
+    <None Include="Assets\AdventureGame\Shaders\ViewDir.shader" />
+    <None Include="Assets\AdventureGame\Shaders\mDirNormal.shader" />
     <None Include="Assets\AdventureGame\Shaders\readme.txt" />
+    <None Include="Assets\AdventureGame\Shaders\test.shader" />
     <None Include="Assets\AdventureGame\UI\readme.txt" />
     <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
     <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />

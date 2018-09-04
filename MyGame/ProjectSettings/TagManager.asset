@@ -11,6 +11,8 @@ TagManager:
   - Enemy
   - Laser
   - BulletItem
+  - ItemSpace
+  - BagItem
   layers:
   - Default
   - TransparentFX

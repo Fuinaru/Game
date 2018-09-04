@@ -41,9 +41,12 @@ public class Player : HPObject
         
         if (IsLowHp())
         {
-
-            LowHPTool.ColorA2BCir(lowHpEffect.lowHpRedImg, lowHpEffect.minColor, lowHpEffect.maxColor, lowHpEffect.speed);
-        }
+            try
+            {
+                LowHPTool.ColorA2BCir(lowHpEffect.lowHpRedImg, lowHpEffect.minColor, lowHpEffect.maxColor, lowHpEffect.speed);
+            }
+            catch { }
+            }
         else LowHPTool.Color2B(lowHpEffect.lowHpRedImg, Color.clear, lowHpEffect.speed);
     }
 
