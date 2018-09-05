@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,29 +9,28 @@ public  class BagSystem : MonoBehaviour {
     public GameObject itemSpace;
     public GameObject bagItem;
     private Vector2 spaceSzie;
-    private Vector2 backgroundSize;
+    public GameObject background;
+private Vector2 backgroundSize;
     public static int num;
    public static List<GameObject>  bag = new List<GameObject>();
-    public static List<GameObject> bagItems = new List<GameObject>();
+    public static List<ItemData> bagItems = new List<ItemData>();
     public  GameObject equipOne;
     public GameObject equipTwo;
+
     // Use this for initialization
     void Start() {
 
         GetSpaceSize();
         SetBackgroundSize();
         SpaceInitial();
-        bag.Add(equipOne);
-        bag.Add(equipTwo);
+
     }
 
     // Update is called once per frame
     void Update() {
+        if (Input.GetKeyDown(KeyCode.Alpha2)) PrintBag();
         num = GetItemNum();
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-           Debug.Log(GetItemNum());
-        }
+   
     }
     void GetSpaceSize()
     {
@@ -41,42 +41,47 @@ public  class BagSystem : MonoBehaviour {
     {
         backgroundSize.x = width * spaceSzie.x;
         backgroundSize.y = height * spaceSzie.y;
-        GetComponent<RectTransform>().sizeDelta = backgroundSize;
+        background.GetComponent<RectTransform>().sizeDelta = backgroundSize;
     }
     void SpaceInitial() {
+        bag.Add(equipOne);
+        bag.Add(equipTwo);
         for (int i = 0; i < height; i++)
         {
             for (int j = 0; j < width; j++)
             {
 
                 Vector3 pos;
-                pos.x = transform.position.x + j * spaceSzie.x;
-                pos.y = transform.position.y - i * spaceSzie.y;
-                pos.z = transform.position.z;
-                GameObject go = Instantiate(itemSpace, pos, transform.rotation) as GameObject;
-                go.transform.SetParent(transform);
+                pos.x = background.transform.position.x + j * spaceSzie.x;
+                pos.y = background.transform.position.y - i * spaceSzie.y;
+                pos.z = background.transform.position.z;
+                GameObject go = Instantiate(itemSpace, pos, background.transform.rotation) as GameObject;
+                go.transform.SetParent(background.transform);
                 bag.Add(go);
             }
         }
     }
-    public  void AddItem(BagItem.ItemType type,int num) {
-        foreach (GameObject o in bagItems)
+    public  void AddItem(MyGameVariable.ItemType type,int num) {
+        foreach (ItemData o in bagItems)
         {
-            if (o.GetComponent<BagItem>().itemType.Equals(type))
+            if (o.itemType.Equals(type))
             {
-                o.GetComponent<BagItem>().itemNum += num;
-                o.GetComponent<BagItem>().updateText();
+                o.itemNum += num;
+                o.numChanged = true;
                 return;
              }
         }
+
         foreach (GameObject o in bag)
         {
-            if (o.transform.childCount == 0)
+            if (o.transform.childCount == 0)       
             {
-                GameObject go = Instantiate(bagItem, Vector3.zero, transform.rotation) as GameObject;
+                Type classType = Tools.ReturnTypeByStr(type.ToString());
+                GameObject go = Instantiate(bagItem, Vector3.zero, background.transform.rotation) as GameObject;
                 go.transform.SetParent(o.transform);
-                go.GetComponent<BagItem>().Initial(type,num);
-                bagItems.Add(go);
+                go.AddComponent(classType);
+                go.GetComponent<BagItem>().Initial(type, num,bag.IndexOf(o));
+                bagItems.Add(go.GetComponent<BagItem>().itemData);
                 return;
             }
         }
@@ -89,7 +94,7 @@ public  class BagSystem : MonoBehaviour {
     }
     public  Vector2 GetItemPos(){
 
-            Vector2 pos = Input.mousePosition - transform.position;
+            Vector2 pos = Input.mousePosition - background.transform.position;
             pos.y = Mathf.Floor(pos.y*(-1)/spaceSzie.y+1);
             pos.x= Mathf.Floor(pos.x  / spaceSzie.x + 1);
         if (pos.x > 0 && pos.x <= width && pos.y > 0 && pos.y <= height) return pos;
@@ -97,7 +102,7 @@ public  class BagSystem : MonoBehaviour {
 
     }
     public  int GetItemNum() {
-        num = (int)(GetItemPos().x + (GetItemPos().y - 1) * width);
+        num = (int)(GetItemPos().x + (GetItemPos().y - 1) * width+1);
         return num;
     }
     public static int ReturnNum()
@@ -106,11 +111,18 @@ public  class BagSystem : MonoBehaviour {
     }
     bool IsInArea()
     {
-        Vector2 pos = Input.mousePosition - transform.position;
+        Vector2 pos = Input.mousePosition - background.transform.position;
         pos.y *= -1;
         if (pos.x > 0 && pos.y > 0 && pos.x < backgroundSize.x && pos.y < backgroundSize.y) return true;
         else return false;
 
     }
+    private void PrintBag() {
+        foreach (ItemData i in bagItems) {
+            Debug.Log(i.itemType+"/"+i.itemNum+"/"+i.spaceNum);
+        }
+
+    }
+
 
 }

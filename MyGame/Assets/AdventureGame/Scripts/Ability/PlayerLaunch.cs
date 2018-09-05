@@ -41,42 +41,51 @@ public class PlayerLaunch : BaseLuanch
             nexttimeB = boomCoolTime + Time.time;
             UseWeapon(Etwo);
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            getItem(MyGameVariable.ItemType.BoomItem, 10);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            getItem(MyGameVariable.ItemType.BulletItem, 10);
+        }
     }
     void UseWeapon(GameObject o) {
         try {
             Debug.Log("useWeapon");
             Transform i;
             i = o.transform.GetChild(0);
-            useItem(i);
-
+         //   useItem(i);
+            i.GetComponent<BagItem>().useItem();
         } catch { }
-
+     
     }
-    public void getItem(BagItem.ItemType type, int a)
+    public void getItem(MyGameVariable.ItemType type, int a)
     {
         bagSystem.AddItem(type, a);
     }
 
-    public void useItem(Transform i)
-    {
-        BagItem o = i.GetComponent<BagItem>();
-        Debug.Log("useItem");
-        if (o.itemType == BagItem.ItemType.bullet)
-        {
-            Debug.Log("bullet");
-            GameObject go = Instantiate(bullet, transform.position, transform.rotation) as GameObject;
-            go.GetComponent<Rigidbody>().AddRelativeForce(0, 0, 1200);
-        }
-        if (o.itemType == BagItem.ItemType.boom)
-        {
-            Debug.Log("Boom");
-            GameObject go = Instantiate(boom, transform.position, transform.rotation) as GameObject;
-            go.GetComponent<Rigidbody>().AddRelativeForce(0, 0, 100);
-        }
+    //public void useItem(Transform i)
+    //{
+    //    BagItem o = i.GetComponent<BagItem>();
+    //    Debug.Log("useItem");
+    //    if (o.itemType == MyGameVariable.ItemType.BulletItem)
+    //    {
+    //        Debug.Log("bullet");
+    //        GameObject go = Instantiate(bullet, transform.position, transform.rotation) as GameObject;
+    //        go.GetComponent<Rigidbody>().AddRelativeForce(0, 0, 1200);
+    //    }
+    //    if (o.itemType == MyGameVariable.ItemType.BoomItem)
+    //    {
+    //        Debug.Log("Boom");
+    //        GameObject go = Instantiate(boom, transform.position, transform.rotation) as GameObject;
+    //        go.GetComponent<Rigidbody>().AddRelativeForce(0, 0, 100);
+    //    }
 
-        o.itemNum--;
-        o.updateText();
-    }
+    //    o.itemNum--;
+    //    o.updateText();
+    //}
 
 
 }

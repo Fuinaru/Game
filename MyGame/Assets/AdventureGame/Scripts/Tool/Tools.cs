@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class Tools : MonoBehaviour {
 
 	// Use this for initialization
@@ -13,12 +13,16 @@ public class Tools : MonoBehaviour {
 	void Update () {
 		
 	}
-    public static void LookAt(Transform m,Vector3 dir,float speed) {
-        if (m.forward.normalized.Equals(dir.normalized)) return ;
-        Debug.Log(m.forward.normalized+"+"+ dir.normalized);
-      //  m.localEulerAngles = Vector3.Lerp(m.forward, dir, speed * Time.deltaTime);
-        m.localEulerAngles = dir;
-
+    public static Type ReturnTypeByStr(string str)
+    {
+        Type classType = Type.GetType(new Tools().GetType().Namespace + "." + str, true, true);
+        return classType;
     }
 
+    public static object CreateClassByStr(string str)
+    {
+        Type classType = ReturnTypeByStr(str);
+    var s = Activator.CreateInstance(classType);
+        return s;
+}
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿#if UNITY_EDITOR
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -236,7 +237,7 @@ public class MapBrush : MonoBehaviour {
 			for (int j = 0; j < nums.Length - 1; j++) {
 				map [i, j] = int.Parse (nums [j]);
 
-				Debug.Log ((nums.Length - 1) + "," + i + "," + j);
+				//Debug.Log ((nums.Length - 1) + "," + i + "," + j);
 			}
 			i++;
 		}
@@ -279,3 +280,4 @@ public class MapBrush : MonoBehaviour {
 	}
 
 }
+#endif

@@ -58,7 +58,8 @@ public class HPObject : myGameObject {
     {
         if (hurted && !isDestory)
         {
-            HurtedTool.flash(transform, new Color(1, 0, 0, 0.7f), Color.white, 10);
+            try { HurtedTool.flash(transform, new Color(1, 0, 0, 0.7f), Color.white, 10); }
+            catch { }
         }
 
     }

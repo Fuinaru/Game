@@ -772,6 +772,9 @@
     <Compile Include="Assets\AdventureGame\Scripts\Ability\PlayerLaunch.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Bag\BagItem.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Bag\BagSystem.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Bag\Item\BoomItem.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Bag\Item\BulletItem.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Bag\ItemData.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Base\HPObject.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Base\myGameObject.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\creatFollowingUI.cs" />
@@ -787,6 +790,7 @@
     <Compile Include="Assets\AdventureGame\Scripts\Tool\CameraShakeEffect.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Tool\ForInclude.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Tool\GameManager.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Tool\MyGameVariable.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Tool\Tools.cs" />
     <Compile Include="Assets\Tools\Scripts\MapBrush.cs" />
   </ItemGroup>

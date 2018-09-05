@@ -13,6 +13,7 @@ TagManager:
   - BulletItem
   - ItemSpace
   - BagItem
+  - Bag
   layers:
   - Default
   - TransparentFX

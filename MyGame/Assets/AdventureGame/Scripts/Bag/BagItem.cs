@@ -7,39 +7,49 @@ public class BagItem : MonoBehaviour {
     public bool isDragable = true;
     public bool isMouseDown = false;
     private Vector2 size ;
-    public  enum ItemType
-    {
-        bullet,
-        boom
-    }
-    public  ItemType itemType;
-    public int itemNum=0;
+
+    public ItemData itemData = new ItemData();
+
     public Text numText;
     public Text nameText;
+    public Image img;
+
     // Use this for initialization
-    void Start () {
+private  Transform origin = null;
+
+    protected void Start () {
+      
         size.x = GetComponent<RectTransform>().sizeDelta.x;
         size.y = GetComponent<RectTransform>().sizeDelta.y;
-        updateText();
+        transform.GetChild(0).GetComponent<Image>().sprite = MyGameVariable.itemImage[(int)itemData.itemType];
+
+         origin = transform.parent;
+
     }
 
-    public void  Initial(ItemType type,int num ) {
+    public void  Initial(MyGameVariable.ItemType type,int num,int sn ) {
+        nameText = transform.GetChild(1).GetComponent<Text>();
+        numText = transform.GetChild(2).GetComponent<Text>();
         transform.localPosition = Vector3.zero;
-        itemType = type;
-        itemNum = num;
+        itemData.itemType = type;
+        itemData.itemNum = num;
+        itemData.spaceNum= sn;
         updateText();
+     
     }
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         AutoOrder();
         IsMouseDown();
         MouseDrag();
-        if (itemNum <= 0)
+        if (itemData.numChanged) { updateText(); itemData.numChanged = false; }
+        if (itemData.itemNum <= 0)
         {
-            BagSystem.bagItems.Remove(gameObject);
+            BagSystem.bagItems.Remove(GetComponent<ItemData>());
             Destroy(gameObject);
         }
+   
     }
 
     void IsMouseDown() {
@@ -66,18 +76,22 @@ public class BagItem : MonoBehaviour {
     void AutoOrder() {
         if (isMouseDown)
         {
+           
+         
+           if(origin!=null) transform.SetParent(origin.parent);
             if (Input.GetKeyUp(KeyCode.Mouse0))
-            { 
-            if (BagSystem.ReturnNum() > 0 && BagSystem.ReturnNum() <= BagSystem.bag.Count)
             {
-                GameObject obj = BagSystem.bag[BagSystem.ReturnNum() - 1];
+                transform.SetParent(origin);
+            if (BagSystem.ReturnNum() > 0 && BagSystem.ReturnNum() <= BagSystem.bag.Count-1&&GameManager.isBagShow)
+            {
+                GameObject obj = BagSystem.bag[BagSystem.ReturnNum()];
                     //obj.GetComponent<Image>().color = Color.red;
                     Swap(obj);
                
             }
-                if (isInEquip(BagSystem.bag[BagSystem.bag.Count-2])) Swap(BagSystem.bag[BagSystem.bag.Count - 2]);
-                if (isInEquip(BagSystem.bag[BagSystem.bag.Count - 1])) Swap(BagSystem.bag[BagSystem.bag.Count - 1]);
-
+                if (isInEquip(BagSystem.bag[0])) Swap(BagSystem.bag[0]);
+                if (isInEquip(BagSystem.bag[1])) Swap(BagSystem.bag[1]);
+         
                 transform.localPosition = Vector3.zero;
             }
         }
@@ -85,8 +99,8 @@ public class BagItem : MonoBehaviour {
 
     }
     public void updateText() {
-        numText.text = itemNum.ToString();
-        nameText.text = itemType.ToString();
+        numText.text = itemData.itemNum.ToString();
+        nameText.text = itemData.itemType.ToString();
     }
     bool isInEquip(GameObject o) {
         Vector2 size = o.GetComponent<RectTransform>().sizeDelta;
@@ -97,14 +111,25 @@ public class BagItem : MonoBehaviour {
 
     }
     void Swap(GameObject o) {
+        Debug.Log(itemData.spaceNum+"+");
         try
         {
-            Transform child = o.transform.GetChild(0).transform;
-            if (child.tag == "BagItem") child.SetParent(transform.parent);
-            child.localPosition = Vector3.zero;
+         
+            Transform child = o.transform.GetChild(0).transform;      
+            if (child.tag == "BagItem")
+            {
+                child.SetParent(transform.parent);
+                child.localPosition = Vector3.zero;
+                child.GetComponent<BagItem>().itemData.spaceNum = itemData.spaceNum;
+                child.GetComponent<BagItem>().origin = child.parent;
+
+            } 
+
         }
         catch { }
+        itemData.spaceNum = BagSystem.bag.IndexOf(o);
         transform.SetParent(o.transform);
+        origin = transform.parent;
     }
     //public void useItem() {
     //    Debug.Log("useItem");
@@ -119,9 +144,11 @@ public class BagItem : MonoBehaviour {
     //        GameObject go = Instantiate(PlayerLaunch.SBoom, PlayerLaunch.trans.position, PlayerLaunch.trans.rotation) as GameObject;
     //        go.GetComponent<Rigidbody>().AddRelativeForce(0, 0, 100);
     //    }
-        
+
     //    itemNum--;
     //    updateText();
     //}
+    public virtual void useItem() {
 
+    }
 }

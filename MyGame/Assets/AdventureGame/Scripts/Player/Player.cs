@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor;
 using Fungus;
 public class Player : HPObject
 {
@@ -38,16 +37,16 @@ public class Player : HPObject
         return Hp <= 2;
     }
     private void LowHp() {
-        
-        if (IsLowHp())
-        {
+      
             try
-            {
-                LowHPTool.ColorA2BCir(lowHpEffect.lowHpRedImg, lowHpEffect.minColor, lowHpEffect.maxColor, lowHpEffect.speed);
-            }
+        {
+            if (IsLowHp())LowHPTool.ColorA2BCir(lowHpEffect.lowHpRedImg, lowHpEffect.minColor, lowHpEffect.maxColor, lowHpEffect.speed);
+            else LowHPTool.Color2B(lowHpEffect.lowHpRedImg, Color.clear, lowHpEffect.speed);
+            
+         }
             catch { }
-            }
-        else LowHPTool.Color2B(lowHpEffect.lowHpRedImg, Color.clear, lowHpEffect.speed);
+     }
+      
     }
 
-    }
+   

@@ -64,7 +64,6 @@ public class CameraShakeEffect : MonoBehaviour
                 shakePos.z = UnityEngine.Random.Range(-Mathf.Abs(shakeDir.z) * percent, Mathf.Abs(shakeDir.z) * percent);
 
                 Camera.main.transform.position += shakePos;
-
                 currentTime -= Time.deltaTime;
 
         }
