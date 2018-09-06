@@ -33,7 +33,7 @@ public class MapBrush : MonoBehaviour {
 
 		tiles = new List<GameObject> ();
 		//tiles.Clear();
-		string fullPath = Application.dataPath+"/Resource/Maps/Tiles/";  
+		string fullPath = Application.dataPath+"/Resources/Maps/Tiles/";  
 
 		//获取指定路径下面的所有资源文件  
 		if (Directory.Exists(fullPath)){  
@@ -179,7 +179,7 @@ public class MapBrush : MonoBehaviour {
 				tiles = new List<GameObject> ();
 			}
 			if (GUILayout.Button ("保存", GUILayout.Width (40))) {
-				FileStream fs = new FileStream (Application.dataPath + "/Resource/Maps/" + "Map.map", FileMode.OpenOrCreate);
+				FileStream fs = new FileStream (Application.dataPath + "/Resources/Maps/" + "Map.map", FileMode.OpenOrCreate);
 
 
 				for (int i = 0; i < mapWidth; i++) {
@@ -225,7 +225,7 @@ public class MapBrush : MonoBehaviour {
 	void loadMap(){
 
 		clearMap ();
-		StreamReader sr = new StreamReader (Application.dataPath + "/Resource/Maps/" + "/Map.map");
+		StreamReader sr = new StreamReader (Application.dataPath + "/Resources/Maps/" + "/Map.map");
 		string line;
 		int i = 0;
 		while ((line = sr.ReadLine ()) != null) {

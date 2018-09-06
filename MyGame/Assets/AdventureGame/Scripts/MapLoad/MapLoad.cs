@@ -8,13 +8,15 @@ public class MapLoad : MonoBehaviour {
     public int width = 4;
     public int height = 4;
     public List<MapData> maps=new List<MapData>();
-    public List<MapData> mapInScene = new List<MapData>();
+	public List<MapInSceneData> mapInScene = new List<MapInSceneData>();
     public int length;
+
     // Use this for initialization
     void Start () {
-        LoadPrefabMap();
+        mapInitial();
         length = maps.Count;
        //LoadAllMapIntoScene();
+	
     }
 	
 	// Update is called once per frame
@@ -31,8 +33,8 @@ public class MapLoad : MonoBehaviour {
     }
 
 
-    void LoadPrefabMap() {
-        string fullPath = "Assets/AdventureGame/Lib/Map" + "/";  //路径
+    void mapInitial() {
+		string fullPath = "Assets/Resources/MapBlocks" + "/";  //路径
 
         //获取指定路径下面的所有资源文件  
         if (Directory.Exists(fullPath))
@@ -46,9 +48,8 @@ public class MapLoad : MonoBehaviour {
                 {
                     continue;
                 }
-                string dir = files[i].FullName.Substring(files[i].FullName.IndexOf("Assets"));
-                GameObject obj = AssetDatabase.LoadMainAssetAtPath(dir) as GameObject;
-                maps.Add(new MapData(obj,maps.Count));
+
+                maps.Add(new MapData(maps.Count));
             }
         }
 
@@ -57,14 +58,14 @@ public class MapLoad : MonoBehaviour {
     {
         if (!o.isInScene)
         {
-            GameObject go = Instantiate(o.mapObject) as GameObject;
+			GameObject go = Instantiate(o.GetMapResource()) as GameObject;
             go.transform.position = MapWorldPosition(o);
             o.isInScene = true;
-            MapData i = new MapData(go, o.mapNum, true);
+			MapInSceneData i = new MapInSceneData(go, o.mapNum, true);
             mapInScene.Add(i);
         }
     }
-    void UnloadMap(MapData o)
+	void UnloadMap(MapInSceneData o)
     {
         if (o.isInScene)
         {
@@ -74,12 +75,12 @@ public class MapLoad : MonoBehaviour {
         }
      //   Debug.Log(maps.IndexOf(o) + "/" + maps.IndexOf(o));
     }
-    void LoadAllMapIntoScene() {
-        foreach (MapData o in maps) {
-         
-            LoadMapIntoScene(o);
-        }
-    }
+//    void LoadAllMapIntoScene() {
+//        foreach (MapData o in maps) {
+//         
+//            LoadMapIntoScene(o);
+//        }
+//    }
 
     void LoadMapsIntoSceneByPlayerPos() {
    
@@ -159,18 +160,43 @@ public class MapLoad : MonoBehaviour {
     }
 }
 public class MapData {
-    public GameObject mapObject;
     public int mapNum;
     public bool isInScene;
-    public MapData(GameObject m_map, int m_mapNum) {
-        mapObject = m_map;
+	public MapData(){
+	}
+    public MapData(int m_mapNum) {
         mapNum = m_mapNum;
         isInScene = false;
     }
-    public MapData(GameObject m_map, int m_mapNum,bool isIn)
+    public MapData(int m_mapNum,bool isIn)
     {
-        mapObject = m_map;
+
         mapNum = m_mapNum;
         isInScene = isIn;
     }
+
+	public GameObject GetMapResource(){
+		Debug.Log (Application.dataPath+"/AdventureGame/Lib/Map/"+"MapEditor "+mapNum.ToString());
+		GameObject obj = (GameObject)Resources.Load ("MapBlocks/" + "MapEditor " + mapNum.ToString ());
+		return obj;
+	}
+
+}
+
+public class MapInSceneData :MapData{
+	public GameObject mapObject;
+	public int mapNum;
+	public bool isInScene;
+	public MapInSceneData(GameObject m_map, int m_mapNum) {
+		mapObject = m_map;
+		mapNum = m_mapNum;
+		isInScene = false;
+	}
+	public MapInSceneData(GameObject m_map, int m_mapNum,bool isIn)
+	{
+		mapObject = m_map;
+		mapNum = m_mapNum;
+		isInScene = isIn;
+	}
+
 }
