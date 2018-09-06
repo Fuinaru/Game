@@ -19,7 +19,7 @@ public class BulletItem : BagItem
     }
     public override void useItem()
     {
-        GameObject go = Instantiate(PlayerLaunch.SBullet, PlayerLaunch.trans.position, PlayerLaunch.trans.rotation) as GameObject;
+        GameObject go = Instantiate(MyGameVariable.itemObject[0], PlayerLaunch.trans.position, PlayerLaunch.trans.rotation) as GameObject;
         go.GetComponent<Rigidbody>().AddRelativeForce(0, 0, 1200);
         itemData.itemNum--;
         updateText();

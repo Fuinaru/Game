@@ -4,8 +4,7 @@ using UnityEngine.UI;
 public class BaseLuanch : myGameObject
 {
 
-    public  GameObject bullet;
-    public  GameObject boom;
+
     public float bulletCoolTime = 0.2f;
     protected float nexttime = 0.0f;
     public float boomCoolTime = 1f;
@@ -22,12 +21,12 @@ public class BaseLuanch : myGameObject
 
     }
     public void Shoot() {
-        GameObject go = Instantiate(bullet, transform.position, transform.rotation) as GameObject;
+        GameObject go = Instantiate(MyGameVariable.itemObject[0], transform.position, transform.rotation) as GameObject;
         go.GetComponent<Rigidbody>().AddRelativeForce(0, 0, 1200);
     }
     public void SetBoom()
     {
-        GameObject go = Instantiate(boom, transform.position, transform.rotation) as GameObject;
+        GameObject go = Instantiate(MyGameVariable.itemObject[1], transform.position, transform.rotation) as GameObject;
         go.GetComponent<Rigidbody>().AddRelativeForce(0, 0, 100);
     }
 

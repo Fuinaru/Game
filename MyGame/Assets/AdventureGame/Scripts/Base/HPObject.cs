@@ -7,21 +7,22 @@ public class HPObject : myGameObject {
 
     public int maxHp = 5;
     public int Hp = 5;
-    public GameObject HpContorl;
+    public Slider HpContorl;
     protected bool hurted = false;
     private float time = 0;
     ForInclude HurtedTool = new ForInclude();
     protected bool isDestory = false;
+    public float hurtedCoolTime = 3;
     // Use this for initialization
     protected void Start () {
         base.Start();
 
-        if (transform.tag=="Player") HpContorl.transform.GetComponent<Slider>().maxValue = maxHp;
+        if (transform.tag=="Player") HpContorl.maxValue = maxHp;
       
         if (transform.tag == "Monster")
         {
-            HpContorl = GetComponent<creatFollowingUI>().Tar;
-            HpContorl.transform.GetComponent<Slider>().maxValue = maxHp;
+            HpContorl = GetComponent<creatFollowingUI>().Tar.GetComponent<Slider>();
+            HpContorl.maxValue = maxHp;
         }
 
     }
@@ -31,12 +32,18 @@ public class HPObject : myGameObject {
         base.Update();
         hurtCount();
         Flash();
-        if (Hp <= 0) goToDie();
+        if (Hp <= 0) GoToDie();
     }
     public void Damage(int a)
     {
         if (!hurted) { Hp -= a; getHurted(); }
-        HpContorl.GetComponent<Slider>().value = Hp;
+        HpContorl.value = Hp;
+
+    }
+    public void Cure(int a)
+    {
+        Hp += a;
+        HpContorl.value = Hp;
     }
     public void getHurted()
     {
@@ -47,7 +54,7 @@ public class HPObject : myGameObject {
         if (hurted)
         {
             time += Time.deltaTime;
-            if (time >= 3)
+            if (time >= hurtedCoolTime)
             {
                 HurtedTool.materialBecomeWhite(transform);
                 if (HurtedTool.isChildrenColorB(transform, Color.white)) hurted = false; time = 0;
@@ -64,12 +71,8 @@ public class HPObject : myGameObject {
 
     }
 
-    public void goToDie()
-    {
-        if (transform.tag == "Player") {
-            GameManager.isGameOver = true;
-        }
-        else {
+    public virtual void GoToDie()
+    { 
             if (!isDestory)
             {
                 Destroy(gameObject.GetComponent<Collider>());
@@ -80,5 +83,5 @@ public class HPObject : myGameObject {
             HurtedTool.Color2B(GetComponentInChildren<Renderer>().material, new Color(1, 1, 1, 0), 20);
             if (HurtedTool.isChildrenColorB(transform, new Color(1, 1, 1, 0))) Destroy(gameObject);
         }
-    }
+   
 }

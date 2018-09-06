@@ -6,8 +6,8 @@ using UnityEngine;
 using UnityEditor;
 
 public class MapBrush : MonoBehaviour {
-	public bool isPreLoadMap = true;
-	public bool isEditMode=true;
+	public bool isPreLoadMap = false;
+	public bool isEditMode=false;
 	public GameObject brushObj;
 	public GameObject mapDataObj;
 	public GameObject mapBaseObj;
@@ -40,18 +40,15 @@ public class MapBrush : MonoBehaviour {
 			DirectoryInfo direction = new DirectoryInfo(fullPath);  
 			FileInfo[] files = direction.GetFiles("*",SearchOption.AllDirectories);  
 
-			Debug.Log(files.Length);  
 
 			for(int i=0;i<files.Length;i++){  
 				if (files[i].Name.EndsWith(".meta")){  
 					continue;  
 				}  
-				//Debug.Log( "Name:" + files[i].Name );  
-				Debug.Log( "FullName:" + files[i].FullName );  
-				//Debug.Log( "DirectoryName:" + files[i].DirectoryName );  
+		
 				string dir=files[i].FullName.Substring (files[i].FullName.IndexOf ("Assets"));
 				GameObject obj=AssetDatabase.LoadMainAssetAtPath(dir)as GameObject;
-				Debug.Log ("!!!");
+
 				tiles.Add(obj);
 			}  
 		}  

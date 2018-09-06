@@ -774,11 +774,13 @@
     <Compile Include="Assets\AdventureGame\Scripts\Bag\BagSystem.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Bag\Item\BoomItem.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Bag\Item\BulletItem.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Bag\Item\PotionItem.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Bag\ItemData.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Base\HPObject.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Base\myGameObject.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\creatFollowingUI.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\item\ItemForGet.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\MapLoad\MapLoad.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\BaseMonster.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterOne.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterTwo.cs" />

@@ -22,7 +22,7 @@ public class BaseMonster : HPObject
         base.Start();
         if (player == null) m_Player = GameObject.FindWithTag("Player").transform;
         else m_Player = player.transform;
-
+        hurtedCoolTime = 1;
     }
     // Update is called once per frame
     protected void Update() {

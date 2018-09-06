@@ -26,40 +26,20 @@ using UnityEngine.UI;
         {
 
             Renderer[] rds = trans.GetComponentsInChildren<Renderer>();
-            //逐一遍历他的子物体中的Renderer
-            foreach (Renderer render in rds)
-            {
-                if (render.tag != "Bullet")
-                    //逐一遍历子物体的子材质（renderer中的material）
-                    foreach (Material material in render.materials)
-                    {
+                if (rds[0].tag != "Bullet")
+                 Color2B(rds[0].material, color, speed);
 
-                        Color2B(material, color, speed);
-                        //ColorA2BCir(lowHpEffect.lowHpRedImg.material, material.color, Color.white, 20f);
 
-                    }
-            }
         }
 
         public bool isChildrenColorB(Transform trans, Color color)
         {
 
             Renderer[] rds = trans.GetComponentsInChildren<Renderer>();
-            //逐一遍历他的子物体中的Renderer
-            foreach (Renderer render in rds)
-            {
-                if (render.tag != "Bullet")
-                    //逐一遍历子物体的子材质（renderer中的material）
-                    foreach (Material material in render.materials)
-                    {
-
-                        if (material.color != color) return false;
-                        //ColorA2BCir(lowHpEffect.lowHpRedImg.material, material.color, Color.white, 20f);
-
-                    }
-            return true;
-            }
-            return false;
+        //逐一遍历他的子物体中的Renderer
+        if (rds[0].tag != "Bullet")
+        if (rds[0].material.color != color) return false;
+         return true;
         }
 
 
@@ -98,36 +78,24 @@ using UnityEngine.UI;
 
             Renderer[] rds = trans.GetComponentsInChildren<Renderer>();
             //逐一遍历他的子物体中的Renderer
-            foreach (Renderer render in rds)
-            {
-                if (render.tag !="Bullet" )
-                    //逐一遍历子物体的子材质（renderer中的material）
-                    foreach (Material material in render.materials)
-                {
+       
+                if (rds[0].tag !="Bullet" )
 
-                    ColorA2BCir(material, min, max, speed);
-                    //ColorA2BCir(lowHpEffect.lowHpRedImg.material, material.color, Color.white, 20f);
 
-                }
-            }
+                    ColorA2BCir(rds[0].material, min, max, speed);
+
         }
 
         public void materialBecomeWhite(Transform trans)
         {
 
             Renderer[] rds = trans.GetComponentsInChildren<Renderer>();
-            //逐一遍历他的子物体中的Renderer
-            foreach (Renderer render in rds)
-            {
-                if (render.tag != "Bullet")
-                    //逐一遍历子物体的子材质（renderer中的material）
-                    foreach (Material material in render.materials)
-                    {
+        //逐一遍历他的子物体中的Renderer
 
-                        material.color = Color.white;
-                        //ColorA2BCir(lowHpEffect.lowHpRedImg.material, material.color, Color.white, 20f);
+        if (rds[0].tag != "Bullet")
+            rds[0].material.color = Color.white;
 
-                    }
-            }
+
+  
         }
     }

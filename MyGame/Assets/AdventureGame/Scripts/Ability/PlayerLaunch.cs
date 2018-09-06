@@ -11,8 +11,7 @@ public class PlayerLaunch : BaseLuanch
     public GameObject Eone;
     public GameObject Etwo;
 
-    public static GameObject SBullet;
-    public static GameObject SBoom;
+
     KeyCode A = KeyCode.J;
     KeyCode B = KeyCode.K;
     public static Transform trans;
@@ -21,8 +20,7 @@ public class PlayerLaunch : BaseLuanch
     // Use this for initialization
     void Start()
     {
-        SBullet = bullet;
-        SBoom = boom;
+  
     }
 
     // Update is called once per frame

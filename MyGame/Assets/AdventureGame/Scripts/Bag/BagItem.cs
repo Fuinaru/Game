@@ -46,7 +46,7 @@ private  Transform origin = null;
         if (itemData.numChanged) { updateText(); itemData.numChanged = false; }
         if (itemData.itemNum <= 0)
         {
-            BagSystem.bagItems.Remove(GetComponent<ItemData>());
+            BagSystem.bagItems.Remove(itemData);
             Destroy(gameObject);
         }
    
