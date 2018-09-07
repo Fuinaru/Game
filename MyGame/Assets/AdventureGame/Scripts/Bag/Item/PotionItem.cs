@@ -18,8 +18,8 @@ public class PotionItem : BagItem
     }
     public override void useItem()
     {
-
-        ParticleSystem go = Instantiate(MyGameVariable.particleEffects[0]) as ParticleSystem;
+       // if (Tools.GetParticleSystemByName(itemData.itemType.ToString()) == null) Debug.Log("??");
+        ParticleSystem go = Instantiate(Tools.GetParticleSystemGameObjectByName(itemData.itemType.ToString()).GetComponent<ParticleSystem>()) as ParticleSystem;
         go.transform.SetParent(GameManager.player.transform);
         go.transform.localPosition = Vector3.zero;
         go.Play();

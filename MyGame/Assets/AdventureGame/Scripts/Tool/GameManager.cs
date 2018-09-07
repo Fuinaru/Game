@@ -35,6 +35,12 @@ public class GameManager : MonoBehaviour
         isBagShow = bag.activeInHierarchy;
     }
 
+    public static BagSystem bagSys;
+    public BagSystem m_bagSys;
+    private void SetBagSys()
+    {
+        bagSys = m_bagSys;
+    }
     //Player
     public static Player player;
     public  Player m_player;
@@ -55,6 +61,7 @@ public class GameManager : MonoBehaviour
     {
         //  isTimePause = m_isTimePause;
         SetIsBagShow();
+        SetBagSys();
         SetPlayer();
         SetGameover();
     }

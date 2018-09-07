@@ -176,7 +176,6 @@ public class MapData {
     }
 
 	public GameObject GetMapResource(){
-		Debug.Log (Application.dataPath+"/AdventureGame/Lib/Map/"+"MapEditor "+mapNum.ToString());
 		GameObject obj = (GameObject)Resources.Load ("MapBlocks/" + "MapEditor " + mapNum.ToString ());
 		return obj;
 	}
@@ -185,8 +184,6 @@ public class MapData {
 
 public class MapInSceneData :MapData{
 	public GameObject mapObject;
-	public int mapNum;
-	public bool isInScene;
 	public MapInSceneData(GameObject m_map, int m_mapNum) {
 		mapObject = m_map;
 		mapNum = m_mapNum;

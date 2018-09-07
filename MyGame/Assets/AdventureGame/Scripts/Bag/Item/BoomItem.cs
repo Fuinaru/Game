@@ -15,7 +15,7 @@ public class BoomItem : BagItem {
 	}
     public override void useItem()
     {
-        GameObject go = Instantiate(MyGameVariable.itemObject[1], PlayerLaunch.trans.position, PlayerLaunch.trans.rotation) as GameObject;
+        GameObject go = Instantiate(GetItemObject(), PlayerLaunch.trans.position, PlayerLaunch.trans.rotation) as GameObject;
         go.GetComponent<Rigidbody>().AddRelativeForce(0, 0, 100);
         itemData.itemNum--;
         updateText();

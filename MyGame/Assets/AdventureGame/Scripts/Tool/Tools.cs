@@ -4,8 +4,12 @@ using UnityEngine;
 using System;
 public class Tools : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    public static string itemObjectPath = "Item/ItemGameObject/";
+    public static string itemImgPath = "Item/ItemImg/";
+    public static string effectsPath = "Effects/";
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -25,4 +29,32 @@ public class Tools : MonoBehaviour {
     var s = Activator.CreateInstance(classType);
         return s;
 }
+    public static GameObject GetGameObjectByPath(string path)
+    {
+        GameObject o = (GameObject)Resources.Load(path);
+
+        return o;
+    }
+    public static GameObject GetItemGameObjectByType(MyGameVariable.ItemType type)
+    {
+        return GetGameObjectByPath(itemObjectPath + type.ToString());
+    }
+
+    public static Sprite GetImgByPath(string path)
+    {
+        Texture2D tex = (Texture2D)Resources.Load(path);
+        Sprite img = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
+        return img;
+    }
+    public static Sprite GetItemImgByType(MyGameVariable.ItemType type)
+    {
+        return GetImgByPath(itemImgPath + type.ToString());
+    }
+
+
+    public static GameObject GetParticleSystemGameObjectByName(string name)
+    {
+        return GetGameObjectByPath(effectsPath +name);
+    }
+
 }

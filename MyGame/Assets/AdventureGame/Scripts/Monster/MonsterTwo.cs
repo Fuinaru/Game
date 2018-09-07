@@ -6,6 +6,7 @@ public class MonsterTwo : BaseMonster {
 
     // Use this for initialization
     MonsterLaunch monsterLaunch;
+    MyGameVariable.ItemType shootItem;
     protected void Start() {
         base.Start();
         monsterLaunch = transform.GetComponentInChildren<MonsterLaunch>();
@@ -24,7 +25,7 @@ public class MonsterTwo : BaseMonster {
     }
     protected void Attack()
     {
-       if (monsterLaunch.BulletCoolEnd()&&!isClose) monsterLaunch.Shoot();
+       if (monsterLaunch.BulletCoolEnd()&&!isClose) monsterLaunch.ShootItem(shootItem);
     }
 
 }

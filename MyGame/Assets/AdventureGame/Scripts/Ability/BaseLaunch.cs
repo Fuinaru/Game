@@ -20,13 +20,13 @@ public class BaseLuanch : myGameObject
     {
 
     }
-    public void Shoot() {
-        GameObject go = Instantiate(MyGameVariable.itemObject[0], transform.position, transform.rotation) as GameObject;
+    public void ShootItem(MyGameVariable.ItemType type) {
+        GameObject go = Instantiate(Tools.GetItemGameObjectByType(type), transform.position, transform.rotation) as GameObject;
         go.GetComponent<Rigidbody>().AddRelativeForce(0, 0, 1200);
     }
-    public void SetBoom()
+    public void SetItem(MyGameVariable.ItemType type)
     {
-        GameObject go = Instantiate(MyGameVariable.itemObject[1], transform.position, transform.rotation) as GameObject;
+        GameObject go = Instantiate(Tools.GetItemGameObjectByType(type), transform.position, transform.rotation) as GameObject;
         go.GetComponent<Rigidbody>().AddRelativeForce(0, 0, 100);
     }
 
@@ -50,4 +50,5 @@ public class BaseLuanch : myGameObject
             }
             else return false;
         }
-    }
+
+}
