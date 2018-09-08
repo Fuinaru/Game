@@ -777,7 +777,7 @@
     <Compile Include="Assets\AdventureGame\Scripts\Bag\Item\PotionItem.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Bag\ItemData.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Base\HPObject.cs" />
-    <Compile Include="Assets\AdventureGame\Scripts\Base\myGameObject.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Base\MyGameObject.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\creatFollowingUI.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\item\ItemForGet.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\MapLoad\MapLoad.cs" />
@@ -786,6 +786,7 @@
     <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterTwo.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\OtherHp.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Player\Player.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Player\PlayerControl.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Player\ThirdPersonUserControl.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\SwitchDoor\door.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\SwitchDoor\Switch.cs" />

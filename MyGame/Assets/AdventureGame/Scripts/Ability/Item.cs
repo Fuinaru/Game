@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : myGameObject {
+public class Item : MyGameObject {
 
 	// Use this for initialization
 	void Start () {

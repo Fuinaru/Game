@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boom : myGameObject
+public class Boom : MyGameObject
 {
 
     public float radius = 3.0F;
     public float power = 1.1F;
     public int atk = 2;
     public float aliveTime = 5f;
+    private bool isHitPlayer = false;
  
     public float flickPower=5;
     // Use this for initialization
@@ -45,15 +46,20 @@ public class Boom : myGameObject
     private void OnTriggerEnter(Collider hit)
     {
        
-        if (hit.tag == "Player")
+        if (hit.tag == "Player"&&!isHitPlayer)
         {
             //Vector3 dir = hit.transform.position - transform.position;
             //dir = new Vector3(dir.x, 0, dir.z).normalized;
             //dir *= 2;
             //dir.y = 0.5f;
-           
+
             //hit.GetComponent<Rigidbody>().velocity = dir * flickPower;
-            hit.GetComponent<HPObject>().Damage(atk);   
+            GameManager.player.transform.LookAt(gameObject.transform);
+            GameManager.playerAni.SetTrigger("GetHurted");
+            GameManager.player.m_rigidbody.velocity = Vector3.zero;
+          hit.GetComponent<HPObject>().Damage(atk);
+            isHitPlayer = true;
+           
         }
 
 

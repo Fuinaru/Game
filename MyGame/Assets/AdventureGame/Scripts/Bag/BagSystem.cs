@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class BagSystem : MonoBehaviour
 {
     public int width = 5;
@@ -12,11 +12,12 @@ public class BagSystem : MonoBehaviour
     public GameObject bagItem;
     private Vector2 spaceSzie;
     public GameObject bagObj;
-    private Vector2 backgroundSize;
-    public static int num;
+    public GameObject equipObj;
+    private Vector2 bagBackgroundSize;
+    private Vector2 equipBackgroundSize;
     public static List<ItemData> bagItems = new List<ItemData>();
-    public GameObject equipOne;
-    public GameObject equipTwo;
+
+
     public  int bagSize;
 
     // Use this for initialization
@@ -32,8 +33,8 @@ public class BagSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0)) Debug.Log(GetItemNum());
-        num = GetItemNum();
+        if (Input.GetKeyDown(KeyCode.Mouse0)) Debug.Log(GetItemNumInEquip());
+
 
     }
     void GetSpaceSize()
@@ -43,14 +44,24 @@ public class BagSystem : MonoBehaviour
     }
     void SetBackgroundSize()
     {
-        backgroundSize.x = width * spaceSzie.x;
-        backgroundSize.y = height * spaceSzie.y;
-        bagObj.GetComponent<RectTransform>().sizeDelta = backgroundSize;
+        bagBackgroundSize.x = width * spaceSzie.x;
+        bagBackgroundSize.y = height * spaceSzie.y;
+        bagObj.GetComponent<RectTransform>().sizeDelta = bagBackgroundSize;
+
+        equipBackgroundSize.x = EquipNum * spaceSzie.x;
+        equipBackgroundSize.y = spaceSzie.y;
+        equipObj.GetComponent<RectTransform>().sizeDelta = equipBackgroundSize;
     }
     void SpaceInitial()
     {
-
-        for (int i = 0; i < height; i++)
+        for (int i = 0; i < EquipNum; i++)
+        {
+            GameObject go = Instantiate(itemSpace) as GameObject;
+            go.name = (i).ToString();
+            go.transform.SetParent(equipObj.transform);
+            go.transform.localPosition = new Vector3(i * spaceSzie.x, 0, 0);
+        }
+            for (int i = 0; i < height; i++)
         {
             for (int j = 0; j < width; j++)
             {
@@ -73,11 +84,11 @@ public class BagSystem : MonoBehaviour
         }
         for (int i = 0; i < EquipNum; i++)
         {
-            GameObject o = transform.GetChild(i).gameObject;
+            GameObject o = equipObj.transform.GetChild(i).gameObject;
             if (o.transform.childCount == 0)
             {
                 Type classType = Tools.ReturnTypeByStr(type.ToString());
-                GameObject go = Instantiate(bagItem, Vector3.zero, bagObj.transform.rotation) as GameObject;
+                GameObject go = Instantiate(bagItem, Vector3.zero, equipObj.transform.rotation) as GameObject;
                 go.transform.SetParent(o.transform);
                 go.AddComponent(classType);
                 go.GetComponent<BagItem>().Initial(type, num, i);
@@ -89,7 +100,7 @@ public class BagSystem : MonoBehaviour
 
         for (int i = 0; i < bagSize; i++)
         {
-            GameObject o = bagObj.transform.GetChild(i).gameObject;
+            GameObject o = bagObj.transform .GetChild(i).gameObject;
             if (o.transform.childCount==0) { 
             Type classType = Tools.ReturnTypeByStr(type.ToString());
             GameObject go = Instantiate(bagItem, Vector3.zero, bagObj.transform.rotation) as GameObject;
@@ -108,7 +119,7 @@ public class BagSystem : MonoBehaviour
     {
 
     }
-    public Vector2 GetItemPos()
+    public Vector2 GetItemPosInBag()
     {
 
         Vector2 pos = Input.mousePosition - bagObj.transform.position;
@@ -118,14 +129,17 @@ public class BagSystem : MonoBehaviour
         else return Vector2.zero;
 
     }
-    public int GetItemNum()
+
+    public int GetItemNumInBag()
     {
-        num = (int)(GetItemPos().x + (GetItemPos().y - 1) * width + EquipNum-1);
-        return num;
+        return (int)(GetItemPosInBag().x + (GetItemPosInBag().y - 1) * width + EquipNum-1);
+
     }
-    public static int ReturnNum()
+    public int GetItemNumInEquip()
     {
-        return num;
+        float pos = (Input.mousePosition - equipObj.transform.position).x;
+        return (int)(pos/50);
+
     }
     public Vector3 GetWorldPositionByPos(int x, int y)
     {
@@ -135,13 +149,19 @@ public class BagSystem : MonoBehaviour
         worldpos.z = bagObj.transform.position.z;
         return worldpos;
     }
-    bool IsInArea()
+   public bool IsInBagArea()
     {
         Vector2 pos = Input.mousePosition - bagObj.transform.position;
         pos.y *= -1;
-        if (pos.x > 0 && pos.y > 0 && pos.x < backgroundSize.x && pos.y < backgroundSize.y) return true;
+        if (pos.x > 0 && pos.y > 0 && pos.x < bagBackgroundSize.x && pos.y < bagBackgroundSize.y) return true;
         else return false;
-
+    }
+    public bool IsInEquipArea()
+    {
+        Vector2 pos = Input.mousePosition - equipObj.transform.position;
+        pos.y *= -1;
+        if (pos.x > 0 && pos.y > 0 && pos.x < equipBackgroundSize.x && pos.y < equipBackgroundSize.y) return true;
+        else return false;
     }
     private void PrintBag()
     {

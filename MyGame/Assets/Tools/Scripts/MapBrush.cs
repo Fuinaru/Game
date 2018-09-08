@@ -8,7 +8,7 @@ using UnityEditor;
 public class MapBrush : MonoBehaviour {
 	public bool isPreLoadMap = false;
 	public bool isEditMode=false;
-	public GameObject brushObj;
+    public GameObject brushObj;
 	public GameObject mapDataObj;
 	public GameObject mapBaseObj;
 	public Camera camera;
@@ -20,8 +20,9 @@ public class MapBrush : MonoBehaviour {
 	int[,] map;
 	// Use this for initialization
 	void Awake () {
-		//初始化地图数组
-		map= new int[mapWidth,mapHeight];
+        if(GameManager.shouldMapBrushBeDestroyed) Destroy(gameObject.GetComponent<MapBrush>());
+        //初始化地图数组
+        map = new int[mapWidth,mapHeight];
 		mapBaseObj.transform.localScale = new Vector3 (mapWidth/10f, 1, mapHeight/10f);
 		for (int i = 0; i < mapWidth; i++) {
 			for (int j = 0; j < mapHeight; j++) {

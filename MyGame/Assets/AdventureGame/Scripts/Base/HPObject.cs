@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class HPObject : myGameObject {
+public class HPObject : MyGameObject {
 
     public int maxHp = 5;
     public int Hp = 5;
     public Slider HpContorl;
-    protected bool hurted = false;
+    public bool hurted = false;
     private float time = 0;
     ForInclude HurtedTool = new ForInclude();
     protected bool isDestory = false;
@@ -48,6 +48,7 @@ public class HPObject : myGameObject {
     public void getHurted()
     {
         hurted = true;
+
     }
     private void hurtCount()
     {

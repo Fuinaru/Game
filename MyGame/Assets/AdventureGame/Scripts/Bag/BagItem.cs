@@ -88,18 +88,24 @@ public class BagItem : MonoBehaviour
             if (origin != null) transform.SetParent(origin.parent);
             if (Input.GetKeyUp(KeyCode.Mouse0))
             {
-                transform.SetParent(origin);
-                if (BagSystem.ReturnNum() >=GameManager.bagSys.EquipNum && BagSystem.ReturnNum() <= GameManager.bagSys.bagSize-1+ GameManager.bagSys.EquipNum && GameManager.isBagShow)
+                if (GameManager.isBagShow)
                 {
-                    Debug.Log(BagSystem.ReturnNum()+"??");
-                    GameObject obj = GameManager.bagSys.bagObj.transform.GetChild(BagSystem.ReturnNum() - GameManager.bagSys.EquipNum).gameObject;
-                    //obj.GetComponent<Image>().color = Color.red;
-                    Swap(obj);
+                    transform.SetParent(origin);
+                    if (GameManager.bagSys.IsInBagArea())
+                    {
+                        GameObject obj = GameManager.bagSys.bagObj.transform.GetChild(GameManager.bagSys.GetItemNumInBag() - GameManager.bagSys.EquipNum).gameObject;
+                        //obj.GetComponent<Image>().color = Color.red;
+                        Swap(obj);
 
+                    }
+                    if (GameManager.bagSys.IsInEquipArea())
+                    {
+                        GameObject obj = GameManager.bagSys.equipObj.transform.GetChild(GameManager.bagSys.GetItemNumInEquip()).gameObject;
+                        //obj.GetComponent<Image>().color = Color.red;
+                        Swap(obj);
+
+                    }
                 }
-                if (isInEquip(GameManager.bagSys.equipOne )) Swap(GameManager.bagSys.equipOne);
-                if (isInEquip(GameManager.bagSys.equipTwo)) Swap(GameManager.bagSys.equipTwo);
-
                 transform.localPosition = Vector3.zero;
             }
         }
@@ -122,7 +128,7 @@ public class BagItem : MonoBehaviour
     }
     void Swap(GameObject o)
     {
-        Debug.Log(itemData.spaceNum + "+");
+
         try
         {
 

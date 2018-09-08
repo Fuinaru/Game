@@ -10,6 +10,7 @@ public class MapLoad : MonoBehaviour {
     public List<MapData> maps=new List<MapData>();
 	public List<MapInSceneData> mapInScene = new List<MapInSceneData>();
     public int length;
+    public GameObject map;
 
     // Use this for initialization
     void Start () {
@@ -59,6 +60,7 @@ public class MapLoad : MonoBehaviour {
         if (!o.isInScene)
         {
 			GameObject go = Instantiate(o.GetMapResource()) as GameObject;
+            go.transform.SetParent(map.transform);
             go.transform.position = MapWorldPosition(o);
             o.isInScene = true;
 			MapInSceneData i = new MapInSceneData(go, o.mapNum, true);

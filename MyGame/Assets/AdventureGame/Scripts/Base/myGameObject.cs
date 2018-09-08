@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class myGameObject : MonoBehaviour {
+public class MyGameObject : MonoBehaviour {
     // Use this for initialization
-    protected Rigidbody m_rigidbody;
+    public Rigidbody m_rigidbody;
     protected void Start () {
         if (GetComponent<Rigidbody>() != null) m_rigidbody = GetComponent<Rigidbody>();
     }

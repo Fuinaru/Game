@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static bool shouldMapBrushBeDestroyed ;
+    public  bool m_shouldMapBrushBeDestroyed = true;
+    private void SetShouldMapBrushBeDestroyed()
+    {
+        shouldMapBrushBeDestroyed = m_shouldMapBrushBeDestroyed;
+    }
     //stageSceneManage
     public static int CurrentStage = 3;
     public void GameStart()
@@ -50,6 +56,12 @@ public class GameManager : MonoBehaviour
      }
 
 
+    public static Animator playerAni;
+    private void SetPlayerAni()
+    {
+        playerAni = m_player.GetComponent<Animator>();
+    }
+
 
 
 
@@ -59,10 +71,12 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        SetShouldMapBrushBeDestroyed();
         //  isTimePause = m_isTimePause;
         SetIsBagShow();
         SetBagSys();
         SetPlayer();
+        SetPlayerAni();
         SetGameover();
     }
 

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-public class BaseLuanch : myGameObject
+public class BaseLuanch : MyGameObject
 {
 
 

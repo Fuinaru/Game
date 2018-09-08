@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : myGameObject
+public class Bullet : MyGameObject
 {
 public float aliveTime=5f;
     public int atk = 1;

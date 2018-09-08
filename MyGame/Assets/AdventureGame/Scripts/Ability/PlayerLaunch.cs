@@ -7,20 +7,18 @@ public class PlayerLaunch : BaseLuanch
 
     public int bulletNum = 5;
     public int boomNum = 3;
-    public BagSystem bagSystem;
-    public GameObject Eone;
-    public GameObject Etwo;
+  
 
 
-    KeyCode A = KeyCode.J;
-    KeyCode B = KeyCode.K;
+    KeyCode start = KeyCode.Keypad1;
+
     public static Transform trans;
 
 
     // Use this for initialization
     void Start()
     {
-  
+        base.Start();
     }
 
     // Update is called once per frame
@@ -28,26 +26,22 @@ public class PlayerLaunch : BaseLuanch
     {
         trans = transform;
         if (GameManager.isTimePause) return;
-        if (Input.GetKeyDown(A) &&  BulletCoolEnd())
-        {
-            Debug.Log("keyDown");
-            nexttime = bulletCoolTime + Time.time;
-            UseWeapon(Eone);
-        }
-        if (Input.GetKeyDown(B) &&  BoomCoolEnd())
-        {
-            nexttimeB = boomCoolTime + Time.time;
-            UseWeapon(Etwo);
-        }
 
+        for (int i = 0; i < GameManager.bagSys.EquipNum; i++) {
+            if (Input.GetKeyDown(start+i) && BoomCoolEnd())
+            {
+                nexttimeB = boomCoolTime + Time.time;
+                UseWeapon(GameManager.bagSys.equipObj.transform.GetChild(i).gameObject);
+            }
+
+        }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             getItem(MyGameVariable.ItemType.BoomItem, 10);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
             getItem(MyGameVariable.ItemType.BulletItem, 10);
+            getItem(MyGameVariable.ItemType.PotionItem, 10);
         }
+  
     }
     void UseWeapon(GameObject o) {
         try {
@@ -61,7 +55,7 @@ public class PlayerLaunch : BaseLuanch
     }
     public void getItem(MyGameVariable.ItemType type, int a)
     {
-        bagSystem.AddItem(type, a);
+        GameManager.bagSys.AddItem(type, a);
     }
 
     //public void useItem(Transform i)
