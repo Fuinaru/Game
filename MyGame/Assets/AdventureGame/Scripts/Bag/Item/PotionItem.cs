@@ -20,8 +20,7 @@ public class PotionItem : BagItem
     {
        // if (Tools.GetParticleSystemByName(itemData.itemType.ToString()) == null) Debug.Log("??");
         ParticleSystem go = Instantiate(Tools.GetParticleSystemGameObjectByName(itemData.itemType.ToString()).GetComponent<ParticleSystem>()) as ParticleSystem;
-        go.transform.SetParent(GameManager.player.transform);
-        go.transform.localPosition = Vector3.zero;
+        go.GetComponent<ParticleSys>().SetFollowingTarget(GameManager.player.transform);
         go.Play();
         GameManager.player.Cure(cureAmount);
         itemData.itemNum--;

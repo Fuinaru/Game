@@ -1003,7 +1003,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4210497584524498}
-  - component: {fileID: 114022060573094046}
   m_Layer: 0
   m_Name: MapEditor 0
   m_TagString: Untagged
@@ -5612,31 +5611,6 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114022060573094046
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1720157955104222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dcfa230ded195c4ba29c3859793ea9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isPreLoadMap: 0
-  isEditMode: 0
-  brushObj: {fileID: 1925900058355484}
-  mapDataObj: {fileID: 1621913141130704}
-  mapBaseObj: {fileID: 1005125231841956}
-  camera: {fileID: 0}
-  tile: {fileID: 1003030455260220, guid: f79402faded4ae948b5ee7f8af10a6c5, type: 2}
-  tiles:
-  - {fileID: 1003030455260220, guid: f79402faded4ae948b5ee7f8af10a6c5, type: 2}
-  - {fileID: 1908896402572856, guid: 1fde41d5f6376c449b6d0fe8036c662a, type: 2}
-  - {fileID: 1497075477463158, guid: aade742bea89e4a43a2f1d73607b1a12, type: 2}
-  - {fileID: 1622985202262096, guid: ba4ef8d8e7c7bf44f85ad63e69ea6fae, type: 2}
-  mapHeight: 10
-  mapWidth: 10
 --- !u!124 &124078725137154736
 Behaviour:
   m_ObjectHideFlags: 1

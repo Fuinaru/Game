@@ -484,16 +484,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e28a46463e58c64aa0de06b1c6732b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_rigidbody: {fileID: 0}
   maxHp: 6
-  Hp: 6
+  hp: 5
   HpContorl: {fileID: 0}
+  hurted: 0
   hurtedCoolTime: 3
   speed: 10
   viewMinDistance: 5
   viewMaxDistance: 10
   IsFindPlayer: 0
   atk: 1
-  flickPower: 8
 --- !u!136 &737236024
 CapsuleCollider:
   m_ObjectHideFlags: 0

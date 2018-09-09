@@ -23,12 +23,9 @@ public class Tools : MonoBehaviour {
         return classType;
     }
 
-    public static object CreateClassByStr(string str)
-    {
-        Type classType = ReturnTypeByStr(str);
-    var s = Activator.CreateInstance(classType);
-        return s;
-}
+
+
+    //动态加载
     public static GameObject GetGameObjectByPath(string path)
     {
         GameObject o = (GameObject)Resources.Load(path);
@@ -56,5 +53,12 @@ public class Tools : MonoBehaviour {
     {
         return GetGameObjectByPath(effectsPath +name);
     }
+
+    public static void LookAtOnlyYAxis(Transform self, Transform target)
+    {
+        self.LookAt(target);
+        self.eulerAngles = new Vector3(0, self.eulerAngles.y, 0);
+    }
+
 
 }

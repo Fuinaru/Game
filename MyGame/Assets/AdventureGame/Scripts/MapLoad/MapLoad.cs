@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using UnityEditor;
 using UnityEngine;
 
 public class MapLoad : MonoBehaviour {
@@ -14,7 +13,7 @@ public class MapLoad : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        mapInitial();
+        MapDataInitial();
         length = maps.Count;
        //LoadAllMapIntoScene();
 	
@@ -26,33 +25,31 @@ public class MapLoad : MonoBehaviour {
 
            
 
-            }
+        }
    
-         LoadMapsIntoSceneByPlayerPos();
+        LoadMapsIntoSceneByPlayerPos();
         UnloadMapByPlayerPos();
         //    UnloadMapByPlayerPos();
     }
 
+    private void OnGUI()
+    {
+        GUI.skin.label.richText = true;
+        GUI.Label(new Rect(10, 10, 50, 50), "<color=red>"+mapInScene.Count.ToString()+"/"+maps.Count.ToString()+"</color>");
 
-    void mapInitial() {
-		string fullPath = "Assets/Resources/MapBlocks" + "/";  //路径
+    }
 
-        //获取指定路径下面的所有资源文件  
-        if (Directory.Exists(fullPath))
-        {
-            DirectoryInfo direction = new DirectoryInfo(fullPath);
-            FileInfo[] files = direction.GetFiles("*", SearchOption.AllDirectories);
 
-            for (int i = 0; i < files.Length; i++)
+
+    void MapDataInitial() {
+
+
+            for (int i = 0; i < width*height; i++)
             {
-                if (files[i].Name.EndsWith(".meta"))
-                {
-                    continue;
-                }
 
                 maps.Add(new MapData(maps.Count));
             }
-        }
+
 
     }
     void LoadMapIntoScene(MapData o)
@@ -73,6 +70,7 @@ public class MapLoad : MonoBehaviour {
         {
             maps[o.mapNum].isInScene = false;
             Destroy(o.mapObject);
+            Resources.UnloadUnusedAssets();
             mapInScene.Remove(o);
         }
      //   Debug.Log(maps.IndexOf(o) + "/" + maps.IndexOf(o));
@@ -178,9 +176,8 @@ public class MapData {
     }
 
 	public GameObject GetMapResource(){
-		GameObject obj = (GameObject)Resources.Load ("MapBlocks/" + "MapEditor " + mapNum.ToString ());
-		return obj;
-	}
+        return (GameObject)Resources.Load("MapBlocks/" + "MapEditor " + mapNum.ToString());
+    }
 
 }
 

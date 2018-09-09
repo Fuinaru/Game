@@ -18,7 +18,7 @@ public class Player : HPObject
         public float speed;
     };
     public LowHpEffect lowHpEffect;
-
+    public Text hpText;
 
     void Start()
     {
@@ -36,7 +36,7 @@ public class Player : HPObject
 
     private bool IsLowHp()
     {
-        return Hp <= 2;
+        return hp <= 2;
     }
     private void LowHp()
     {
@@ -49,11 +49,19 @@ public class Player : HPObject
         }
         catch { }
     }
-    public override void GoToDie()
+    public override void GoDie()
     {
         
             GameManager.isGameOver = true;
             GameManager.GameOver();
+    }
+    public  void MaxHPUp(int value)
+    {
+        maxHp += value;
+    }
+    public override void UpdateHpUI() {
+        HpContorl.value = hp;
+        hpText.text = hp + "/" + maxHp;
     }
 
 } 

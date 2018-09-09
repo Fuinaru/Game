@@ -6,7 +6,7 @@ using UnityEngine;
 public class HPObject : MyGameObject {
 
     public int maxHp = 5;
-    public int Hp = 5;
+    public int hp = 5;
     public Slider HpContorl;
     public bool hurted = false;
     private float time = 0;
@@ -17,12 +17,13 @@ public class HPObject : MyGameObject {
     protected void Start () {
         base.Start();
 
-        if (transform.tag=="Player") HpContorl.maxValue = maxHp;
-      
+        if (transform.tag == "Player") UpdateHpUI();
+
+
         if (transform.tag == "Monster")
         {
             HpContorl = GetComponent<creatFollowingUI>().Tar.GetComponent<Slider>();
-            HpContorl.maxValue = maxHp;
+            UpdateHpUI();
         }
 
     }
@@ -32,18 +33,19 @@ public class HPObject : MyGameObject {
         base.Update();
         hurtCount();
         Flash();
-        if (Hp <= 0) GoToDie();
+        if (hp <= 0) GoDie();
     }
     public void Damage(int a)
     {
-        if (!hurted) { Hp -= a; getHurted(); }
-        HpContorl.value = Hp;
+        if (!hurted) { hp -= a; getHurted(); }
+        UpdateHpUI();
 
     }
     public void Cure(int a)
     {
-        Hp += a;
-        HpContorl.value = Hp;
+        hp += a;
+        if (hp > maxHp) hp = maxHp;
+        UpdateHpUI();
     }
     public void getHurted()
     {
@@ -71,8 +73,13 @@ public class HPObject : MyGameObject {
         }
 
     }
+    public virtual void UpdateHpUI()
+    {
+        HpContorl.value = hp;
 
-    public virtual void GoToDie()
+    }
+
+    public virtual void GoDie()
     { 
             if (!isDestory)
             {

@@ -6,22 +6,19 @@ public class BaseMonster : HPObject
 {
 
     // Use this for initialization
-    protected Player player;
-    protected Transform m_Player;
+
     public float speed = 5;
     public float viewMinDistance = 5;
     public float viewMaxDistance = 10;
     protected Vector3 dir;
     public bool IsFindPlayer=false;
     public int atk =1;
-    public int flickPower = 5;
+   // public int flickPower = 5;
     protected bool isClose = false;
 
 
     protected void Start () {
         base.Start();
-        if (player == null) m_Player = GameObject.FindWithTag("Player").transform;
-        else m_Player = player.transform;
         hurtedCoolTime = 1;
     }
     // Update is called once per frame
@@ -36,7 +33,8 @@ public class BaseMonster : HPObject
         {
             // Debug.Log("faxian");
             // Tools.LookAt(transform, dir, 5);
-            transform.LookAt(m_Player);
+            Tools.LookAtOnlyYAxis(transform,GameManager.player.transform);
+            dir.y=0;
             if (!isClose) m_rigidbody.velocity = dir.normalized * 10 * speed * Time.deltaTime;
         }
     }
@@ -45,7 +43,8 @@ public class BaseMonster : HPObject
     protected void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.tag == "Player") {
-            collision.transform.GetComponent<Rigidbody>().velocity = dir.normalized * flickPower;
+         //   collision.transform.GetComponent<Rigidbody>().velocity = dir.normalized * flickPower;
+            GameManager.playerAni.SetTrigger("GetHurted");
             collision.transform.GetComponent<Player>().Damage(atk);
             isClose = true;
         }
@@ -59,7 +58,7 @@ public class BaseMonster : HPObject
         }
     }
     protected void FindingPlayer() {
-        dir = m_Player.position - transform.position; 
+        dir = GameManager.player.transform.position - transform.position; 
         if (dir.magnitude > viewMaxDistance)
             IsFindPlayer = false;
         else if (hurted || dir.magnitude < viewMinDistance) IsFindPlayer = true;
@@ -69,8 +68,8 @@ public class BaseMonster : HPObject
     public void Damage(int a)
     {
         // if (!hurted) { Hp -= a; getHurted(); }
-        Hp -= a; getHurted();
-        HpContorl.GetComponent<Slider>().value = Hp;
+        hp -= a; getHurted();
+        HpContorl.GetComponent<Slider>().value = hp;
     }
  
  

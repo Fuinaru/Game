@@ -767,7 +767,6 @@
     <Compile Include="Assets\AdventureGame\Scripts\Ability\BaseLaunch.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Ability\Boom.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Ability\Bullet.cs" />
-    <Compile Include="Assets\AdventureGame\Scripts\Ability\Item.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Ability\MonsterLaunch.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Ability\PlayerLaunch.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Bag\BagItem.cs" />
@@ -785,6 +784,7 @@
     <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterOne.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterTwo.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\OtherHp.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\ParticleSys.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Player\Player.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Player\PlayerControl.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Player\ThirdPersonUserControl.cs" />

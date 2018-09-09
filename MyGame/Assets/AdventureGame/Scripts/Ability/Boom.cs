@@ -54,7 +54,8 @@ public class Boom : MyGameObject
             //dir.y = 0.5f;
 
             //hit.GetComponent<Rigidbody>().velocity = dir * flickPower;
-            GameManager.player.transform.LookAt(gameObject.transform);
+         //   GameManager.player.transform.LookAt(gameObject.transform);
+            Tools.LookAtOnlyYAxis(GameManager.player.transform, transform);
             GameManager.playerAni.SetTrigger("GetHurted");
             GameManager.player.m_rigidbody.velocity = Vector3.zero;
           hit.GetComponent<HPObject>().Damage(atk);
