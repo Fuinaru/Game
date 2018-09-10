@@ -28,18 +28,18 @@ public class PlayerLaunch : BaseLuanch
         if (GameManager.isTimePause) return;
 
         for (int i = 0; i < GameManager.bagSys.EquipNum; i++) {
-            if (Input.GetKeyDown(start+i) && BoomCoolEnd())
+            if (Input.GetKeyDown(start+i) )
             {
-                nexttimeB = boomCoolTime + Time.time;
+                nextTime = coolTime + Time.time;
                 UseWeapon(GameManager.bagSys.equipObj.transform.GetChild(i).gameObject);
             }
 
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            getItem(MyGameVariable.ItemType.BoomItem, 10);
-            getItem(MyGameVariable.ItemType.BulletItem, 10);
-            getItem(MyGameVariable.ItemType.PotionItem, 10);
+            getItem(Var.ItemType.BoomItem, 10);
+            getItem(Var.ItemType.BulletItem, 10);
+            getItem(Var.ItemType.PotionItem, 10);
         }
   
     }
@@ -53,7 +53,7 @@ public class PlayerLaunch : BaseLuanch
         } catch { }
      
     }
-    public void getItem(MyGameVariable.ItemType type, int a)
+    public void getItem(Var.ItemType type, int a)
     {
         GameManager.bagSys.AddItem(type, a);
     }

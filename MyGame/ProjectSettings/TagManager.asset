@@ -14,6 +14,8 @@ TagManager:
   - ItemSpace
   - BagItem
   - Bag
+  - MonsterHP
+  - chart
   layers:
   - Default
   - TransparentFX

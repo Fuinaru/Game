@@ -5,22 +5,22 @@ using UnityEngine;
 public class PlayerControl : MyGameObject {
 
     public int speed;
-    private int m_speed=0;
+    private int m_speed = 0;
+    private Vector2 moveDir = Vector2.zero;
 
     [System.Serializable]
     public struct ControlCode
     {
-        public KeyCode upKey ;
-        public KeyCode downKey ;
-        public KeyCode leftKey ;
-        public KeyCode rightKey ;
+        public KeyCode upKey;
+        public KeyCode downKey;
+        public KeyCode leftKey;
+        public KeyCode rightKey;
     };
-    KeyCode pressedKey;
 
     public ControlCode controlCode;
     Animator m_Animator;
 
-
+    List<KeyCode> pressedKeyList = new List<KeyCode>();
 
     void Start() {
         base.Start();
@@ -29,61 +29,61 @@ public class PlayerControl : MyGameObject {
 
     // Update is called once per frame
     void Update() {
-
+        if (Input.GetKeyDown(KeyCode.Mouse0)) {
+            Debug.Log(pressedKeyList.Count);
+        }
         PlayerMove();
 
         //AniStateRecovery();
     }
     public void dataInitial() {
-        pressedKey = KeyCode.A + 999;
-        m_Animator= GetComponent<Animator>();
+        m_Animator = GetComponent<Animator>();
 
     }
+
 
 
     public void PlayerMove() {
-
-        if (pressedKey!= KeyCode.A + 999 && Input.GetKeyUp(pressedKey))
+        if (KeyPressDect() )
         {
-            pressedKey = KeyCode.A + 999;
-            m_speed = 0;
-        }
-        if (!IsAniState("Hurted"))
-        {
+            moveDir = Vector2.zero;
+            for (int i = pressedKeyList.Count - 2; i <= pressedKeyList.Count - 1; i++)
+            {
+               if(i>=0) SetMoveDirByPressedKey(pressedKeyList[i]);
+            }
 
-            if (Input.GetKeyDown(controlCode.downKey))
+            if (moveDir.magnitude != 0)
             {
+                transform.eulerAngles = new Vector3(0, -45 + Mathf.Atan2(moveDir.y, moveDir.x) * 180 / Mathf.PI, 0);
                 m_speed = speed;
-                pressedKey = controlCode.downKey;
-                transform.eulerAngles = new Vector3(0, -135, 0);
             }
-            if (Input.GetKeyDown(controlCode.upKey))
-            {
-                pressedKey = controlCode.upKey;
-                m_speed = speed;
-                transform.eulerAngles = new Vector3(0, 45, 0);
-            }
-            if (Input.GetKeyDown(controlCode.leftKey))
-            {
-                pressedKey = controlCode.leftKey;
-                m_speed = speed;
-                transform.eulerAngles = new Vector3(0, -45, 0);
-            }
-            if (Input.GetKeyDown(controlCode.rightKey))
-            {
-                pressedKey = controlCode.rightKey;
-                m_speed = speed;
-                transform.eulerAngles = new Vector3(0, 135, 0);
-            }
+            else m_speed = 0;
         }
-        else { m_speed = 0; }
+        if (IsAniState("Hurted") ||GameManager.isTimePause) { m_speed = 0; }
         m_Animator.SetFloat("Speed", m_speed);
-  
-            m_rigidbody.velocity = transform.forward * m_speed;
-      
+         m_rigidbody.velocity = transform.forward * m_speed;
     }
-
-
+    
+    public bool KeyPressDect()
+    {
+        bool isChanged = false;
+        if (Input.GetKeyDown(controlCode.downKey)) { pressedKeyList.Add(controlCode.downKey); isChanged = true; }
+        if (Input.GetKeyDown(controlCode.upKey)) {pressedKeyList.Add(controlCode.upKey); isChanged = true; }
+        if (Input.GetKeyDown(controlCode.rightKey)){ pressedKeyList.Add(controlCode.rightKey); isChanged = true; }
+        if (Input.GetKeyDown(controlCode.leftKey)){ pressedKeyList.Add(controlCode.leftKey); isChanged = true; }
+        if (Input.GetKeyUp(controlCode.downKey)){ pressedKeyList.Remove(controlCode.downKey); isChanged = true; }
+        if (Input.GetKeyUp(controlCode.upKey)){ pressedKeyList.Remove(controlCode.upKey); isChanged = true; }
+        if (Input.GetKeyUp(controlCode.rightKey)){ pressedKeyList.Remove(controlCode.rightKey); isChanged = true; }
+        if (Input.GetKeyUp(controlCode.leftKey)){ pressedKeyList.Remove(controlCode.leftKey); isChanged = true; }
+        return isChanged;
+        }
+    public void SetMoveDirByPressedKey(KeyCode key)
+    {
+        if (key == controlCode.downKey) { moveDir.y = -1; return; }
+        if (key == controlCode.upKey) { moveDir.y = 1; return; }
+        if (key == controlCode.leftKey) { moveDir.x = 1; return; }
+        if (key == controlCode.rightKey) { moveDir.x = -1; return; }
+    }
     public bool IsAniState(string str)
     {
        return  m_Animator.GetCurrentAnimatorStateInfo(0).IsName(str);

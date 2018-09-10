@@ -32,7 +32,7 @@ public class Tools : MonoBehaviour {
 
         return o;
     }
-    public static GameObject GetItemGameObjectByType(MyGameVariable.ItemType type)
+    public static GameObject GetItemGameObjectByType(Var.ItemType type)
     {
         return GetGameObjectByPath(itemObjectPath + type.ToString());
     }
@@ -43,7 +43,7 @@ public class Tools : MonoBehaviour {
         Sprite img = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
         return img;
     }
-    public static Sprite GetItemImgByType(MyGameVariable.ItemType type)
+    public static Sprite GetItemImgByType(Var.ItemType type)
     {
         return GetImgByPath(itemImgPath + type.ToString());
     }

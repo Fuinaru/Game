@@ -6,7 +6,7 @@ public class MonsterTwo : BaseMonster {
 
     // Use this for initialization
     MonsterLaunch monsterLaunch;
-    MyGameVariable.ItemType shootItem;
+    Var.ItemType shootItem;
     protected void Start() {
         base.Start();
         monsterLaunch = transform.GetComponentInChildren<MonsterLaunch>();

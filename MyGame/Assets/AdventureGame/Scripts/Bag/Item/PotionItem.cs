@@ -9,6 +9,7 @@ public class PotionItem : BagItem
     protected void Start()
     {
         base.Start();
+        coolTime = 3f;
     }
 
     // Update is called once per frame
@@ -18,12 +19,12 @@ public class PotionItem : BagItem
     }
     public override void useItem()
     {
-       // if (Tools.GetParticleSystemByName(itemData.itemType.ToString()) == null) Debug.Log("??");
+        if (!ItemCoolEnd()) return;
+        // if (Tools.GetParticleSystemByName(itemData.itemType.ToString()) == null) Debug.Log("??");
         ParticleSystem go = Instantiate(Tools.GetParticleSystemGameObjectByName(itemData.itemType.ToString()).GetComponent<ParticleSystem>()) as ParticleSystem;
         go.GetComponent<ParticleSys>().SetFollowingTarget(GameManager.player.transform);
         go.Play();
         GameManager.player.Cure(cureAmount);
-        itemData.itemNum--;
-        updateText();
+        useUpdate();
     }
 }

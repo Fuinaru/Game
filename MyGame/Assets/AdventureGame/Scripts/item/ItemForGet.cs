@@ -6,7 +6,7 @@ public class ItemForGet : MonoBehaviour {
 
     // Use this for initialization
       
-        public MyGameVariable.ItemType type;
+        public Var.ItemType type;
         public int num = 1;
     public bool playEffect=false;
 	void Start () {

@@ -26,6 +26,7 @@ public class Boom : MyGameObject
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.isTimePause) { m_rigidbody.velocity = Vector3.zero; return; }
         //explosionPos = transform.position;
         //colliders = Physics.OverlapSphere(explosionPos, radius);
         aliveTime -= Time.deltaTime;

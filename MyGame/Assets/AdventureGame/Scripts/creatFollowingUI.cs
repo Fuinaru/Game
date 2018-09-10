@@ -15,7 +15,7 @@ public class creatFollowingUI : MonoBehaviour
         {
              Tar = Instantiate(target);
         }
-        Tar.transform.SetParent(GameObject.Find("Canvas").transform);
+        Tar.transform.SetParent(GameObject.Find("MonsterHP").transform);
 
          
     }

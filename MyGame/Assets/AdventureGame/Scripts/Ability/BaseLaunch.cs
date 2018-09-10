@@ -6,9 +6,9 @@ public class BaseLuanch : MyGameObject
 
 
     public float bulletCoolTime = 0.2f;
-    protected float nexttime = 0.0f;
-    public float boomCoolTime = 1f;
-    protected float nexttimeB = 0.0f;
+    protected float bulletnexttime = 0.0f;
+    public float coolTime = 1f;
+    public float nextTime = 0.0f;
     // Use this for initialization
     void Start()
     {
@@ -20,11 +20,11 @@ public class BaseLuanch : MyGameObject
     {
 
     }
-    public void ShootItem(MyGameVariable.ItemType type) {
+    public void ShootItem(Var.ItemType type) {
         GameObject go = Instantiate(Tools.GetItemGameObjectByType(type), transform.position, transform.rotation) as GameObject;
         go.GetComponent<Rigidbody>().AddRelativeForce(0, 0, 1200);
     }
-    public void SetItem(MyGameVariable.ItemType type)
+    public void SetItem(Var.ItemType type)
     {
         GameObject go = Instantiate(Tools.GetItemGameObjectByType(type), transform.position, transform.rotation) as GameObject;
         go.GetComponent<Rigidbody>().AddRelativeForce(0, 0, 100);
@@ -33,9 +33,9 @@ public class BaseLuanch : MyGameObject
     public bool BulletCoolEnd()
     {
 
-        if (nexttime < Time.time)
+        if (bulletnexttime < Time.time)
         {
-            nexttime = bulletCoolTime + Time.time;
+            bulletnexttime = bulletCoolTime + Time.time;
             return true;
         }
         else return false;
@@ -43,9 +43,9 @@ public class BaseLuanch : MyGameObject
     public bool BoomCoolEnd()
         {
 
-            if (nexttimeB < Time.time)
+            if (nextTime < Time.time)
             {
-                nexttimeB = boomCoolTime + Time.time;
+                nextTime = coolTime + Time.time;
                 return true;
             }
             else return false;

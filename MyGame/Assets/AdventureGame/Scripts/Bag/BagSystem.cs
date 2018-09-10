@@ -9,6 +9,7 @@ public class BagSystem : MonoBehaviour
     public int height = 5;
     public int EquipNum = 2;
     public GameObject itemSpace;
+    public GameObject equipSpace;
     public GameObject bagItem;
     private Vector2 spaceSzie;
     public GameObject bagObj;
@@ -33,7 +34,6 @@ public class BagSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0)) Debug.Log(GetItemNumInEquip());
 
 
     }
@@ -56,10 +56,11 @@ public class BagSystem : MonoBehaviour
     {
         for (int i = 0; i < EquipNum; i++)
         {
-            GameObject go = Instantiate(itemSpace) as GameObject;
+            GameObject go = Instantiate(equipSpace) as GameObject;
             go.name = (i).ToString();
             go.transform.SetParent(equipObj.transform);
             go.transform.localPosition = new Vector3(i * spaceSzie.x, 0, 0);
+            go.transform.GetChild(0).GetComponent<Text>().text = (i + 1).ToString();
         }
             for (int i = 0; i < height; i++)
         {
@@ -71,7 +72,7 @@ public class BagSystem : MonoBehaviour
             }
         }
     }
-    public void AddItem(MyGameVariable.ItemType type, int num)
+    public void AddItem(Var.ItemType type, int num)
     {
         foreach (ItemData o in bagItems)
         {
@@ -85,11 +86,12 @@ public class BagSystem : MonoBehaviour
         for (int i = 0; i < EquipNum; i++)
         {
             GameObject o = equipObj.transform.GetChild(i).gameObject;
-            if (o.transform.childCount == 0)
+            if (o.transform.childCount == 1)
             {
                 Type classType = Tools.ReturnTypeByStr(type.ToString());
                 GameObject go = Instantiate(bagItem, Vector3.zero, equipObj.transform.rotation) as GameObject;
                 go.transform.SetParent(o.transform);
+                go.transform.SetAsFirstSibling();
                 go.AddComponent(classType);
                 go.GetComponent<BagItem>().Initial(type, num, i);
                 bagItems.Add(go.GetComponent<BagItem>().itemData);

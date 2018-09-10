@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class BagItem : MonoBehaviour
 {
-
-    public bool isDragable = true;
+    public bool consumAble = true;
     public bool isMouseDown = false;
     private Vector2 size;
 
@@ -14,7 +13,10 @@ public class BagItem : MonoBehaviour
     public Text numText;
     public Text nameText;
     public Image img;
+    public Image coolImg;
 
+    public float coolTime=1f;
+    public float nextTime = 0.0f;
     // Use this for initialization
     private Transform origin = null;
 
@@ -24,12 +26,15 @@ public class BagItem : MonoBehaviour
         size.x = GetComponent<RectTransform>().sizeDelta.x;
         size.y = GetComponent<RectTransform>().sizeDelta.y;
         transform.GetChild(0).GetComponent<Image>().sprite = GetItemImg();
-
+        coolImg = transform.GetChild(3).GetComponent<Image>();
+        coolImg.fillAmount = 0;
         origin = transform.parent;
 
     }
 
-    public void Initial(MyGameVariable.ItemType type, int num, int sn)
+
+
+        public void Initial(Var.ItemType type, int num, int sn)
     {
         nameText = transform.GetChild(1).GetComponent<Text>();
         numText = transform.GetChild(2).GetComponent<Text>();
@@ -43,9 +48,11 @@ public class BagItem : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
+        if (GameManager.isTimePause) {return; }
         AutoOrder();
         IsMouseDown();
         MouseDrag();
+        ItemCoolEnd();
         if (itemData.numChanged) { updateText(); itemData.numChanged = false; }
         if (itemData.itemNum <= 0)
         {
@@ -85,12 +92,13 @@ public class BagItem : MonoBehaviour
         {
 
 
-            if (origin != null) transform.SetParent(origin.parent);
+            if (origin != null) transform.SetParent(origin.parent.parent);
             if (Input.GetKeyUp(KeyCode.Mouse0))
             {
-                if (GameManager.isBagShow)
+                transform.SetParent(origin);
+                if (GameManager.isUIShow)
                 {
-                    transform.SetParent(origin);
+                   
                     if (GameManager.bagSys.IsInBagArea())
                     {
                         GameObject obj = GameManager.bagSys.bagObj.transform.GetChild(GameManager.bagSys.GetItemNumInBag() - GameManager.bagSys.EquipNum).gameObject;
@@ -98,15 +106,17 @@ public class BagItem : MonoBehaviour
                         Swap(obj);
 
                     }
-                    if (GameManager.bagSys.IsInEquipArea())
-                    {
-                        GameObject obj = GameManager.bagSys.equipObj.transform.GetChild(GameManager.bagSys.GetItemNumInEquip()).gameObject;
-                        //obj.GetComponent<Image>().color = Color.red;
-                        Swap(obj);
+                
+                }
+                if (GameManager.bagSys.IsInEquipArea())
+                {
+                    GameObject obj = GameManager.bagSys.equipObj.transform.GetChild(GameManager.bagSys.GetItemNumInEquip()).gameObject;
+                    //obj.GetComponent<Image>().color = Color.red;
+                    Swap(obj);
 
-                    }
                 }
                 transform.localPosition = Vector3.zero;
+
             }
         }
 
@@ -117,6 +127,13 @@ public class BagItem : MonoBehaviour
         numText.text = itemData.itemNum.ToString();
         nameText.text = itemData.itemType.ToString();
     }
+    public void useUpdate()
+    {
+        nextTime = coolTime;
+        if (consumAble) itemData.itemNum--;
+        updateText();
+    }
+
     bool isInEquip(GameObject o)
     {
         Vector2 size = o.GetComponent<RectTransform>().sizeDelta;
@@ -136,6 +153,7 @@ public class BagItem : MonoBehaviour
             if (child.tag == "BagItem")
             {
                 child.SetParent(transform.parent);
+                child.SetAsFirstSibling();
                 child.localPosition = Vector3.zero;
                 child.GetComponent<BagItem>().itemData.spaceNum = itemData.spaceNum;
                 child.GetComponent<BagItem>().origin = child.parent;
@@ -146,6 +164,7 @@ public class BagItem : MonoBehaviour
         catch { }
         itemData.spaceNum = int.Parse(o.name);
         transform.SetParent(o.transform);
+        transform.SetAsFirstSibling();
         origin = transform.parent;
     }
     //public void useItem() {
@@ -169,6 +188,20 @@ public class BagItem : MonoBehaviour
     {
 
     }
+
+    public bool ItemCoolEnd()
+    {
+        coolImg.fillAmount = nextTime / coolTime;
+        if (nextTime > 0) nextTime -= Time.deltaTime;
+        if (nextTime <=0f)
+        {
+            nextTime = 0f;
+            return true;
+        }
+        else return false;
+    }
+
+
     public GameObject GetItemObject()
     {
         return Tools.GetItemGameObjectByType(itemData.itemType);

@@ -35,7 +35,7 @@ public class BaseMonster : HPObject
             // Tools.LookAt(transform, dir, 5);
             Tools.LookAtOnlyYAxis(transform,GameManager.player.transform);
             dir.y=0;
-            if (!isClose) m_rigidbody.velocity = dir.normalized * 10 * speed * Time.deltaTime;
+            if (!isClose) m_rigidbody.velocity = dir.normalized * speed*0.5f;
         }
     }
 

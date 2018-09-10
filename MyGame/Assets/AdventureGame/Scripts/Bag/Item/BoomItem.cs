@@ -7,6 +7,7 @@ public class BoomItem : BagItem {
     // Use this for initialization
     protected void Start () {
         base.Start();
+        coolTime = 2f;
 	}
 
     // Update is called once per frame
@@ -14,10 +15,9 @@ public class BoomItem : BagItem {
         base.Update();
 	}
     public override void useItem()
-    {
+    {if (!ItemCoolEnd()) return;
         GameObject go = Instantiate(GetItemObject(), PlayerLaunch.trans.position, PlayerLaunch.trans.rotation) as GameObject;
         go.GetComponent<Rigidbody>().AddRelativeForce(0, 0, 100);
-        itemData.itemNum--;
-        updateText();
+        useUpdate();
     }
 }

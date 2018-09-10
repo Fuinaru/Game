@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class MyGameVariable : MonoBehaviour {
+public class Var : MonoBehaviour {
 //ItemType
     public enum ItemType
     {
@@ -15,6 +15,6 @@ public class MyGameVariable : MonoBehaviour {
 
     private void Start()
     {
-       
+      
     }
 }

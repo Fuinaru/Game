@@ -9,7 +9,7 @@ public class BulletItem : BagItem
     protected void Start()
     {
         base.Start();
-
+        coolTime = 1f;
     }
 
     // Update is called once per frame
@@ -19,9 +19,9 @@ public class BulletItem : BagItem
     }
     public override void useItem()
     {
+        if (!ItemCoolEnd()) return;
         GameObject go = Instantiate(GetItemObject(), PlayerLaunch.trans.position, PlayerLaunch.trans.rotation) as GameObject;
         go.GetComponent<Rigidbody>().AddRelativeForce(0, 0, 1200);
-        itemData.itemNum--;
-        updateText();
+        useUpdate();
     }
 }

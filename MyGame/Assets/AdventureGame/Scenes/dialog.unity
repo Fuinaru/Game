@@ -595,7 +595,7 @@ GameObject:
   - component: {fileID: 275029864}
   - component: {fileID: 275029863}
   m_Layer: 0
-  m_Name: John
+  m_Name: NPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -613,12 +613,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25fb867d2049d41f597aefdd6b19f598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameText: John
+  nameText: SB
   nameColor: {r: 1, g: 1, b: 1, a: 1}
   soundEffect: {fileID: 0}
-  portraits:
-  - {fileID: 21300000, guid: 58bfb145092302e4083ef8a9e4eeb576, type: 3}
-  - {fileID: 0}
+  portraits: []
   portraitsFace: 2
   setSayDialog: {fileID: 272906895}
   description: 
@@ -1937,11 +1935,14 @@ GameObject:
   - component: {fileID: 1755499615}
   - component: {fileID: 1755499614}
   - component: {fileID: 1755499616}
-  - component: {fileID: 1755499617}
-  - component: {fileID: 1755499618}
+  - component: {fileID: 1755499620}
+  - component: {fileID: 1755499624}
+  - component: {fileID: 1755499623}
+  - component: {fileID: 1755499622}
+  - component: {fileID: 1755499621}
   m_Layer: 5
   m_Name: Flowchart
-  m_TagString: Untagged
+  m_TagString: chart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1971,9 +1972,11 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 1755499615}
-  selectedCommands: []
-  variables: []
+  - {fileID: 1755499623}
+  selectedCommands:
+  - {fileID: 1755499621}
+  variables:
+  - {fileID: 1755499620}
   description: 
   stepPause: 0
   colorCommands: 1
@@ -2016,7 +2019,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: -163.15822
+    x: -164.33469
     y: -62.53508
     width: 120
     height: 40
@@ -2164,7 +2167,60 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentBlock: {fileID: 1755499615}
   message: flyhigh
---- !u!114 &1755499617
+--- !u!114 &1755499620
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1755499605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4580f28dd8581476b810b38eea2f1316, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scope: 0
+  key: str
+  value: 
+--- !u!114 &1755499621
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1755499605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 11
+  indentLevel: 0
+  storyText: '{$str}'
+  description: 
+  character: {fileID: 275029863}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 272906895}
+--- !u!114 &1755499622
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1755499605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d7d417659cd54a6787f70f763950c34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentBlock: {fileID: 1755499623}
+  message: say
+--- !u!114 &1755499623
 MonoBehaviour:
   m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
@@ -2177,33 +2233,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: -152.19318
-    y: -283.61285
+    x: -166.31076
+    y: -208.31868
     width: 120
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
-  itemId: 8
-  blockName: Game strat
+  itemId: 10
+  blockName: NPCSay
   description: 
-  eventHandler: {fileID: 0}
+  eventHandler: {fileID: 1755499622}
   commandList:
-  - {fileID: 1755499618}
---- !u!114 &1755499618
+  - {fileID: 1755499621}
+--- !u!114 &1755499624
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1755499605}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea6e8f632db87477eb750446b28d73a3, type: 3}
+  m_Script: {fileID: 11500000, guid: a62ddab3809188142b2160fe320992ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 9
-  indentLevel: 0
-  commenterName: 
-  commentText: "john bored left: \u6E38\u620F\u5F00\u59CB\u4E86\u3002\njohn hide:"
+  m_character: {fileID: 275029863}
+  name: 
+  say: 
 --- !u!1 &1762881965
 GameObject:
   m_ObjectHideFlags: 0

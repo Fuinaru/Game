@@ -35,11 +35,6 @@ public class GameManager : MonoBehaviour
 
 //GameObject
     //bagShow
-    public static bool isBagShow;
-    public GameObject bag;
-    private void SetIsBagShow() {
-        isBagShow = bag.activeInHierarchy;
-    }
 
     public static BagSystem bagSys;
     public BagSystem m_bagSys;
@@ -47,6 +42,21 @@ public class GameManager : MonoBehaviour
     {
         bagSys = m_bagSys;
     }
+    public static TaskManager taskManager;
+    public TaskManager m_taskManager;
+    private void SetTaskManager()
+    {
+        taskManager = m_taskManager;
+    }
+    public static bool isUIShow;
+    public GameObject bag;
+    public GameObject TaskUI;
+    private void SetIsUIShow()
+    {
+        bag.SetActive(isUIShow);
+        TaskUI.SetActive(isUIShow);
+    }
+
     //Player
     public static Player player;
     public  Player m_player;
@@ -73,8 +83,9 @@ public class GameManager : MonoBehaviour
     {
         SetShouldMapBrushBeDestroyed();
         //  isTimePause = m_isTimePause;
-        SetIsBagShow();
+        SetIsUIShow();
         SetBagSys();
+        SetTaskManager();
         SetPlayer();
         SetPlayerAni();
         SetGameover();
@@ -83,11 +94,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Q) )
         {
-            if (!bag.activeInHierarchy) { bag.SetActive(true); isBagShow = true; }
-            else { bag.SetActive(false); isBagShow = false; };
+            isUIShow = !isUIShow;
+            bag.SetActive(isUIShow);
+            TaskUI.SetActive(isUIShow);
         }
     }
 

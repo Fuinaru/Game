@@ -6,6 +6,7 @@ using UnityEngine;
 public class MapLoad : MonoBehaviour {
     public int width = 4;
     public int height = 4;
+    public float mapSzie = 10;
     public List<MapData> maps=new List<MapData>();
 	public List<MapInSceneData> mapInScene = new List<MapInSceneData>();
     public int length;
@@ -119,15 +120,15 @@ public class MapLoad : MonoBehaviour {
 
     Vector3 MapWorldPosition(MapData o) {
         Vector3 pos;
-        pos.x = MapPos(o).y * 10;
+        pos.x = MapPos(o).y * mapSzie;
         pos.y = 0;
-        pos.z = MapPos(o).x * 10;
+        pos.z = MapPos(o).x * mapSzie;
         return pos;
     }
     Vector2Int PlayerPos() {
         Vector2Int pos = Vector2Int.zero;
-        pos.x= (int)GameManager.player.transform.position.z / 10 ;
-        pos.y= (int)GameManager.player.transform.position.x / 10;
+        pos.x= (int)(GameManager.player.transform.position.z / mapSzie);
+        pos.y= (int)(GameManager.player.transform.position.x / mapSzie);
         return pos;
 
     }
