@@ -25,13 +25,12 @@ public class PlayerControl : MyGameObject {
     void Start() {
         base.Start();
         dataInitial();
+        m_rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
     }
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Mouse0)) {
-            Debug.Log(pressedKeyList.Count);
-        }
+
         PlayerMove();
 
         //AniStateRecovery();
@@ -52,20 +51,21 @@ public class PlayerControl : MyGameObject {
                if(i>=0) SetMoveDirByPressedKey(pressedKeyList[i]);
             }
 
-            if (moveDir.magnitude != 0)
+            if (moveDir.magnitude != 0&&!GameManager.IsTimePause())
             {
                 transform.eulerAngles = new Vector3(0, -45 + Mathf.Atan2(moveDir.y, moveDir.x) * 180 / Mathf.PI, 0);
                 m_speed = speed;
             }
             else m_speed = 0;
         }
-        if (IsAniState("Hurted") ||GameManager.isTimePause) { m_speed = 0; }
+        if (IsAniState("Hurted")) { m_speed = 0; }
         m_Animator.SetFloat("Speed", m_speed);
          m_rigidbody.velocity = transform.forward * m_speed;
     }
     
     public bool KeyPressDect()
     {
+        if (!Input.anyKey) pressedKeyList.Clear();
         bool isChanged = false;
         if (Input.GetKeyDown(controlCode.downKey)) { pressedKeyList.Add(controlCode.downKey); isChanged = true; }
         if (Input.GetKeyDown(controlCode.upKey)) {pressedKeyList.Add(controlCode.upKey); isChanged = true; }

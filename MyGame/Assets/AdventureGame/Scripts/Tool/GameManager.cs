@@ -5,6 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager GM;
+    private void SetGM()
+    {
+        GM = this.GetComponent<GameManager>();
+    }
+
+
+
     public static bool shouldMapBrushBeDestroyed ;
     public  bool m_shouldMapBrushBeDestroyed = true;
     private void SetShouldMapBrushBeDestroyed()
@@ -21,7 +29,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadSceneAsync("dialog", LoadSceneMode.Additive);
     }
     //GameProgress
-    static public bool isTimePause = true;
+    static public bool isTalking = false;
     static public bool isGameOver = false;
     public GameObject m_gameover;
     public static GameObject gameover;
@@ -42,6 +50,15 @@ public class GameManager : MonoBehaviour
     {
         bagSys = m_bagSys;
     }
+
+    public static Store store;
+    public Store m_store;
+    public static bool isInStore = false;
+    private void SetStores()
+    {
+        store = m_store;
+    }
+
     public static TaskManager taskManager;
     public TaskManager m_taskManager;
     private void SetTaskManager()
@@ -65,7 +82,12 @@ public class GameManager : MonoBehaviour
     player = m_player;
      }
 
-
+    public static PlayerLaunch playerLaunch;
+    public PlayerLaunch m_playerLaunchr;
+    private void SetPlayerLaunchr()
+    {
+        playerLaunch = m_playerLaunchr;
+    }
     public static Animator playerAni;
     private void SetPlayerAni()
     {
@@ -81,12 +103,15 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        SetGM();
         SetShouldMapBrushBeDestroyed();
         //  isTimePause = m_isTimePause;
         SetIsUIShow();
         SetBagSys();
+        SetStores();
         SetTaskManager();
         SetPlayer();
+        SetPlayerLaunchr();
         SetPlayerAni();
         SetGameover();
     }
@@ -94,12 +119,31 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) )
+
+        GameManager.isTalking = NPC.flowchart.GetBooleanVariable("isTalking");
+
+        if (Input.GetKeyDown(KeyCode.Q)&&!isInStore)
         {
-            isUIShow = !isUIShow;
-            bag.SetActive(isUIShow);
-            TaskUI.SetActive(isUIShow);
+            OpenOrCloseUI();
         }
+       
+    }
+    void OpenOrCloseUI() {
+        isUIShow = !isUIShow;
+        bag.SetActive(isUIShow);
+        TaskUI.SetActive(isUIShow);
+    }
+   public void CloseUI()
+    {
+        isUIShow = false;
+        bag.SetActive(false);
+        TaskUI.SetActive(false);
     }
 
+    public static bool IsTimePause() {
+        if (isInStore) return true;
+        if (isTalking) return true;
+        return false;
+
+    }
 }

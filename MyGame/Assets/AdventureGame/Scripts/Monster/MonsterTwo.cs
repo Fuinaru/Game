@@ -6,7 +6,7 @@ public class MonsterTwo : BaseMonster {
 
     // Use this for initialization
     MonsterLaunch monsterLaunch;
-    Var.ItemType shootItem;
+    public Var.ItemType shootItem;
     protected void Start() {
         base.Start();
         monsterLaunch = transform.GetComponentInChildren<MonsterLaunch>();
@@ -14,7 +14,7 @@ public class MonsterTwo : BaseMonster {
 
     // Update is called once per frame
     protected void Update() {
-        if (GameManager.isTimePause) { m_rigidbody.velocity = Vector3.zero; return; }
+        if (GameManager.IsTimePause()) { m_rigidbody.velocity = Vector3.zero; return; }
         base.Update();
         Action();
     }

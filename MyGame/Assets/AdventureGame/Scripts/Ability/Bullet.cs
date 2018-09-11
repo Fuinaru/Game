@@ -23,7 +23,7 @@ public float aliveTime=5f;
 
     // Update is called once per frame
     void Update () {
-        if (GameManager.isTimePause) { s = m_rigidbody.velocity; m_rigidbody.velocity = Vector3.zero; return; }
+        if (GameManager.IsTimePause()) { s = m_rigidbody.velocity; m_rigidbody.velocity = Vector3.zero; return; }
         else if (s != Vector3.zero) { m_rigidbody.velocity = s;s = Vector3.zero; }
         aliveTime -= Time.deltaTime;
         if (aliveTime <= 0) Destroy(gameObject);

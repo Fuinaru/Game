@@ -6,7 +6,7 @@ using Fungus;
 public class Player : HPObject
 {
 
-
+    public int coinNum=0 ;
 
     ForInclude LowHPTool = new ForInclude();
     [System.Serializable]
@@ -18,16 +18,17 @@ public class Player : HPObject
         public float speed;
     };
     public LowHpEffect lowHpEffect;
-    public Text hpText;
+    public Text hpText; public Text coinText;
 
     void Start()
     {
         base.Start();
+        UpdateCoinUI();
     }
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.isTimePause) { m_rigidbody.velocity = Vector3.zero; return; }
+        if (GameManager.IsTimePause()) { m_rigidbody.velocity = Vector3.zero; return; }
         base.Update();
         LowHp();
         // if (transform.position.y > 30) Flowchart.BroadcastFungusMessage("flyhigh");
@@ -64,4 +65,22 @@ public class Player : HPObject
         hpText.text = hp + "/" + maxHp;
     }
 
+
+    public void GetCoin(int num)
+    {
+        coinNum += num;
+        UpdateCoinUI();
+    }
+    public bool CostCoin(int num)
+    {
+        if (coinNum < num) return false;
+        coinNum -= num;
+        UpdateCoinUI();
+        return true;
+    }
+
+    public  void UpdateCoinUI()
+    {
+        coinText.text = "金币："+ coinNum;
+    }
 } 

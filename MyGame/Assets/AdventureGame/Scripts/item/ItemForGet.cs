@@ -8,7 +8,6 @@ public class ItemForGet : MonoBehaviour {
       
         public Var.ItemType type;
         public int num = 1;
-    public bool playEffect=false;
 	void Start () {
 		
 	}
@@ -19,10 +18,12 @@ public class ItemForGet : MonoBehaviour {
 	}
      void OnTriggerEnter(Collider other)
     {
-        playEffect = true;
         if (other.tag == "Player")
         {
-             other.GetComponentInChildren<PlayerLaunch>().getItem(type, num); Destroy(gameObject); 
+            if (type==Var.ItemType.Coin) { GameManager.player.GetCoin(num); }
+             else other.GetComponentInChildren<PlayerLaunch>().getItem(type, num);
+
+            Destroy(gameObject); 
             Flowchart.BroadcastFungusMessage("itemGet");
         }
     }

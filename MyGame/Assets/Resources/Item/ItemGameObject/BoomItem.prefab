@@ -111,10 +111,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c0af7d01e47b914fb66356a851526e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_rigidbody: {fileID: 0}
   radius: 3.5
   power: 1.2
-  atk: 2
-  aliveTime: 5
+  atk: 3
+  aliveTime: 3
   flickPower: 10
 --- !u!135 &135187933329917878
 SphereCollider:

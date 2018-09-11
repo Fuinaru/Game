@@ -25,7 +25,7 @@ public class PlayerLaunch : BaseLuanch
     void Update()
     {
         trans = transform;
-        if (GameManager.isTimePause) return;
+        if (GameManager.IsTimePause()) return;
 
         for (int i = 0; i < GameManager.bagSys.EquipNum; i++) {
             if (Input.GetKeyDown(start+i) )

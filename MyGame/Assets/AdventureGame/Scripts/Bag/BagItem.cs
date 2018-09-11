@@ -48,12 +48,13 @@ public class BagItem : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
-        if (GameManager.isTimePause) {return; }
+        if (itemData.numChanged) { updateText(); itemData.numChanged = false; }
+        if (GameManager.IsTimePause()) {return; }
         AutoOrder();
         IsMouseDown();
         MouseDrag();
         ItemCoolEnd();
-        if (itemData.numChanged) { updateText(); itemData.numChanged = false; }
+      
         if (itemData.itemNum <= 0)
         {
             BagSystem.bagItems.Remove(itemData);
@@ -212,3 +213,4 @@ public class BagItem : MonoBehaviour
         return Tools.GetItemImgByType(itemData.itemType);
     }
 }
+

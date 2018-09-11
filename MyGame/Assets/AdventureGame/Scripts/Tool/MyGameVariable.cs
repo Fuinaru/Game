@@ -6,6 +6,7 @@ public class Var : MonoBehaviour {
 //ItemType
     public enum ItemType
     {
+        Coin,
         BulletItem,
         BoomItem,
         PotionItem

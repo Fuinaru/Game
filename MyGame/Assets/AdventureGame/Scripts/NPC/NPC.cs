@@ -21,7 +21,7 @@ public class NPC : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-    
+       
     }
 
     private void OnTriggerStay(Collider other)
@@ -29,6 +29,7 @@ public class NPC : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.E))
         {
             SetConversation();
+          
         }
     }
 
@@ -38,4 +39,12 @@ public class NPC : MonoBehaviour {
         flowchart.SetStringVariable("str", say);
         Fungus.Flowchart.BroadcastFungusMessage("say");
     }
+    public static void SetConver(string NPCName,string sayWhat)
+    {
+        character.SetStandardText(NPCName);
+        flowchart.SetStringVariable("str", sayWhat);
+        Fungus.Flowchart.BroadcastFungusMessage("say");
+    }
+
+
 }

@@ -782,11 +782,14 @@
     <Compile Include="Assets\AdventureGame\Scripts\item\ItemForGet.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\MapLoad\MapLoad.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\BaseMonster.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Monster\Drop.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterOne.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterTwo.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\OtherHp.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\NPC\LuaHandle.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\NPC\NPC.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\NPC\Store.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\NPC\StoreNPC.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\ParticleSys.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Player\Player.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Player\PlayerControl.cs" />
@@ -837,6 +840,7 @@
     <None Include="Assets\AdventureGame\Shaders\Hatching.shader" />
     <None Include="Assets\AdventureGame\Shaders\NewSurfaceShader.shader" />
     <None Include="Assets\AdventureGame\Shaders\Normal.shader" />
+    <None Include="Assets\AdventureGame\Shaders\RampTexture.shader" />
     <None Include="Assets\AdventureGame\Shaders\ViewDir.shader" />
     <None Include="Assets\AdventureGame\Shaders\mDirNormal.shader" />
     <None Include="Assets\AdventureGame\Shaders\readme.txt" />

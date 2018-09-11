@@ -108,9 +108,6 @@ namespace Fungus
 
         void Update()
         {
-            if (HasExecutingBlocks()) GameManager.isTimePause = true;
-            else GameManager.isTimePause = false;
-
 
         }
         // There must be an Event System in the scene for Say and Menu input to work.

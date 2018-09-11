@@ -396,6 +396,7 @@
     <None Include="Assets\AdventureGame\Shaders\Hatching.shader" />
     <None Include="Assets\AdventureGame\Shaders\NewSurfaceShader.shader" />
     <None Include="Assets\AdventureGame\Shaders\Normal.shader" />
+    <None Include="Assets\AdventureGame\Shaders\RampTexture.shader" />
     <None Include="Assets\AdventureGame\Shaders\ViewDir.shader" />
     <None Include="Assets\AdventureGame\Shaders\mDirNormal.shader" />
     <None Include="Assets\AdventureGame\Shaders\readme.txt" />
