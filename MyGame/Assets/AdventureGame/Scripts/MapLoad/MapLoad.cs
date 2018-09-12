@@ -75,7 +75,6 @@ public class MapLoad : MonoBehaviour {
         {
             maps[o.mapNum].isInScene = false;
             Destroy(o.mapObject);
-            Resources.UnloadUnusedAssets();
             mapInScene.Remove(o);
         }
      //   Debug.Log(maps.IndexOf(o) + "/" + maps.IndexOf(o));

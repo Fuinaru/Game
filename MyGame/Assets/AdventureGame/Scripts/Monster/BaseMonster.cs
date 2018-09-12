@@ -17,13 +17,31 @@ public class BaseMonster : HPObject
     protected bool isClose = false;
 
 
+    [HideInInspector]
+    public static Transform nearestMonster ;
+
+
     protected void Start () {
         base.Start();
         hurtedCoolTime = 1;
+
     }
     // Update is called once per frame
     protected void Update() {
+
         base.Update();
+        FindTheNearestMonster();
+    }
+    protected void FindTheNearestMonster()
+    {
+
+        if (nearestMonster == null) nearestMonster = transform;
+        else
+        {
+            Vector3 disDir = transform.position - GameManager.player.transform.position;
+            Vector3 neardisDir = nearestMonster.position - GameManager.player.transform.position;
+            if (disDir.magnitude <= neardisDir.magnitude) nearestMonster = transform;
+        }
     }
     protected void moveToPlayer() {
 
@@ -43,9 +61,9 @@ public class BaseMonster : HPObject
     protected void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.tag == "Player") {
-         //   collision.transform.GetComponent<Rigidbody>().velocity = dir.normalized * flickPower;
-            GameManager.playerAni.SetTrigger("GetHurted");
-            collision.transform.GetComponent<Player>().Damage(atk);
+            //   collision.transform.GetComponent<Rigidbody>().velocity = dir.normalized * flickPower;
+
+            GameManager.player.DamageWithAni(atk, transform);
             isClose = true;
         }
     }

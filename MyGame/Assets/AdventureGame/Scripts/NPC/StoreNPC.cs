@@ -16,7 +16,7 @@ public class StoreNPC : MonoBehaviour {
 
     private void OnTriggerStay(Collider other)
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E)&&other.tag=="Player")
         {
             GameManager.store.transform.parent.gameObject.SetActive(true);
             GameManager.store.NPCSetData(goodsList, goodsPrice);

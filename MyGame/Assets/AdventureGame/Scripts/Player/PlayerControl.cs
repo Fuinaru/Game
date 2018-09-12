@@ -51,14 +51,14 @@ public class PlayerControl : MyGameObject {
                if(i>=0) SetMoveDirByPressedKey(pressedKeyList[i]);
             }
 
-            if (moveDir.magnitude != 0&&!GameManager.IsTimePause())
+            if (moveDir.magnitude != 0&&!GameManager.IsTimePause()&&! IsAniState("Hurted"))
             {
                 transform.eulerAngles = new Vector3(0, -45 + Mathf.Atan2(moveDir.y, moveDir.x) * 180 / Mathf.PI, 0);
                 m_speed = speed;
             }
             else m_speed = 0;
         }
-        if (IsAniState("Hurted")) { m_speed = 0; }
+        if(IsAniState("Hurted")) m_speed = 0;
         m_Animator.SetFloat("Speed", m_speed);
          m_rigidbody.velocity = transform.forward * m_speed;
     }

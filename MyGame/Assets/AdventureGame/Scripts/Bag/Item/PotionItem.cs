@@ -20,10 +20,8 @@ public class PotionItem : BagItem
     public override void useItem()
     {
         if (!ItemCoolEnd()) return;
+        Tools.PlayParticletByName(itemData.itemType.ToString(), GameManager.player.transform);
         // if (Tools.GetParticleSystemByName(itemData.itemType.ToString()) == null) Debug.Log("??");
-        ParticleSystem go = Instantiate(Tools.GetParticleSystemGameObjectByName(itemData.itemType.ToString()).GetComponent<ParticleSystem>()) as ParticleSystem;
-        go.GetComponent<ParticleSys>().SetFollowingTarget(GameManager.player.transform);
-        go.Play();
         GameManager.player.Cure(cureAmount);
         useUpdate();
     }

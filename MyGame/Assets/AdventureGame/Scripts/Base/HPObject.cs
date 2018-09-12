@@ -83,12 +83,13 @@ public class HPObject : MyGameObject {
     { 
             if (!isDestory)
             {
+            Tools.PlayParticletByName("SmokeEffect", transform);
                 Destroy(gameObject.GetComponent<Collider>());
                 Destroy(m_rigidbody);
                 isDestory = true;
             }
 
-            HurtedTool.Color2B(GetComponentInChildren<Renderer>().material, new Color(1, 1, 1, 0), 20);
+            HurtedTool.Color2B(GetComponentInChildren<Renderer>().material, new Color(1, 1, 1, 0), 30);
             if (HurtedTool.isChildrenColorB(transform, new Color(1, 1, 1, 0))) Destroy(gameObject);
         }
    

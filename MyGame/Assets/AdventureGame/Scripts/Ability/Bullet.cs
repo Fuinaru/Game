@@ -10,6 +10,7 @@ public float aliveTime=5f;
     private Vector3 pos;
     private bool isChild = false;
     private Vector3 s = new Vector3();
+
     // Use this for initialization
     private void Start()
     {

@@ -83,4 +83,17 @@ public class Player : HPObject
     {
         coinText.text = "金币："+ coinNum;
     }
+    public void DamageWithAni(int a,Transform trans)
+    {
+        if (!hurted) {
+            hp -= a; getHurted();
+            Tools.LookAtOnlyYAxis(transform, trans);
+          //  m_rigidbody.AddForce((transform.position-trans.position).normalized*100,ForceMode.VelocityChange);
+            GameManager.playerAni.SetTrigger("GetHurted");
+            UpdateHpUI();
+        }
+
+    }
+  
+
 } 

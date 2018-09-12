@@ -120,6 +120,8 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
+ 
+
         GameManager.isTalking = NPC.flowchart.GetBooleanVariable("isTalking");
 
         if (Input.GetKeyDown(KeyCode.Q)&&!isInStore)

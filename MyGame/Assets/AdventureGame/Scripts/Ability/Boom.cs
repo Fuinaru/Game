@@ -10,7 +10,6 @@ public class Boom : MyGameObject
     public int atk = 2;
     public float aliveTime = 5f;
     private bool isHitPlayer = false;
- 
     public float flickPower=5;
     // Use this for initialization
     //Vector3 explosionPos;
@@ -20,7 +19,7 @@ public class Boom : MyGameObject
     void Start()
     {
 
-
+        base.Start();
     }
 
     // Update is called once per frame
@@ -32,9 +31,13 @@ public class Boom : MyGameObject
         aliveTime -= Time.deltaTime;
         if (aliveTime <= 0)
         {
-            gameObject.GetComponent<Collider>().isTrigger = true;
-            Color color = gameObject.GetComponent<Renderer>().material.color;
-            gameObject.GetComponent<Renderer>().material.color = new Color(color.r+0.1f, color.g-0.2f, color.b-0.5f, color.a );
+            if (!gameObject.GetComponent<Collider>().isTrigger) {
+                Tools.PlayParticletByName("BoomEffect", transform);
+                gameObject.GetComponent<Collider>().isTrigger = true;
+                gameObject.GetComponent<Renderer>().material.color = Color.yellow;
+            }
+         
+          
           
             d = transform.localScale;
             transform.localScale = new Vector3(d.x * power, d.y * power, d.z * power);
@@ -55,10 +58,8 @@ public class Boom : MyGameObject
             //dir.y = 0.5f;
 
             //hit.GetComponent<Rigidbody>().velocity = dir * flickPower;
-         //   GameManager.player.transform.LookAt(gameObject.transform);
-            Tools.LookAtOnlyYAxis(GameManager.player.transform, transform);
-            GameManager.playerAni.SetTrigger("GetHurted");
-            GameManager.player.m_rigidbody.velocity = Vector3.zero;
+            //   GameManager.player.transform.LookAt(gameObject.transform)
+            GameManager.player.DamageWithAni(atk,transform);
           hit.GetComponent<HPObject>().Damage(atk);
             isHitPlayer = true;
            

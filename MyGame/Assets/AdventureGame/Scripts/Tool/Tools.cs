@@ -53,7 +53,13 @@ public class Tools : MonoBehaviour {
     {
         return GetGameObjectByPath(effectsPath +name);
     }
-
+    public static void PlayParticletByName(string name,Transform transform)
+    {
+        ParticleSystem go = Instantiate(GetParticleSystemGameObjectByName(name).GetComponent<ParticleSystem>()) as ParticleSystem;
+        go.gameObject.AddComponent<ParticleSys>();
+        go.GetComponent<ParticleSys>().SetFollowingTarget(transform);
+        go.Play();
+    }
     public static void LookAtOnlyYAxis(Transform self, Transform target)
     {
         self.LookAt(target);

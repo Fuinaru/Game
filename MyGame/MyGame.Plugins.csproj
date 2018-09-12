@@ -326,6 +326,11 @@
     <None Include="Assets\AdventureGame\Shaders\RampTexture.shader" />
     <None Include="Assets\AdventureGame\Shaders\ViewDir.shader" />
     <None Include="Assets\AdventureGame\Shaders\mDirNormal.shader" />
+    <None Include="Assets\AdventureGame\Shaders\other\BubbleShader 1.shader" />
+    <None Include="Assets\AdventureGame\Shaders\other\BubbleShader 2.shader" />
+    <None Include="Assets\AdventureGame\Shaders\other\BubbleShader.shader" />
+    <None Include="Assets\AdventureGame\Shaders\other\WaterfallShader.shader" />
+    <None Include="Assets\AdventureGame\Shaders\other\waterIntersection.shader" />
     <None Include="Assets\AdventureGame\Shaders\readme.txt" />
     <None Include="Assets\AdventureGame\Shaders\test.shader" />
     <None Include="Assets\AdventureGame\UI\readme.txt" />
@@ -334,6 +339,7 @@
     <None Include="Assets\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
     <None Include="Assets\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
+    <None Include="Assets\TreasureChestMaker\TCM\Documentation\ReadMe.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

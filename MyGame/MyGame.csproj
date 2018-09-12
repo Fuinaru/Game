@@ -779,6 +779,7 @@
     <Compile Include="Assets\AdventureGame\Scripts\Base\HPObject.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Base\MyGameObject.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\creatFollowingUI.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\item\ActivateChest.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\item\ItemForGet.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\MapLoad\MapLoad.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\BaseMonster.cs" />
@@ -802,7 +803,9 @@
     <Compile Include="Assets\AdventureGame\Scripts\Tool\GameManager.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Tool\MyGameVariable.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Tool\Tools.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Tool\UnLoadResources.cs" />
     <Compile Include="Assets\Tools\Scripts\MapBrush.cs" />
+    <Compile Include="Assets\TreasureChestMaker\Example\Scripts\CameraControl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AdventureGame\Complement\readme.txt" />
@@ -843,6 +846,11 @@
     <None Include="Assets\AdventureGame\Shaders\RampTexture.shader" />
     <None Include="Assets\AdventureGame\Shaders\ViewDir.shader" />
     <None Include="Assets\AdventureGame\Shaders\mDirNormal.shader" />
+    <None Include="Assets\AdventureGame\Shaders\other\BubbleShader 1.shader" />
+    <None Include="Assets\AdventureGame\Shaders\other\BubbleShader 2.shader" />
+    <None Include="Assets\AdventureGame\Shaders\other\BubbleShader.shader" />
+    <None Include="Assets\AdventureGame\Shaders\other\WaterfallShader.shader" />
+    <None Include="Assets\AdventureGame\Shaders\other\waterIntersection.shader" />
     <None Include="Assets\AdventureGame\Shaders\readme.txt" />
     <None Include="Assets\AdventureGame\Shaders\test.shader" />
     <None Include="Assets\AdventureGame\UI\readme.txt" />
@@ -851,6 +859,7 @@
     <None Include="Assets\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
     <None Include="Assets\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
+    <None Include="Assets\TreasureChestMaker\TCM\Documentation\ReadMe.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

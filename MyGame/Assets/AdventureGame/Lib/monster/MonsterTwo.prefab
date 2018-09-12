@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 136058355768244140}
   - component: {fileID: 114875233793619682}
   - component: {fileID: 114637445230495662}
+  - component: {fileID: 114450667578976732}
   m_Layer: 0
   m_Name: MonsterTwo
   m_TagString: Monster
@@ -70,7 +71,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1869993911113984}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -179.34, y: -113.73438, z: 143.5}
+  m_LocalPosition: {x: 20.88, y: 0, z: 11.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4799531887314740}
@@ -171,10 +172,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c1d471f22426f47b26c355a0693d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 1302532725940112, guid: 1d41fb365b61ee941b835a340710ffe7, type: 2}
-  boom: {fileID: 1633858208175558, guid: df49037f5c59eb64f887bbe07b86d9c2, type: 2}
+  m_rigidbody: {fileID: 0}
   bulletCoolTime: 1.8
-  boomCoolTime: 1
+  coolTime: 1
+  nextTime: 0
+--- !u!114 &114450667578976732
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1869993911113984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57af27222baa4784f8f3e6a62fa002f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropItem:
+  - {fileID: 1112127058721020, guid: 0e2b7a2111f55124d9d6901fb05dc776, type: 2}
+  - {fileID: 1490387821540412, guid: 8347f744726d7274faf9b07c86c4a167, type: 2}
+  - {fileID: 1679840636911530, guid: aa4cbbab58af62f4a85f79f5fb9b35c1, type: 2}
 --- !u!114 &114637445230495662
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -186,15 +202,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48bd297cdf88693418dd18431531dadd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_rigidbody: {fileID: 0}
   maxHp: 5
-  Hp: 5
+  hp: 5
   HpContorl: {fileID: 0}
-  speed: 5
+  hurted: 0
+  hurtedCoolTime: 3
+  speed: 4
   viewMinDistance: 5
   viewMaxDistance: 10
   IsFindPlayer: 0
   atk: 1
-  flickPower: 5
+  shootItem: 1
 --- !u!114 &114875233793619682
 MonoBehaviour:
   m_ObjectHideFlags: 1

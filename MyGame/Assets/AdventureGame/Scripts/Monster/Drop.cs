@@ -3,22 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Drop : MonoBehaviour {
-   public List<string> dropItem;
+   public List<GameObject> dropItem;
+    private bool isQuit = false;
 	// Use this for initialization
 	void Start () {
-		
-	}
+        isQuit = false;
+      //  dropItem.Reverse();
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.Mouse0)) { Debug.Log(DropItemCaculate()); }
+   
 
 	}
-    string DropItemCaculate() {
-        float n = dropItem.Count;
-        n=Mathf.FloorToInt( (Random.Range(-n, n) / Random.Range(1, 2 * n)));
-        if (n < 0) return "nothing";
-        return dropItem[(int)n];
+   
+    private void OnDestroy()
+    {
+        if (transform.parent.gameObject.activeInHierarchy) { 
+        GameObject o = Instantiate(DropItemCaculate(), new Vector3(transform.position.x, 0.5f, transform.position.z), transform.rotation);
+        o.transform.SetParent(transform.parent);
+    }
+    }
+    private void OnApplicationQuit()
+    {
+        isQuit = true;
+    }
+    GameObject DropItemCaculate() {
+        float n=0;
+        for (int i = 1; i <= dropItem.Count; i++) {
+            n += i;
+        }
+        float random = Random.Range(0, n);
+        for (int i = 1; i <=dropItem.Count; i++) {
+            if (random < i) { return dropItem[dropItem.Count-i]; }
+            else random -= i;
+        }
+        return dropItem[dropItem.Count - 1];
+
     }
 
 }
