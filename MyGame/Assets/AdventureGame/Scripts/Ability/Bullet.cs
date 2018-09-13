@@ -6,26 +6,26 @@ public class Bullet : MyGameObject
 {
 public float aliveTime=5f;
     public int atk = 1;
-    private Vector3 scale;
-    private Vector3 pos;
-    private bool isChild = false;
-    private Vector3 s = new Vector3();
+    protected Vector3 scale;
+    protected Vector3 pos;
+    protected bool isChild = false;
+    protected Vector3 s = new Vector3();
 
     // Use this for initialization
-    private void Start()
+    public void Start()
     {
         base.Start();
         s = Vector3.zero;
     }
-    private void OnBecameInvisible()
+    public void OnBecameInvisible()
     {
         Destroy(gameObject);
     }
 
     // Update is called once per frame
-    void Update () {
-        if (GameManager.IsTimePause()) { s = m_rigidbody.velocity; m_rigidbody.velocity = Vector3.zero; return; }
-        else if (s != Vector3.zero) { m_rigidbody.velocity = s;s = Vector3.zero; }
+    public void Update () {
+        if (GameManager.IsTimePause()&& s == Vector3.zero) { s = m_rigidbody.velocity; m_rigidbody.velocity = Vector3.zero; return; }
+        if (s != Vector3.zero&& !GameManager.IsTimePause()) { m_rigidbody.velocity = s;s = Vector3.zero; }
         aliveTime -= Time.deltaTime;
         if (aliveTime <= 0) Destroy(gameObject);
         //else gameObject.GetComponent<Rigidbody>().AddExplosionForce(100, transform.position,100);

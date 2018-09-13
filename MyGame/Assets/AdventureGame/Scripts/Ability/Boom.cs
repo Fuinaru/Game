@@ -32,7 +32,7 @@ public class Boom : MyGameObject
         if (aliveTime <= 0)
         {
             if (!gameObject.GetComponent<Collider>().isTrigger) {
-                Tools.PlayParticletByName("BoomEffect", transform);
+                Tools.PlayFollowingParticletByName("BoomEffect", transform);
                 gameObject.GetComponent<Collider>().isTrigger = true;
                 gameObject.GetComponent<Renderer>().material.color = Color.yellow;
             }

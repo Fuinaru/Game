@@ -5,6 +5,7 @@ using UnityEngine;
 public class BulletItem : BagItem
 {
     public float autoShootDis = 8;
+
     // Use this for initialization
     protected void Start()
     {
@@ -20,11 +21,18 @@ public class BulletItem : BagItem
     public override void useItem()
     {
         if (!ItemCoolEnd()) return;
-        Vector3 dir = BaseMonster.nearestMonster.position - GameManager.player.transform.position;
-        Debug.Log(dir.magnitude);
-        if(dir.magnitude<= autoShootDis) GameManager.player.transform.eulerAngles = new Vector3(0, Mathf.Atan2(dir.x, dir.z) * 180 / Mathf.PI, 0);
+        if (BaseMonster.nearestMonster != null)
+        {
+            Vector3 dir = BaseMonster.nearestMonster.position - GameManager.player.transform.position;
+            Debug.Log(dir.magnitude);
+            if (dir.magnitude <= autoShootDis) GameManager.player.transform.eulerAngles = new Vector3(0, Mathf.Atan2(dir.x, dir.z) * 180 / Mathf.PI, 0);
+        }
         GameObject go = Instantiate(GetItemObject(), PlayerLaunch.trans.position, PlayerLaunch.trans.rotation) as GameObject;
-        go.GetComponent<Rigidbody>().AddRelativeForce(0, 0, 1200);
+        go.GetComponent<Rigidbody>().AddRelativeForce(0, 0, 1000);
         useUpdate();
+
+       
     }
+
+
 }

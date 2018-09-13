@@ -9,7 +9,8 @@ public class Var : MonoBehaviour {
         Coin,
         BulletItem,
         BoomItem,
-        PotionItem
+        PotionItem,
+        FireBallItem
     }
 
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerControl : MyGameObject {
 
     public int speed;
-    private int m_speed = 0;
+    public static int m_speed = 0;
     private Vector2 moveDir = Vector2.zero;
 
     [System.Serializable]
@@ -17,10 +17,10 @@ public class PlayerControl : MyGameObject {
         public KeyCode rightKey;
     };
 
-    public ControlCode controlCode;
+    public  ControlCode controlCode;
     Animator m_Animator;
 
-    List<KeyCode> pressedKeyList = new List<KeyCode>();
+    static List<KeyCode> pressedKeyList = new List<KeyCode>();
 
     void Start() {
         base.Start();
@@ -43,6 +43,7 @@ public class PlayerControl : MyGameObject {
 
 
     public void PlayerMove() {
+       
         if (KeyPressDect() )
         {
             moveDir = Vector2.zero;
@@ -51,14 +52,13 @@ public class PlayerControl : MyGameObject {
                if(i>=0) SetMoveDirByPressedKey(pressedKeyList[i]);
             }
 
-            if (moveDir.magnitude != 0&&!GameManager.IsTimePause()&&! IsAniState("Hurted"))
+            if (moveDir.magnitude != 0&&!GameManager.IsTimePause()&&! IsAniState("Hurted")&& Player.playEnd == 1)
             {
                 transform.eulerAngles = new Vector3(0, -45 + Mathf.Atan2(moveDir.y, moveDir.x) * 180 / Mathf.PI, 0);
-                m_speed = speed;
             }
-            else m_speed = 0;
         }
-        if(IsAniState("Hurted")) m_speed = 0;
+        if (pressedKeyList.Count >= 1 && Player.playEnd == 1 && !GameManager.IsTimePause()&& !IsAniState("Hurted")) m_speed = speed;
+        if (pressedKeyList.Count ==0||IsAniState("Hurted") || GameManager.IsTimePause()||Player.playEnd!=1) m_speed = 0;
         m_Animator.SetFloat("Speed", m_speed);
          m_rigidbody.velocity = transform.forward * m_speed;
     }

@@ -4,21 +4,25 @@ using System.IO;
 using UnityEngine;
 
 public class MapLoad : MonoBehaviour {
+    public static MapLoad mapload;
+
     public int width = 5;
     public int height = 5;
-    public float mapSzie = 20;
-    public string stageName = "MapEditor";
-    public bool isLoadAllMaps=false;
-    private List<MapData> maps=new List<MapData>();
+    public float mapSize = 20;
+    public bool isLoadAllMaps = false;
+    private List<MapData> maps = new List<MapData>();
     private List<MapInSceneData> mapInScene = new List<MapInSceneData>();
     private int length;
     public GameObject map;
 
 
     // Use this for initialization
+    void Awake (){
+        mapload = this;
+    }
     void Start () {
         MapDataInitial();
-        length = maps.Count;
+   
     if(isLoadAllMaps)LoadAllMapIntoScene();
 	
     }
@@ -35,19 +39,18 @@ public class MapLoad : MonoBehaviour {
     private void OnGUI()
     {
         GUI.skin.label.richText = true;
-        GUI.Label(new Rect(10, 10, 50, 50), "<color=red>"+mapInScene.Count.ToString()+"/"+maps.Count.ToString()+"</color>");
+        GUI.Label(new Rect(10, 10, 50, 50), "<color=red>"+Player.playEnd+"</color>");
 
     }
 
     void MapDataInitial() {
-
 
             for (int i = 0; i < width*height; i++)
             {
                 maps.Add(new MapData(maps.Count));
             }
 
-
+        length = maps.Count;
     }
   private void  LoadAllMapIntoScene() {
         foreach (MapData o in maps) {
@@ -60,7 +63,7 @@ public class MapLoad : MonoBehaviour {
     {
         if (!o.isInScene)
         {
-			GameObject go = Instantiate(o.GetMapResource(stageName)) as GameObject;
+			GameObject go = Instantiate(o.GetMapResource(GameManager.stageName)) as GameObject;
             go.transform.SetParent(map.transform);
             go.transform.position = MapWorldPosition(o);
             o.isInScene = true;
@@ -110,8 +113,27 @@ public class MapLoad : MonoBehaviour {
         }
 
     }
-   
-        Vector2Int MapPos(MapData o)
+    void UnloadALLMapInScene()
+    {
+        for (int i = mapInScene.Count - 1; i >= 0; i--)
+        {
+            UnloadMap(mapInScene[i]); 
+        }
+        mapInScene.Clear();
+    }
+
+    public void LoadNextStage(int stageName,int _width,int _height) {
+        GameManager.stageName = stageName;
+        width = _width;height = _height;
+        UnloadALLMapInScene();
+        maps.Clear();
+        MapDataInitial();
+
+    }
+
+
+
+    Vector2Int MapPos(MapData o)
     {
         int n = maps.IndexOf(o);
         Vector2Int pos=Vector2Int.zero;
@@ -123,15 +145,15 @@ public class MapLoad : MonoBehaviour {
 
     Vector3 MapWorldPosition(MapData o) {
         Vector3 pos;
-        pos.x = MapPos(o).y * mapSzie;
+        pos.x = MapPos(o).y * mapSize;
         pos.y = 0;
-        pos.z = MapPos(o).x * mapSzie;
+        pos.z = MapPos(o).x * mapSize;
         return pos;
     }
     Vector2Int PlayerPos() {
         Vector2Int pos = Vector2Int.zero;
-        pos.x= (int)(GameManager.player.transform.position.z / mapSzie);
-        pos.y= (int)(GameManager.player.transform.position.x / mapSzie);
+        pos.x= (int)(GameManager.player.transform.position.z / mapSize);
+        pos.y= (int)(GameManager.player.transform.position.x / mapSize);
         return pos;
 
     }
@@ -181,11 +203,11 @@ public class MapData {
     }
 
 	public GameObject GetMapResource(){
-        return (GameObject)Resources.Load("MapBlocks/" + "MapEditor " + mapNum.ToString());
+        return (GameObject)Resources.Load("MapBlocks/stage1/" + "MapEditor " + mapNum.ToString());
     }
-    public GameObject GetMapResource(string stageName)
+    public GameObject GetMapResource(int stageName)
     {
-        return (GameObject)Resources.Load("MapBlocks/" + stageName+" " + mapNum.ToString());
+        return (GameObject)Resources.Load("MapBlocks/"+stageName+"/" + "MapEditor " + mapNum.ToString());
     }
 }
 

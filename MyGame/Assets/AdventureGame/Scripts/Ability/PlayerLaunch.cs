@@ -7,8 +7,8 @@ public class PlayerLaunch : BaseLuanch
 
     public int bulletNum = 5;
     public int boomNum = 3;
-  
 
+   
 
     KeyCode start = KeyCode.Keypad1;
 
@@ -40,6 +40,7 @@ public class PlayerLaunch : BaseLuanch
             getItem(Var.ItemType.BoomItem, 10);
             getItem(Var.ItemType.BulletItem, 10);
             getItem(Var.ItemType.PotionItem, 10);
+            getItem(Var.ItemType.FireBallItem, 10);
         }
   
     }
@@ -57,7 +58,7 @@ public class PlayerLaunch : BaseLuanch
     {
         GameManager.bagSys.AddItem(type, a);
     }
-
+   
     //public void useItem(Transform i)
     //{
     //    BagItem o = i.GetComponent<BagItem>();

@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static int stageName = 1;
+
     public static GameManager GM;
     private void SetGM()
     {
@@ -20,10 +22,9 @@ public class GameManager : MonoBehaviour
         shouldMapBrushBeDestroyed = m_shouldMapBrushBeDestroyed;
     }
     //stageSceneManage
-    public static int CurrentStage = 3;
+
     public void GameStart()
     {
-        CurrentStage = 3;
         SceneManager.LoadScene("stage1");
         SceneManager.LoadSceneAsync("player", LoadSceneMode.Additive);
         SceneManager.LoadSceneAsync("dialog", LoadSceneMode.Additive);
@@ -31,12 +32,14 @@ public class GameManager : MonoBehaviour
     //GameProgress
     static public bool isTalking = false;
     static public bool isGameOver = false;
+    static public bool isTimePause = false;
     public GameObject m_gameover;
     public static GameObject gameover;
     private void SetGameover(){
         gameover = m_gameover;
     }
     public static void GameOver() {
+        isGameOver = true;
         gameover.transform.SetSiblingIndex(999);
         gameover.SetActive(true);
     }
@@ -98,10 +101,7 @@ public class GameManager : MonoBehaviour
 
 
 
-
-
-
-    void Start()
+    void Awake()
     {
         SetGM();
         SetShouldMapBrushBeDestroyed();
@@ -116,13 +116,23 @@ public class GameManager : MonoBehaviour
         SetGameover();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    void Start()
     {
 
- 
+       
+    }
 
-        GameManager.isTalking = NPC.flowchart.GetBooleanVariable("isTalking");
+
+
+        // Update is called once per frame
+        void Update()
+    {
+        try
+        {
+            GameManager.isTalking = NPC.flowchart.GetBooleanVariable("isTalking");
+        }
+        catch { }
 
         if (Input.GetKeyDown(KeyCode.Q)&&!isInStore)
         {
@@ -145,6 +155,9 @@ public class GameManager : MonoBehaviour
     public static bool IsTimePause() {
         if (isInStore) return true;
         if (isTalking) return true;
+        if(isGameOver) return true;
+        if (isTimePause) return true;
+        
         return false;
 
     }

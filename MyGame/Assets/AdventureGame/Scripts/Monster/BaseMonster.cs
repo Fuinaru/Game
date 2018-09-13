@@ -11,17 +11,17 @@ public class BaseMonster : HPObject
     public float viewMinDistance = 5;
     public float viewMaxDistance = 10;
     protected Vector3 dir;
-    public bool IsFindPlayer=false;
-    public int atk =1;
-   // public int flickPower = 5;
+    public bool IsFindPlayer = false;
+    public int atk = 1;
+    // public int flickPower = 5;
     protected bool isClose = false;
 
 
     [HideInInspector]
-    public static Transform nearestMonster ;
+    public static Transform nearestMonster;
 
 
-    protected void Start () {
+    protected void Start() {
         base.Start();
         hurtedCoolTime = 1;
 
@@ -32,9 +32,9 @@ public class BaseMonster : HPObject
         base.Update();
         FindTheNearestMonster();
     }
+
     protected void FindTheNearestMonster()
     {
-
         if (nearestMonster == null) nearestMonster = transform;
         else
         {

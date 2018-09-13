@@ -55,7 +55,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1097174911378750}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -175.37, y: -113.73, z: 156.14}
+  m_LocalPosition: {x: 3.33, y: 0, z: 8.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4526757112352438}
@@ -164,7 +164,7 @@ MonoBehaviour:
   HpContorl: {fileID: 0}
   hurted: 0
   hurtedCoolTime: 3
-  speed: 6
+  speed: 4
   viewMinDistance: 5
   viewMaxDistance: 10
   IsFindPlayer: 0

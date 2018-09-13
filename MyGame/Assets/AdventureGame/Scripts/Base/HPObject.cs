@@ -83,7 +83,7 @@ public class HPObject : MyGameObject {
     { 
             if (!isDestory)
             {
-            Tools.PlayParticletByName("SmokeEffect", transform);
+            Tools.PlayFollowingParticletByName("SmokeEffect", transform);
                 Destroy(gameObject.GetComponent<Collider>());
                 Destroy(m_rigidbody);
                 isDestory = true;

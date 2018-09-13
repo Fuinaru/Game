@@ -22,7 +22,7 @@ public class BaseLuanch : MyGameObject
     }
     public void ShootItem(Var.ItemType type) {
         GameObject go = Instantiate(Tools.GetItemGameObjectByType(type), transform.position, transform.rotation) as GameObject;
-        go.GetComponent<Rigidbody>().AddRelativeForce(0, 0, 1200);
+        go.GetComponent<Rigidbody>().AddRelativeForce(0, 0, 500);
     }
     public void SetItem(Var.ItemType type)
     {

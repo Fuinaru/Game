@@ -207,8 +207,8 @@ MonoBehaviour:
   hp: 5
   HpContorl: {fileID: 0}
   hurted: 0
-  hurtedCoolTime: 3
-  speed: 4
+  hurtedCoolTime: 5
+  speed: 3
   viewMinDistance: 5
   viewMaxDistance: 10
   IsFindPlayer: 0

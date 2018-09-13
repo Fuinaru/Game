@@ -7,7 +7,7 @@ public class Player : HPObject
 {
 
     public int coinNum=0 ;
-
+    public static int playEnd = 1;
     ForInclude LowHPTool = new ForInclude();
     [System.Serializable]
     public struct LowHpEffect
@@ -94,6 +94,9 @@ public class Player : HPObject
         }
 
     }
-  
 
+    public void PlayEnd(int a)
+    {
+        playEnd = a;
+    }
 } 

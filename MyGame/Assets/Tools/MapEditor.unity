@@ -380,8 +380,8 @@ MonoBehaviour:
   camera: {fileID: 2142651914}
   tile: {fileID: 1003030455260220, guid: f79402faded4ae948b5ee7f8af10a6c5, type: 2}
   tiles: []
-  mapHeight: 10
-  mapWidth: 10
+  mapHeight: 20
+  mapWidth: 20
 --- !u!1 &1170350860
 GameObject:
   m_ObjectHideFlags: 0
