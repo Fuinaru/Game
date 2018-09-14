@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerControl : MyGameObject {
 
     public int speed;
-    public static int m_speed = 0;
+    public static float m_speed = 0;
     private Vector2 moveDir = Vector2.zero;
 
     [System.Serializable]
@@ -43,22 +43,23 @@ public class PlayerControl : MyGameObject {
 
 
     public void PlayerMove() {
-       
-        if (KeyPressDect() )
-        {
+
+           if (KeyPressDect() )
+          {
+
             moveDir = Vector2.zero;
             for (int i = pressedKeyList.Count - 2; i <= pressedKeyList.Count - 1; i++)
             {
                if(i>=0) SetMoveDirByPressedKey(pressedKeyList[i]);
-            }
-
-            if (moveDir.magnitude != 0&&!GameManager.IsTimePause()&&! IsAniState("Hurted")&& Player.playEnd == 1)
-            {
-                transform.eulerAngles = new Vector3(0, -45 + Mathf.Atan2(moveDir.y, moveDir.x) * 180 / Mathf.PI, 0);
-            }
+            } 
         }
-        if (pressedKeyList.Count >= 1 && Player.playEnd == 1 && !GameManager.IsTimePause()&& !IsAniState("Hurted")) m_speed = speed;
-        if (pressedKeyList.Count ==0||IsAniState("Hurted") || GameManager.IsTimePause()||Player.playEnd!=1) m_speed = 0;
+        if (moveDir.magnitude != 0 && !GameManager.IsTimePause() && !IsAniState("Hurted") && Player.playEnd == 1)
+        {
+            transform.eulerAngles = new Vector3(0, -45 + Mathf.Atan2(moveDir.y, moveDir.x) * 180 / Mathf.PI, 0);
+            m_speed = speed;
+        }
+        if (Player.playEnd<=0|| pressedKeyList.Count ==0 || GameManager.IsTimePause()||Player.playEnd!=1) m_speed = 0;
+        if((Player.playEnd==2)) m_speed = -speed*1.2f;
         m_Animator.SetFloat("Speed", m_speed);
          m_rigidbody.velocity = transform.forward * m_speed;
     }

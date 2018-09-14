@@ -16,7 +16,7 @@ public class MonsterTwo : BaseMonster {
     protected void Update() {
         if (GameManager.IsTimePause()) { m_rigidbody.velocity = Vector3.zero; return; }
         base.Update();
-        Action();
+        if (_stopTime <= 0) Action();
     }
     protected void Action()
     {
@@ -25,7 +25,7 @@ public class MonsterTwo : BaseMonster {
     }
     protected void Attack()
     {
-       if (monsterLaunch.BulletCoolEnd()&&!isClose) monsterLaunch.ShootItem(shootItem);
+       if (monsterLaunch.CoolEnd()&&!isClose) monsterLaunch.ShootItem(shootItem);
     }
 
 }

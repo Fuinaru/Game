@@ -16,14 +16,14 @@ public class BaseMonster : HPObject
     // public int flickPower = 5;
     protected bool isClose = false;
 
-
+    public float stopTime=1;
+    protected float _stopTime = 0;
     [HideInInspector]
     public static Transform nearestMonster;
 
 
     protected void Start() {
         base.Start();
-        hurtedCoolTime = 1;
 
     }
     // Update is called once per frame
@@ -31,6 +31,7 @@ public class BaseMonster : HPObject
 
         base.Update();
         FindTheNearestMonster();
+        if (_stopTime > 0) { _stopTime -= Time.deltaTime; Debug.Log(_stopTime); }
     }
 
     protected void FindTheNearestMonster()
@@ -65,6 +66,9 @@ public class BaseMonster : HPObject
 
             GameManager.player.DamageWithAni(atk, transform);
             isClose = true;
+
+            _stopTime = stopTime;
+
         }
     }
     protected void OnCollisionExit(Collision collision)
@@ -83,11 +87,12 @@ public class BaseMonster : HPObject
       //  else IsFindPlayer = false;
     }
 
-    public void Damage(int a)
+    public override void Damage(int a)
     {
-        // if (!hurted) { Hp -= a; getHurted(); }
-        hp -= a; getHurted();
+       if (!hurted) { hp -= a; getHurted(); }
         HpContorl.GetComponent<Slider>().value = hp;
+        _stopTime = stopTime;
+
     }
  
  

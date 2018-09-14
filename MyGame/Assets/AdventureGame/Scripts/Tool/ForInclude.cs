@@ -75,16 +75,19 @@ using UnityEngine.UI;
 
         }
         public void flash(Transform trans, Color min, Color max, float speed) {
-
-            Renderer[] rds = trans.GetComponentsInChildren<Renderer>();
-            //逐一遍历他的子物体中的Renderer
+           trans=trans.GetChild(0);
        
-                if (rds[0].tag !="Bullet" )
+        Renderer rds = trans.GetComponent<Renderer>();
+        ColorA2BCir(rds.material, min, max, speed);
+        //   Renderer[] rds = trans.GetComponentsInChildren<Renderer>();
+        //逐一遍历他的子物体中的Renderer
+
+        //            if (rds[0].tag !="Bullet" )
 
 
-                    ColorA2BCir(rds[0].material, min, max, speed);
+        //                ColorA2BCir(rds[0].material, min, max, speed);
 
-        }
+           }
 
         public void materialBecomeWhite(Transform trans)
         {

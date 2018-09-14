@@ -13,11 +13,12 @@ public class HPObject : MyGameObject {
     ForInclude HurtedTool = new ForInclude();
     protected bool isDestory = false;
     public float hurtedCoolTime = 3;
+    protected bool otherFlash = false;
     // Use this for initialization
     protected void Start () {
         base.Start();
 
-        if (transform.tag == "Player") UpdateHpUI();
+
 
 
         if (transform.tag == "Monster")
@@ -32,10 +33,10 @@ public class HPObject : MyGameObject {
     protected void Update () {
         base.Update();
         hurtCount();
-        Flash();
+      if(!otherFlash)Flash();
         if (hp <= 0) GoDie();
     }
-    public void Damage(int a)
+    public virtual void Damage(int a)
     {
         if (!hurted) { hp -= a; getHurted(); }
         UpdateHpUI();
@@ -59,8 +60,13 @@ public class HPObject : MyGameObject {
             time += Time.deltaTime;
             if (time >= hurtedCoolTime)
             {
-                HurtedTool.materialBecomeWhite(transform);
-                if (HurtedTool.isChildrenColorB(transform, Color.white)) hurted = false; time = 0;
+                if (!otherFlash)
+                {
+                    HurtedTool.materialBecomeWhite(transform);
+                  
+                }
+                time = 0;
+                hurted = false;
             }
         }
     }
@@ -71,12 +77,24 @@ public class HPObject : MyGameObject {
             try { HurtedTool.flash(transform, new Color(1, 0, 0, 0.7f), Color.white, 10); }
             catch { }
         }
-
+    }
+    public void FlashOther(Color color,float speed)
+    {
+        otherFlash = true;
+        if (!isDestory)
+        {
+            try { HurtedTool.flash(transform, color, Color.white, speed); }
+            catch { }
+        }
+    }
+    public void FlashOtherEnd() {
+        otherFlash = false;
+        HurtedTool.materialBecomeWhite(transform);
     }
     public virtual void UpdateHpUI()
     {
         HpContorl.value = hp;
-
+ 
     }
 
     public virtual void GoDie()

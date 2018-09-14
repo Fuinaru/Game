@@ -123,13 +123,13 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1097174911378750}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 5
+  m_Drag: 10
+  m_AngularDrag: 8
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &114075977621518160
 MonoBehaviour:
@@ -163,12 +163,13 @@ MonoBehaviour:
   hp: 5
   HpContorl: {fileID: 0}
   hurted: 0
-  hurtedCoolTime: 3
+  hurtedCoolTime: 0.5
   speed: 4
   viewMinDistance: 5
   viewMaxDistance: 10
   IsFindPlayer: 0
   atk: 1
+  stopTime: 1
 --- !u!114 &114353291868601912
 MonoBehaviour:
   m_ObjectHideFlags: 1

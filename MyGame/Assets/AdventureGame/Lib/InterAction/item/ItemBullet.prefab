@@ -20,10 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4082996053360728}
   - component: {fileID: 33898197707158872}
-  - component: {fileID: 135202620633425822}
   - component: {fileID: 23065486595038096}
   - component: {fileID: 95523466555058428}
-  - component: {fileID: 114324061137861606}
   m_Layer: 0
   m_Name: BulletItem
   m_TagString: Untagged
@@ -39,6 +37,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4972125717494590}
+  - component: {fileID: 114114454608610868}
+  - component: {fileID: 135404813487735734}
   m_Layer: 0
   m_Name: ItemBullet
   m_TagString: Untagged
@@ -65,8 +65,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1490387821540412}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.9204826, y: 3.72, z: 11.857384}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.63, y: 0, z: 2.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4082996053360728}
@@ -131,29 +131,28 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114324061137861606
+--- !u!114 &114114454608610868
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1115836695049296}
+  m_GameObject: {fileID: 1490387821540412}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd4e8f4386faa4b428e43e980aee694c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 1
   num: 1
-  playEffect: 0
---- !u!135 &135202620633425822
+--- !u!135 &135404813487735734
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1115836695049296}
+  m_GameObject: {fileID: 1490387821540412}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.23
   m_Center: {x: 0, y: 0, z: 0}

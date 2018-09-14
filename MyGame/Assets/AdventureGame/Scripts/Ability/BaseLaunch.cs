@@ -3,10 +3,6 @@ using System.Collections;
 using UnityEngine.UI;
 public class BaseLuanch : MyGameObject
 {
-
-
-    public float bulletCoolTime = 0.2f;
-    protected float bulletnexttime = 0.0f;
     public float coolTime = 1f;
     public float nextTime = 0.0f;
     // Use this for initialization
@@ -30,25 +26,16 @@ public class BaseLuanch : MyGameObject
         go.GetComponent<Rigidbody>().AddRelativeForce(0, 0, 100);
     }
 
-    public bool BulletCoolEnd()
+    public bool CoolEnd()
     {
 
-        if (bulletnexttime < Time.time)
+        if (nextTime < Time.time)
         {
-            bulletnexttime = bulletCoolTime + Time.time;
+            nextTime = coolTime + Time.time;
             return true;
         }
         else return false;
     }
-    public bool BoomCoolEnd()
-        {
 
-            if (nextTime < Time.time)
-            {
-                nextTime = coolTime + Time.time;
-                return true;
-            }
-            else return false;
-        }
 
 }

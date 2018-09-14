@@ -38,10 +38,6 @@ public class CameraShakeEffect : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad7))
-        {
-            shakeScreen();
-        }
     }
 
 

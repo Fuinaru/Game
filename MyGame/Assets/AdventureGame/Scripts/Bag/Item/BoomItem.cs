@@ -5,9 +5,14 @@ using UnityEngine;
 public class BoomItem : BagItem {
 
     // Use this for initialization
+    private void Awake()
+    {
+        coolTime = 2f;
+    }
+
     protected void Start () {
         base.Start();
-        coolTime = 2f;
+       
 	}
 
     // Update is called once per frame

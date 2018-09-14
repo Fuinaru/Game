@@ -19,6 +19,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4554617507920006}
+  - component: {fileID: 114612345583815474}
+  - component: {fileID: 135106313860714796}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -35,10 +37,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4931674180829422}
   - component: {fileID: 33495869892357822}
-  - component: {fileID: 136255268879996058}
   - component: {fileID: 23557477946958890}
   - component: {fileID: 95752742552926544}
-  - component: {fileID: 114651060018690300}
   m_Layer: 0
   m_Name: CoinItem
   m_TagString: Untagged
@@ -131,12 +131,12 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114651060018690300
+--- !u!114 &114612345583815474
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1476495722425304}
+  m_GameObject: {fileID: 1112127058721020}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd4e8f4386faa4b428e43e980aee694c, type: 3}
@@ -144,17 +144,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   num: 1
-  playEffect: 0
---- !u!136 &136255268879996058
-CapsuleCollider:
+--- !u!135 &135106313860714796
+SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1476495722425304}
+  m_GameObject: {fileID: 1112127058721020}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.24914566
+  m_Center: {x: 0.16645053, y: -0.038168576, z: -0.01490766}

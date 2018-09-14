@@ -42,13 +42,13 @@ public class BagItem : MonoBehaviour
         itemData.itemType = type;
         itemData.itemNum = num;
         itemData.spaceNum = sn;
-        updateText();
+        UpdateText();
 
     }
     // Update is called once per frame
     protected void Update()
     {
-        if (itemData.numChanged) { updateText(); itemData.numChanged = false; }
+        if (itemData.numChanged) { UpdateText(); itemData.numChanged = false; }
         if (GameManager.IsTimePause()) {return; }
         AutoOrder();
         IsMouseDown();
@@ -123,16 +123,16 @@ public class BagItem : MonoBehaviour
 
 
     }
-    public void updateText()
+    public void UpdateText()
     {
-        numText.text = itemData.itemNum.ToString();
+        if (consumAble) numText.text = itemData.itemNum.ToString();
         nameText.text = itemData.itemType.ToString();
     }
     public void useUpdate()
     {
         nextTime = coolTime;
         if (consumAble) itemData.itemNum--;
-        updateText();
+        UpdateText();
     }
 
     bool isInEquip(GameObject o)

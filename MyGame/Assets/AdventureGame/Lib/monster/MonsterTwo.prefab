@@ -74,8 +74,8 @@ Transform:
   m_LocalPosition: {x: 20.88, y: 0, z: 11.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4799531887314740}
   - {fileID: 4195338237634798}
+  - {fileID: 4799531887314740}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -90,7 +90,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4132639985288524}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4799531887314740
 Transform:
@@ -103,7 +103,7 @@ Transform:
   m_LocalScale: {x: 0.12918037, y: 0.12918036, z: 0.12918036}
   m_Children: []
   m_Father: {fileID: 4132639985288524}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23418997116299808
 MeshRenderer:
@@ -153,13 +153,13 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1869993911113984}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 5
+  m_Drag: 10
+  m_AngularDrag: 8
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &114241116718697658
 MonoBehaviour:
@@ -173,8 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_rigidbody: {fileID: 0}
-  bulletCoolTime: 1.8
-  coolTime: 1
+  coolTime: 3
   nextTime: 0
 --- !u!114 &114450667578976732
 MonoBehaviour:
@@ -207,12 +206,13 @@ MonoBehaviour:
   hp: 5
   HpContorl: {fileID: 0}
   hurted: 0
-  hurtedCoolTime: 5
+  hurtedCoolTime: 0.5
   speed: 3
   viewMinDistance: 5
   viewMaxDistance: 10
   IsFindPlayer: 0
   atk: 1
+  stopTime: 1
   shootItem: 1
 --- !u!114 &114875233793619682
 MonoBehaviour:

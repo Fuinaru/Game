@@ -7,10 +7,14 @@ public class BulletItem : BagItem
     public float autoShootDis = 8;
 
     // Use this for initialization
+    private void Awake()
+    {
+        coolTime = 1f;
+    }
     protected void Start()
     {
         base.Start();
-        coolTime = 1f;
+      
     }
 
     // Update is called once per frame

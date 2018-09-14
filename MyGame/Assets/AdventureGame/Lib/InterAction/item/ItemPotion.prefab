@@ -20,10 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4446633553192408}
   - component: {fileID: 33444991690077942}
-  - component: {fileID: 135319758481247188}
   - component: {fileID: 23372324655000754}
   - component: {fileID: 95260617098538692}
-  - component: {fileID: 114672417090459252}
   m_Layer: 0
   m_Name: PotionItem
   m_TagString: Untagged
@@ -39,6 +37,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4454523110281410}
+  - component: {fileID: 114626207133691754}
+  - component: {fileID: 135580976408167934}
   m_Layer: 0
   m_Name: ItemPotion
   m_TagString: Untagged
@@ -65,8 +65,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1679840636911530}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.48096, y: 0.83, z: 0.949008}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.88, y: 0, z: 2.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4446633553192408}
@@ -131,29 +131,28 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114672417090459252
+--- !u!114 &114626207133691754
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1492792707708270}
+  m_GameObject: {fileID: 1679840636911530}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd4e8f4386faa4b428e43e980aee694c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
+  type: 3
   num: 1
-  playEffect: 0
---- !u!135 &135319758481247188
+--- !u!135 &135580976408167934
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1492792707708270}
+  m_GameObject: {fileID: 1679840636911530}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.23
   m_Center: {x: 0, y: 0, z: 0}

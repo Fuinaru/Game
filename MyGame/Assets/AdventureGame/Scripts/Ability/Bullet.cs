@@ -29,7 +29,7 @@ public float aliveTime=5f;
         aliveTime -= Time.deltaTime;
         if (aliveTime <= 0) Destroy(gameObject);
         //else gameObject.GetComponent<Rigidbody>().AddExplosionForce(100, transform.position,100);
-
+        GoDie();
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -53,6 +53,10 @@ public float aliveTime=5f;
 
 
     }
+    protected virtual void GoDie()
+    {
+         if (aliveTime <= 0) Destroy(gameObject);
 
+}
 
 }

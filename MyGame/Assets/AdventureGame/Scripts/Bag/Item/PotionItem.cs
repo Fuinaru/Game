@@ -6,10 +6,14 @@ public class PotionItem : BagItem
 {
     public int cureAmount = 2;
     public int effectNum = 0;
+    private void Awake()
+    {
+        coolTime = 3f;
+    }
     protected void Start()
     {
         base.Start();
-        coolTime = 3f;
+
     }
 
     // Update is called once per frame

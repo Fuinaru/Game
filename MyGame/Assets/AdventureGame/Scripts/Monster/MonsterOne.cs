@@ -13,7 +13,7 @@ public class MonsterOne : BaseMonster {
     protected void Update () {
         if (GameManager.IsTimePause()) { m_rigidbody.velocity = Vector3.zero; return; }
         base.Update();
-        action();
+      if(_stopTime<=0) action();
     }
 
     protected void action() {

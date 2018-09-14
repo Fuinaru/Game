@@ -5,12 +5,17 @@ using UnityEngine;
 public class FireBallItem : BagItem
 {
     public float autoShootDis = 8;
-
+    public int costMp = 1;
+    private void Awake()
+    {
+        consumAble = false;
+        coolTime = 3f;
+    }
     // Use this for initialization
     protected void Start()
     {
         base.Start();
-        coolTime = 3f;  
+
     }
 
     // Update is called once per frame
@@ -22,6 +27,7 @@ public class FireBallItem : BagItem
     {
 
         if (!ItemCoolEnd()) return;
+        if (!GameManager.player.CostMp(costMp)) return;
         Player.playEnd = -1;
         if (BaseMonster.nearestMonster != null)
         {

@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using Fungus;
 public class Player : HPObject
 {
+    public int maxMp = 5;
+    public int mp = 5;
+    public Slider MpContorl;
 
     public int coinNum=0 ;
     public static int playEnd = 1;
@@ -18,11 +21,15 @@ public class Player : HPObject
         public float speed;
     };
     public LowHpEffect lowHpEffect;
-    public Text hpText; public Text coinText;
+    public Text hpText; public Text mpText; public Text coinText;
+
+    public GameObject sword;
 
     void Start()
     {
         base.Start();
+        UpdateHpUI();
+        UpdateMpUI();
         UpdateCoinUI();
     }
     // Update is called once per frame
@@ -50,6 +57,23 @@ public class Player : HPObject
         }
         catch { }
     }
+
+
+    public  bool CostMp(int a)
+    {
+        if (mp < a) return false;
+        mp -= a;
+        UpdateMpUI();
+        return true;
+    }
+    public void MpRecovery(int a)
+    {
+        mp += a;
+        if (mp > maxHp) mp = maxMp;
+        UpdateMpUI();
+    }
+
+
     public override void GoDie()
     {
         
@@ -78,18 +102,36 @@ public class Player : HPObject
         UpdateCoinUI();
         return true;
     }
+    public virtual void UpdateMpUI()
+    {
+        MpContorl.value = mp;
+        mpText.text = mp + "/" + maxMp;
 
-    public  void UpdateCoinUI()
+    }
+
+    public void UpdateCoinUI()
     {
         coinText.text = "金币："+ coinNum;
     }
-    public void DamageWithAni(int a,Transform trans)
+    public void DamageWithAni(int a, Transform trans)
     {
+   
         if (!hurted) {
             hp -= a; getHurted();
-            Tools.LookAtOnlyYAxis(transform, trans);
-          //  m_rigidbody.AddForce((transform.position-trans.position).normalized*100,ForceMode.VelocityChange);
-            GameManager.playerAni.SetTrigger("GetHurted");
+
+            if (!GameManager.playerAni.GetCurrentAnimatorStateInfo(0).IsName("GetHurted"))
+            {
+                Tools.LookAtOnlyYAxis(transform, trans);
+                GameManager.playerAni.SetTrigger("GetHurted");
+            }
+
+            //   Vector3 dir = (transform.position - trans.position).normalized;
+            //    dir.y = 0;
+            //    m_rigidbody.AddForce(dir * 30, ForceMode.Impulse);
+
+
+            //  m_rigidbody.AddForce((transform.position-trans.position).normalized*100,ForceMode.VelocityChange);
+
             UpdateHpUI();
         }
 
@@ -98,5 +140,8 @@ public class Player : HPObject
     public void PlayEnd(int a)
     {
         playEnd = a;
+        if(a==1)sword.SetActive(false);
     }
+
+
 } 

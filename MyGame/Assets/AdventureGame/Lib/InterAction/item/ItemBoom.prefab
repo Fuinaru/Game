@@ -20,10 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4315079622078852}
   - component: {fileID: 33616234297066512}
-  - component: {fileID: 135266512372487880}
   - component: {fileID: 23612570853475498}
   - component: {fileID: 95308401095658490}
-  - component: {fileID: 114452252406437218}
   m_Layer: 0
   m_Name: BoomItem
   m_TagString: Untagged
@@ -39,6 +37,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4411353678916346}
+  - component: {fileID: 114171995135075138}
+  - component: {fileID: 135579804078818596}
   m_Layer: 0
   m_Name: ItemBoom
   m_TagString: Untagged
@@ -65,8 +65,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1313230205316550}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.321905, y: 4.01, z: 12.480637}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9.55, y: 0, z: 3.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4315079622078852}
@@ -131,29 +131,28 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114452252406437218
+--- !u!114 &114171995135075138
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1110557853987250}
+  m_GameObject: {fileID: 1313230205316550}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd4e8f4386faa4b428e43e980aee694c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  type: 2
   num: 1
-  playEffect: 0
---- !u!135 &135266512372487880
+--- !u!135 &135579804078818596
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1110557853987250}
+  m_GameObject: {fileID: 1313230205316550}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.23
   m_Center: {x: 0, y: 0, z: 0}

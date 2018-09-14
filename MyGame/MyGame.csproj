@@ -768,6 +768,8 @@
     <Compile Include="Assets\AdventureGame\Scripts\Ability\Boom.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Ability\Bullet.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Ability\FireBall.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Ability\HitDamage.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Ability\IceBall.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Ability\MonsterLaunch.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Ability\PlayerLaunch.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Bag\BagItem.cs" />
@@ -776,7 +778,10 @@
     <Compile Include="Assets\AdventureGame\Scripts\Bag\Item\BoomItem.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Bag\Item\BulletItem.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Bag\Item\FireBallItem.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Bag\Item\IceBallItem.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Bag\Item\MpPotionItem.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Bag\Item\PotionItem.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Bag\Item\SwordItem.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Bag\ItemData.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Base\HPObject.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Base\MyGameObject.cs" />
@@ -860,6 +865,7 @@
     <None Include="Assets\AdventureGame\Shaders\readme.txt" />
     <None Include="Assets\AdventureGame\Shaders\test.shader" />
     <None Include="Assets\AdventureGame\UI\readme.txt" />
+    <None Include="Assets\Medieval Sword\read me.txt" />
     <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
     <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
     <None Include="Assets\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />

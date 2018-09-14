@@ -408,6 +408,7 @@
     <None Include="Assets\AdventureGame\Shaders\readme.txt" />
     <None Include="Assets\AdventureGame\Shaders\test.shader" />
     <None Include="Assets\AdventureGame\UI\readme.txt" />
+    <None Include="Assets\Medieval Sword\read me.txt" />
     <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
     <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
     <None Include="Assets\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
