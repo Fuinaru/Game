@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEditor;
 
 public class MapBrush : MonoBehaviour {
+	public string fileName="Map.map";
 	public bool isPreLoadMap = false;
 	public bool isEditMode=false;
     public GameObject brushObj;
@@ -180,7 +181,7 @@ public class MapBrush : MonoBehaviour {
 				tiles = new List<GameObject> ();
 			}
 			if (GUILayout.Button ("保存", GUILayout.Width (40))) {
-				FileStream fs = new FileStream (Application.dataPath + "/Resources/Maps/" + "Map.map", FileMode.OpenOrCreate);
+				FileStream fs = new FileStream (Application.dataPath + "/Resources/Maps/" + fileName, FileMode.OpenOrCreate);
 
 
 				for (int i = 0; i < mapWidth; i++) {
@@ -226,7 +227,7 @@ public class MapBrush : MonoBehaviour {
 	void loadMap(){
 
 		clearMap ();
-		StreamReader sr = new StreamReader (Application.dataPath + "/Resources/Maps/" + "/Map.map");
+		StreamReader sr = new StreamReader (Application.dataPath + "/Resources/Maps/" + fileName);
 		string line;
 		int i = 0;
 		while ((line = sr.ReadLine ()) != null) {
