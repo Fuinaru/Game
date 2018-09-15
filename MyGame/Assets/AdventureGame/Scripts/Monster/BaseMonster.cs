@@ -6,7 +6,7 @@ public class BaseMonster : HPObject
 {
 
     // Use this for initialization
-
+    public int monsterNum = 1;
     public float speed = 5;
     public float viewMinDistance = 5;
     public float viewMaxDistance = 10;
@@ -15,23 +15,32 @@ public class BaseMonster : HPObject
     public int atk = 1;
     // public int flickPower = 5;
     protected bool isClose = false;
-
     public float stopTime=1;
+    public static bool saveMonsters=false; 
     protected float _stopTime = 0;
     [HideInInspector]
     public static Transform nearestMonster;
 
 
+    public MonsterData GetMonsterData() {
+    MonsterData monsterData = new MonsterData();
+        monsterData.monsterNum = monsterNum;
+        monsterData.Hp = hp;
+        monsterData.monsterPos[0] = transform.position.x;
+        monsterData.monsterPos[1] = transform.position.y;
+        monsterData.monsterPos[2] = transform.position.z;
+        return monsterData;
+    }
+
     protected void Start() {
         base.Start();
-
+        GameManager.Monsters.Add(this);
     }
     // Update is called once per frame
     protected void Update() {
-
         base.Update();
         FindTheNearestMonster();
-        if (_stopTime > 0) { _stopTime -= Time.deltaTime; Debug.Log(_stopTime); }
+        if (_stopTime > 0) { _stopTime -= Time.deltaTime;  }
     }
 
     protected void FindTheNearestMonster()
@@ -94,8 +103,19 @@ public class BaseMonster : HPObject
         _stopTime = stopTime;
 
     }
- 
- 
+    public override void GoDie()
+    {
+        if (!isDestory)
+        {
+            Tools.PlayFollowingParticletByName("SmokeEffect", transform);
+            Destroy(gameObject.GetComponent<Collider>());
+            Destroy(m_rigidbody);
+            isDestory = true;
+        }
+
+        HurtedTool.Color2B(GetComponentInChildren<Renderer>().material, new Color(1, 1, 1, 0), 30);
+        if (HurtedTool.isChildrenColorB(transform, new Color(1, 1, 1, 0))) { GameManager.Monsters.Remove(this); Destroy(gameObject); }
+    }
 
 
 }

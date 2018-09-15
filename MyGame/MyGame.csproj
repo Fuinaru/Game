@@ -779,9 +779,12 @@
     <Compile Include="Assets\AdventureGame\Scripts\Bag\Item\BulletItem.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Bag\Item\FireBallItem.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Bag\Item\IceBallItem.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Bag\Item\MaxHpUpItem.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Bag\Item\MaxMpUpItem.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Bag\Item\MpPotionItem.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Bag\Item\PotionItem.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Bag\Item\SwordItem.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Bag\Item\TeleportItem.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Bag\ItemData.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Base\HPObject.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Base\MyGameObject.cs" />
@@ -805,6 +808,9 @@
     <Compile Include="Assets\AdventureGame\Scripts\Player\Player.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Player\PlayerControl.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Player\ThirdPersonUserControl.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\SaveAndLoad\SavaAndLoad.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\SaveAndLoad\SaveData.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\SaveAndLoad\SavePoint.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Task\TaskManager.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Tool\CameraShakeEffect.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Tool\ForInclude.cs" />

@@ -39,6 +39,7 @@ public class IceBall : Bullet
     private void OnCollisionEnter(Collision collision)
     {
         Transform _trans = collision.gameObject.transform;
+        Tools.PlayParticletAtPosByName("IceEffect", transform);
         if (_trans.tag == "Monster" || _trans.tag == "Others" || _trans.tag == "Player")
         {
             _trans.GetComponent<HPObject>().Damage(atk);
@@ -53,7 +54,7 @@ public class IceBall : Bullet
         }
         else
         {
-            Tools.PlayParticletAtPosByName("IceEffect", transform);
+           
             Destroy(gameObject);
         }
 

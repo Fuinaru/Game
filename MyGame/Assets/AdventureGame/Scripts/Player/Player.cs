@@ -9,7 +9,7 @@ public class Player : HPObject
     public int mp = 5;
     public Slider MpContorl;
 
-    public int coinNum=0 ;
+    public int coinNum = 0;
     public static int playEnd = 1;
     ForInclude LowHPTool = new ForInclude();
     [System.Serializable]
@@ -35,7 +35,7 @@ public class Player : HPObject
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.IsTimePause()) { m_rigidbody.velocity = Vector3.zero; return; }
+        if (GameManager.IsTimePause()) { m_rigidbody.velocity = Vector3.zero;return; }
         base.Update();
         LowHp();
         // if (transform.position.y > 30) Flowchart.BroadcastFungusMessage("flyhigh");
@@ -59,7 +59,7 @@ public class Player : HPObject
     }
 
 
-    public  bool CostMp(int a)
+    public bool CostMp(int a)
     {
         if (mp < a) return false;
         mp -= a;
@@ -76,15 +76,24 @@ public class Player : HPObject
 
     public override void GoDie()
     {
-        
-            GameManager.isGameOver = true;
-            GameManager.GameOver();
+
+        GameManager.isGameOver = true;
+        GameManager.GameOver();
     }
-    public  void MaxHPUp(int value)
+    public void MaxHPUp(int value)
     {
         maxHp += value;
+        hp = maxHp;
+        UpdateHpUI();
+    }
+    public void MaxMPUp(int value)
+    {
+        maxMp += value;
+        mp = maxMp;
+        UpdateMpUI();
     }
     public override void UpdateHpUI() {
+        HpContorl.maxValue = maxHp;
         HpContorl.value = hp;
         hpText.text = hp + "/" + maxHp;
     }
@@ -104,6 +113,7 @@ public class Player : HPObject
     }
     public virtual void UpdateMpUI()
     {
+        MpContorl.maxValue = maxMp;
         MpContorl.value = mp;
         mpText.text = mp + "/" + maxMp;
 
@@ -111,11 +121,11 @@ public class Player : HPObject
 
     public void UpdateCoinUI()
     {
-        coinText.text = "金币："+ coinNum;
+        coinText.text = "金币：" + coinNum;
     }
     public void DamageWithAni(int a, Transform trans)
     {
-   
+
         if (!hurted) {
             hp -= a; getHurted();
 
@@ -136,12 +146,27 @@ public class Player : HPObject
         }
 
     }
+    public void UpDateAllUI(){
+        UpdateHpUI();
+        UpdateMpUI();
+        UpdateCoinUI();
+}
+
+
 
     public void PlayEnd(int a)
     {
         playEnd = a;
-        if(a==1)sword.SetActive(false);
     }
 
+    public void SetSwordVisible() {
+        sword.SetActive(true);
 
+    }
+
+    public void SetSwordInvisible()
+    {
+        sword.SetActive(false);
+
+    }
 } 

@@ -13,7 +13,10 @@ public class Var : MonoBehaviour {
         MpPotionItem,
         FireBallItem,
         IceBallItem,
-        SwordItem
+        SwordItem,
+        TeleportItem,
+        MaxHpUpItem,
+        MaxMpUpItem,
     }
 
 

@@ -24,7 +24,6 @@ public class ItemForGet : MonoBehaviour {
              else other.GetComponentInChildren<PlayerLaunch>().getItem(type, num);
 
             Destroy(gameObject); 
-            Flowchart.BroadcastFungusMessage("itemGet");
         }
     }
 }

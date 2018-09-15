@@ -27,6 +27,7 @@ public class FireBallItem : BagItem
     {
 
         if (!ItemCoolEnd()) return;
+        if (!(Player.playEnd == 1)) return;
         if (!GameManager.player.CostMp(costMp)) return;
         Player.playEnd = -1;
         if (BaseMonster.nearestMonster != null)

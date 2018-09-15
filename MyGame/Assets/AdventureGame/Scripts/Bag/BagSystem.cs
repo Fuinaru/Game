@@ -34,8 +34,7 @@ public class BagSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
+  
     }
     void GetSpaceSize()
     {
@@ -52,7 +51,7 @@ public class BagSystem : MonoBehaviour
         equipBackgroundSize.y = spaceSzie.y;
         equipObj.GetComponent<RectTransform>().sizeDelta = equipBackgroundSize;
     }
-    void SpaceInitial()
+    public void SpaceInitial()
     {
         for (int i = 0; i < EquipNum; i++)
         {
@@ -72,6 +71,46 @@ public class BagSystem : MonoBehaviour
             }
         }
     }
+
+    public bool SpaceClear()
+    {
+        for (int i = 0; i < EquipNum; i++)
+        {
+            // Destroy(equipObj.transform.GetChild(i).gameObject);
+            if(equipObj.transform.GetChild(i).childCount==2) Destroy(equipObj.transform.GetChild(i).GetChild(0).gameObject);
+        }
+        for (int i = 0; i < height; i++)
+        {
+            for (int j = 0; j < width; j++)
+            {
+                //Destroy(bagObj.transform.GetChild(j + i * width).gameObject);
+                if (bagObj.transform.GetChild(j + i * width).childCount == 1) Destroy(bagObj.transform.GetChild(j + i * width).GetChild(0).gameObject);
+            }
+        }
+        return true;
+    }
+
+    public void AddItemAtNum(ItemData itemData)
+    {
+
+        GameObject o;
+        if (itemData.spaceNum < EquipNum)
+        { o = equipObj.transform.GetChild(itemData.spaceNum).gameObject; }
+        else
+        { o = bagObj.transform.GetChild(itemData.spaceNum - EquipNum).gameObject;  }
+        Type classType = Tools.ReturnTypeByStr(itemData.itemType.ToString());
+        GameObject go = Instantiate(bagItem, Vector3.zero, o.transform.rotation) as GameObject;
+        go.transform.SetParent(o.transform);
+        go.transform.SetAsFirstSibling();
+        go.AddComponent(classType);
+        go.GetComponent<BagItem>().Initial(itemData.itemType, itemData.itemNum, itemData.spaceNum);
+        bagItems.Add(go.GetComponent<BagItem>().itemData);
+
+    }
+
+
+
+
     public void AddItem(Var.ItemType type, int num)
     {
         foreach (ItemData o in bagItems)
@@ -108,7 +147,7 @@ public class BagSystem : MonoBehaviour
             GameObject go = Instantiate(bagItem, Vector3.zero, bagObj.transform.rotation) as GameObject;
             go.transform.SetParent(o.transform);
             go.AddComponent(classType);
-            go.GetComponent<BagItem>().Initial(type, num, i);
+            go.GetComponent<BagItem>().Initial(type, num, i+EquipNum);
             bagItems.Add(go.GetComponent<BagItem>().itemData);
             return;
         }

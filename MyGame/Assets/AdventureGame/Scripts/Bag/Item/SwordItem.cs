@@ -35,7 +35,7 @@ public class SwordItem : BagItem
             Debug.Log(dir.magnitude);
             if (dir.magnitude <= 4) GameManager.player.transform.eulerAngles = new Vector3(0, Mathf.Atan2(dir.x, dir.z) * 180 / Mathf.PI, 0);
         }
-        PlayerControl.m_speed = 0;
+        PlayerControl.m_speed = 0.2f;
         GameManager.playerAni.SetTrigger("SwordSlash");
         useUpdate();
     }

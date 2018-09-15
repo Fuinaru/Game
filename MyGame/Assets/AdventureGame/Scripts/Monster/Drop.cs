@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Drop : MonoBehaviour {
    public List<GameObject> dropItem;
-    private bool isQuit = false;
 	// Use this for initialization
 	void Start () {
-        isQuit = false;
+
       //  dropItem.Reverse();
     }
 	
@@ -19,15 +18,12 @@ public class Drop : MonoBehaviour {
    
     private void OnDestroy()
     {
-        if (transform.parent.gameObject.activeInHierarchy) { 
-        GameObject o = Instantiate(DropItemCaculate(), new Vector3(transform.position.x, 0.5f, transform.position.z), transform.rotation);
+     if (transform.parent.gameObject.activeInHierarchy&&!GameManager.isLoading) { 
+            GameObject o = Instantiate(DropItemCaculate(), new Vector3(transform.position.x, 0.5f, transform.position.z), transform.rotation);
         o.transform.SetParent(transform.parent);
     }
     }
-    private void OnApplicationQuit()
-    {
-        isQuit = true;
-    }
+
     GameObject DropItemCaculate() {
         float n=0;
         for (int i = 1; i <= dropItem.Count; i++) {

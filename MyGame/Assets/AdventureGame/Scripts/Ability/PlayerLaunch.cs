@@ -44,15 +44,14 @@ public class PlayerLaunch : BaseLuanch
             getItem(Var.ItemType.PotionItem, 10);
             getItem(Var.ItemType.BoomItem, 10);
             getItem(Var.ItemType.BulletItem, 10);
-
-
-  
+            getItem(Var.ItemType.TeleportItem, 10);
+            getItem(Var.ItemType.MaxHpUpItem, 10);
+            getItem(Var.ItemType.MaxMpUpItem, 10);
         }
   
     }
     void UseWeapon(GameObject o) {
         try {
-            Debug.Log("useWeapon");
             Transform i;
             i = o.transform.GetChild(0);
          //   useItem(i);

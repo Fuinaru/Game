@@ -7,7 +7,7 @@ public class Tools : MonoBehaviour {
     public static string itemObjectPath = "Item/ItemGameObject/";
     public static string itemImgPath = "Item/ItemImg/";
     public static string effectsPath = "Effects/";
-
+    public static string monsterPath = "Monster/";
     // Use this for initialization
     void Start () {
 		
@@ -66,6 +66,10 @@ public class Tools : MonoBehaviour {
         go.gameObject.AddComponent<ParticleSys>();
         go.transform.localScale = Vector3.one;
         go.Play();
+    }
+    public static GameObject GetMonsterByNum(int num)
+    {
+        return GetGameObjectByPath(monsterPath + num.ToString());
     }
     public static void LookAtOnlyYAxis(Transform self, Transform target)
     {

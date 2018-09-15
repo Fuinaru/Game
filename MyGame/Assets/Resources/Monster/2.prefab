@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 114637445230495662}
   - component: {fileID: 114450667578976732}
   m_Layer: 0
-  m_Name: MonsterTwo
+  m_Name: 2
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +71,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1869993911113984}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.88, y: 0, z: 11.19}
+  m_LocalPosition: {x: 32.25, y: 0, z: 6.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4195338237634798}
@@ -207,9 +207,10 @@ MonoBehaviour:
   HpContorl: {fileID: 0}
   hurted: 0
   hurtedCoolTime: 0.5
+  monsterNum: 2
   speed: 3
-  viewMinDistance: 5
-  viewMaxDistance: 10
+  viewMinDistance: 8
+  viewMaxDistance: 16
   IsFindPlayer: 0
   atk: 1
   stopTime: 1

@@ -60,8 +60,9 @@ public class PlayerControl : MyGameObject {
         }
         if (Player.playEnd<=0|| pressedKeyList.Count ==0 || GameManager.IsTimePause()||Player.playEnd!=1) m_speed = 0;
         if((Player.playEnd==2)) m_speed = -speed*1.2f;
-        m_Animator.SetFloat("Speed", m_speed);
+        if (Player.playEnd ==1) m_Animator.SetFloat("Speed", m_speed);
          m_rigidbody.velocity = transform.forward * m_speed;
+        Debug.Log("SPEED:"+m_rigidbody.velocity);
     }
     
     public bool KeyPressDect()

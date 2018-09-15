@@ -10,7 +10,7 @@ public class HPObject : MyGameObject {
     public Slider HpContorl;
     public bool hurted = false;
     private float time = 0;
-    ForInclude HurtedTool = new ForInclude();
+    protected ForInclude HurtedTool = new ForInclude();
     protected bool isDestory = false;
     public float hurtedCoolTime = 3;
     protected bool otherFlash = false;

@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static bool isLoading = false;
+
+
     public static int stageName = 1;
 
     public static GameManager GM;
@@ -25,8 +28,7 @@ public class GameManager : MonoBehaviour
 
     public void GameStart()
     {
-        SceneManager.LoadScene("stage1");
-        SceneManager.LoadSceneAsync("player", LoadSceneMode.Additive);
+        SceneManager.LoadScene("player");
         SceneManager.LoadSceneAsync("dialog", LoadSceneMode.Additive);
     }
     //GameProgress
@@ -44,7 +46,10 @@ public class GameManager : MonoBehaviour
         gameover.SetActive(true);
     }
 
-//GameObject
+
+
+    public Transform monsterGroup;
+    //GameObject
     //bagShow
 
     public static BagSystem bagSys;
@@ -76,6 +81,8 @@ public class GameManager : MonoBehaviour
         bag.SetActive(isUIShow);
         TaskUI.SetActive(isUIShow);
     }
+    public GameObject SettingUI;
+    public static bool isSettingUIShow=false;
 
     //Player
     public static Player player;
@@ -97,7 +104,7 @@ public class GameManager : MonoBehaviour
         playerAni = m_player.GetComponent<Animator>();
     }
 
-
+    public static List<BaseMonster> Monsters=new List<BaseMonster>();
 
 
 
@@ -134,18 +141,28 @@ public class GameManager : MonoBehaviour
         }
         catch { }
 
-        if (Input.GetKeyDown(KeyCode.Q)&&!isInStore)
+        if (Input.GetKeyDown(KeyCode.Q)&&!isInStore&&!isSettingUIShow)
         {
             OpenOrCloseUI();
         }
-       
+        if (Input.GetKeyDown(KeyCode.Escape) )
+        {
+            OpenOrCloseSettingUI();
+        }
+
     }
     void OpenOrCloseUI() {
         isUIShow = !isUIShow;
         bag.SetActive(isUIShow);
         TaskUI.SetActive(isUIShow);
     }
-   public void CloseUI()
+    void OpenOrCloseSettingUI()
+    {
+        isSettingUIShow = !isSettingUIShow;
+        SettingUI.SetActive(isSettingUIShow);
+      //  CloseUI();
+    }
+    public void CloseUI()
     {
         isUIShow = false;
         bag.SetActive(false);
@@ -157,8 +174,29 @@ public class GameManager : MonoBehaviour
         if (isTalking) return true;
         if(isGameOver) return true;
         if (isTimePause) return true;
-        
+        if(isSettingUIShow) return true;
         return false;
 
+    }
+    public void ExitGame() {
+        Application.Quit();
+
+    }
+    public void LoadGame()
+    {
+        OpenOrCloseSettingUI();
+        SavaAndLoad.saveload.LoadGame();
+
+
+    }
+
+    public bool DestoryAllMonsters() {
+
+        for (int i = Monsters.Count - 1; i >= 0; i--)
+        {
+            Destroy(Monsters[i].gameObject);
+        }
+        Monsters.Clear();
+        return true;
     }
 }
