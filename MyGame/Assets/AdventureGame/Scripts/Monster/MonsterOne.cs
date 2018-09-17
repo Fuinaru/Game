@@ -11,7 +11,7 @@ public class MonsterOne : BaseMonster {
 
     // Update is called once per frame
     protected void Update () {
-        if (GameManager.IsTimePause()) { m_rigidbody.velocity = Vector3.zero; return; }
+        if (GameManager.IsTimePause()) { if(m_rigidbody!=null) m_rigidbody.velocity = Vector3.zero; return; }
         base.Update();
       if(_stopTime<=0) action();
     }

@@ -10,7 +10,7 @@ public class BaseMonster : HPObject
     public float speed = 5;
     public float viewMinDistance = 5;
     public float viewMaxDistance = 10;
-    protected Vector3 dir;
+    protected Vector3 dirFromPlayer;
     public bool IsFindPlayer = false;
     public int atk = 1;
     // public int flickPower = 5;
@@ -18,6 +18,8 @@ public class BaseMonster : HPObject
     public float stopTime=1;
     public static bool saveMonsters=false; 
     protected float _stopTime = 0;
+
+    public float destoryTime = 100f;
     [HideInInspector]
     public static Transform nearestMonster;
 
@@ -40,6 +42,11 @@ public class BaseMonster : HPObject
     protected void Update() {
         base.Update();
         FindTheNearestMonster();
+        FindingPlayer();
+        if (dirFromPlayer.magnitude > 50 && monsterNum > 0) {
+            GetComponent<Drop>().dropOrNot = false;
+           Destroy(gameObject);
+        }
         if (_stopTime > 0) { _stopTime -= Time.deltaTime;  }
     }
 
@@ -56,28 +63,24 @@ public class BaseMonster : HPObject
     protected void moveToPlayer() {
 
         //  Debug.Log(dir.magnitude);
-        FindingPlayer();
         if (IsFindPlayer && !isDestory)
         {
             // Debug.Log("faxian");
             // Tools.LookAt(transform, dir, 5);
             Tools.LookAtOnlyYAxis(transform,GameManager.player.transform);
-            dir.y=0;
-            if (!isClose) m_rigidbody.velocity = dir.normalized * speed*0.5f;
+            dirFromPlayer.y=0;
+           if(m_rigidbody!=null)  m_rigidbody.velocity = dirFromPlayer.normalized * speed*0.5f;
         }
     }
 
 
-    protected void OnCollisionEnter(Collision collision)
+    protected void OnCollisionStay(Collision collision)
     {
         if (collision.transform.tag == "Player") {
             //   collision.transform.GetComponent<Rigidbody>().velocity = dir.normalized * flickPower;
 
             GameManager.player.DamageWithAni(atk, transform);
             isClose = true;
-
-            _stopTime = stopTime;
-
         }
     }
     protected void OnCollisionExit(Collision collision)
@@ -89,10 +92,10 @@ public class BaseMonster : HPObject
         }
     }
     protected void FindingPlayer() {
-        dir = GameManager.player.transform.position - transform.position; 
-        if (dir.magnitude > viewMaxDistance)
+        dirFromPlayer = GameManager.player.transform.position - transform.position; 
+        if (dirFromPlayer.magnitude > viewMaxDistance)
             IsFindPlayer = false;
-        else if (hurted || dir.magnitude < viewMinDistance) IsFindPlayer = true;
+        else if (hurted || dirFromPlayer.magnitude < viewMinDistance) IsFindPlayer = true;
       //  else IsFindPlayer = false;
     }
 
@@ -116,6 +119,13 @@ public class BaseMonster : HPObject
         HurtedTool.Color2B(GetComponentInChildren<Renderer>().material, new Color(1, 1, 1, 0), 30);
         if (HurtedTool.isChildrenColorB(transform, new Color(1, 1, 1, 0))) { GameManager.Monsters.Remove(this); Destroy(gameObject); }
     }
+    protected IEnumerator  StopForSeconds(float a)
+    {
+        float _speed = speed;
+        speed = 0;
+        yield return new WaitForSeconds(a);
+        speed = _speed;
 
+    }
 
 }

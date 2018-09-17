@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Drop : MonoBehaviour {
    public List<GameObject> dropItem;
+    public bool dropOrNot = true;
 	// Use this for initialization
 	void Start () {
 
@@ -18,7 +19,7 @@ public class Drop : MonoBehaviour {
    
     private void OnDestroy()
     {
-     if (transform.parent.gameObject.activeInHierarchy&&!GameManager.isLoading) { 
+     if (transform.parent.gameObject.activeInHierarchy&&!GameManager.isLoading&& dropOrNot) { 
             GameObject o = Instantiate(DropItemCaculate(), new Vector3(transform.position.x, 0.5f, transform.position.z), transform.rotation);
         o.transform.SetParent(transform.parent);
     }

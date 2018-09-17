@@ -24,6 +24,7 @@ public class HPObject : MyGameObject {
         if (transform.tag == "Monster")
         {
             HpContorl = GetComponent<creatFollowingUI>().Tar.GetComponent<Slider>();
+            HpContorl.maxValue = maxHp;
             UpdateHpUI();
         }
 
@@ -48,7 +49,7 @@ public class HPObject : MyGameObject {
         if (hp > maxHp) hp = maxHp;
         UpdateHpUI();
     }
-    public void getHurted()
+    public virtual void getHurted()
     {
         hurted = true;
 

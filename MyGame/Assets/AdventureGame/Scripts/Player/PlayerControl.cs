@@ -25,7 +25,7 @@ public class PlayerControl : MyGameObject {
     void Start() {
         base.Start();
         dataInitial();
-        m_rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+        m_rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
     }
 
     // Update is called once per frame
@@ -62,7 +62,6 @@ public class PlayerControl : MyGameObject {
         if((Player.playEnd==2)) m_speed = -speed*1.2f;
         if (Player.playEnd ==1) m_Animator.SetFloat("Speed", m_speed);
          m_rigidbody.velocity = transform.forward * m_speed;
-        Debug.Log("SPEED:"+m_rigidbody.velocity);
     }
     
     public bool KeyPressDect()

@@ -8,6 +8,7 @@ public class Tools : MonoBehaviour {
     public static string itemImgPath = "Item/ItemImg/";
     public static string effectsPath = "Effects/";
     public static string monsterPath = "Monster/";
+    public static string characterPath = "Characters/";
     // Use this for initialization
     void Start () {
 		
@@ -47,7 +48,10 @@ public class Tools : MonoBehaviour {
     {
         return GetImgByPath(itemImgPath + type.ToString());
     }
-
+    public static Sprite GetCharaImgByStr(string name)
+    {
+        return GetImgByPath(characterPath + name);
+    }
 
     public static GameObject GetParticleSystemGameObjectByName(string name)
     {
@@ -71,6 +75,7 @@ public class Tools : MonoBehaviour {
     {
         return GetGameObjectByPath(monsterPath + num.ToString());
     }
+
     public static void LookAtOnlyYAxis(Transform self, Transform target)
     {
         self.LookAt(target);

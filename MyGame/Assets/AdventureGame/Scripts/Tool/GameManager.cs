@@ -194,6 +194,7 @@ public class GameManager : MonoBehaviour
 
         for (int i = Monsters.Count - 1; i >= 0; i--)
         {
+            Monsters[i].gameObject.GetComponent<Drop>().dropOrNot = false;
             Destroy(Monsters[i].gameObject);
         }
         Monsters.Clear();

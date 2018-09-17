@@ -17,6 +17,7 @@ public class Teleport : PressKeyButton {
 	}
     protected override void InterAction()
     {
+        GameManager.GM.DestoryAllMonsters();
        if (TwirlScripts.angle==360f) TwirlScripts.angle = 0;
         MapLoad.mapload.LoadNextStage(stageNum, size.x, size.y);
 

@@ -801,9 +801,11 @@
     <Compile Include="Assets\AdventureGame\Scripts\MapLoad\MapLoad.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\BaseMonster.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\Drop.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterBoss.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterOne.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterTwo.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\OtherHp.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Monster\RandomMonsterCreate.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\ParticleSys.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Player\Player.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Player\PlayerControl.cs" />

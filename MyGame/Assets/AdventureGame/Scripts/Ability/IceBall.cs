@@ -7,7 +7,6 @@ public class IceBall : Bullet
     public float iceTime = 5f;
     protected float _iceTime = 0;
     private Transform trans;
-    ForInclude tool;
     // Use this for initialization
     void Start()
     {
@@ -20,10 +19,9 @@ public class IceBall : Bullet
         base.Update();
         if (_iceTime > 0) {
             _iceTime -= Time.deltaTime;
-            try
-            { tool.flash(trans, new Color(0, 0, 1, 0.7f), Color.white, 10); }
-            catch { }
-            if (trans==null||trans.GetComponent<Rigidbody>() == null) { _iceTime = 0; Destroy(gameObject); return; }
+        
+            if (trans==null||trans.GetComponent<Rigidbody>() == null)
+            { _iceTime = 0; Destroy(gameObject); return; }
             trans.GetComponent<Rigidbody>().velocity /= 3;
             trans.GetComponent<HPObject>().FlashOther(new Color(0,0,1,0.7f),5);
     }
@@ -38,6 +36,7 @@ public class IceBall : Bullet
     }
     private void OnCollisionEnter(Collision collision)
     {
+        if (_iceTime > 0) return;
         Transform _trans = collision.gameObject.transform;
         Tools.PlayParticletAtPosByName("IceEffect", transform);
         if (_trans.tag == "Monster" || _trans.tag == "Others" || _trans.tag == "Player")

@@ -257,12 +257,12 @@ GameObject:
   - component: {fileID: 272906897}
   - component: {fileID: 272906899}
   m_Layer: 5
-  m_Name: JohnSayDialog
+  m_Name: NPCDialog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &272906895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,7 +280,7 @@ MonoBehaviour:
   dialogCanvas: {fileID: 272906898}
   nameText: {fileID: 405967467}
   storyText: {fileID: 1351438330}
-  characterImage: {fileID: 2050377792}
+  characterImage: {fileID: 0}
   fitTextWithImage: 1
   closeOtherDialogs: 0
 --- !u!224 &272906896
@@ -595,7 +595,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 586.5, y: -38.369995}
+  m_AnchoredPosition: {x: 873, y: -38.369995}
   m_SizeDelta: {x: 1106, y: 71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &405967466
@@ -1249,8 +1249,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.78700006}
-  m_AnchoredPosition: {x: 3, y: 14.130005}
-  m_SizeDelta: {x: -61, y: -63}
+  m_AnchoredPosition: {x: 146.9, y: 14.130005}
+  m_SizeDelta: {x: -353.1, y: -63}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1351438328
 MonoBehaviour:
@@ -1539,7 +1539,7 @@ MonoBehaviour:
   scrollPos: {x: 201.05385, y: 382.3024}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
-  blockViewHeight: 200
+  blockViewHeight: 249
   zoom: 0.7900002
   scrollViewRect:
     serializedVersion: 2
@@ -1548,8 +1548,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 1755499608}
-  selectedCommands: []
+  - {fileID: 1755499623}
+  selectedCommands:
+  - {fileID: 1755499621}
   variables:
   - {fileID: 1755499620}
   - {fileID: 1755499618}
@@ -1595,7 +1596,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: -164.33469
+    x: -165.60051
     y: -62.53508
     width: 120
     height: 40
@@ -1951,6 +1952,7 @@ MonoBehaviour:
   key: 101
   pressKey: 1
   m_character: {fileID: 275029863}
+  m_img: {fileID: 2050377792}
   name: 
   say: 
 --- !u!114 &1755499625
@@ -2484,8 +2486,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: ea8f56c43254d41728f5ac4e8299b6c9, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 0}
+  m_Type: 1
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2507,8 +2509,8 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: 350
-  m_PreferredHeight: 350
+  m_PreferredWidth: 357
+  m_PreferredHeight: 435
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -2528,13 +2530,13 @@ RectTransform:
   m_GameObject: {fileID: 2050377791}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8889455, y: 0.76637244, z: 0.88894576}
   m_Children: []
   m_Father: {fileID: 620551847}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -178.5, y: 263.13}
+  m_AnchoredPosition: {x: -1341, y: 165}
   m_SizeDelta: {x: 357, y: 435}
   m_Pivot: {x: 0.5, y: 0.5}

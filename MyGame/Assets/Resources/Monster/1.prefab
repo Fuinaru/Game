@@ -31,18 +31,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1808879282780132
+--- !u!1 &1750957765118370
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4526757112352438}
-  - component: {fileID: 33748338751153706}
-  - component: {fileID: 23997039607975056}
+  - component: {fileID: 4969547459671114}
+  - component: {fileID: 33207572194817444}
+  - component: {fileID: 23611216575177282}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: VoxelWarrior
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,32 +55,32 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1097174911378750}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.725018, y: -0.00000047683716, z: 14.495087}
+  m_LocalPosition: {x: 3.33, y: 0, z: 8.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4526757112352438}
+  - {fileID: 4969547459671114}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4526757112352438
+--- !u!4 &4969547459671114
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1808879282780132}
+  m_GameObject: {fileID: 1750957765118370}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.05, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4427004047731818}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23997039607975056
+--- !u!23 &23611216575177282
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1808879282780132}
+  m_GameObject: {fileID: 1750957765118370}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -89,7 +89,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 16b8c8c9aa490b842a27566cad6a21f3, type: 2}
+  - {fileID: 2100000, guid: 1a9486d472b37ef4699d76a063dc5e84, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -97,7 +97,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
+  m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 0
@@ -109,13 +109,13 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33748338751153706
+--- !u!33 &33207572194817444
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1808879282780132}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_GameObject: {fileID: 1750957765118370}
+  m_Mesh: {fileID: 4300000, guid: 1a9486d472b37ef4699d76a063dc5e84, type: 3}
 --- !u!54 &54750867579533066
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -126,7 +126,7 @@ Rigidbody:
   m_Mass: 5
   m_Drag: 10
   m_AngularDrag: 8
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 116
@@ -147,6 +147,7 @@ MonoBehaviour:
   - {fileID: 1490387821540412, guid: 8347f744726d7274faf9b07c86c4a167, type: 2}
   - {fileID: 1313230205316550, guid: ee0248f852ec5d54d9a3bba744716e30, type: 2}
   - {fileID: 1679840636911530, guid: aa4cbbab58af62f4a85f79f5fb9b35c1, type: 2}
+  dropOrNot: 1
 --- !u!114 &114221978615096310
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -158,19 +159,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e28a46463e58c64aa0de06b1c6732b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_rigidbody: {fileID: 0}
+  m_rigidbody: {fileID: 54750867579533066}
   maxHp: 6
   hp: 5
   HpContorl: {fileID: 0}
   hurted: 0
   hurtedCoolTime: 0.5
   monsterNum: 1
-  speed: 4
+  speed: 5
   viewMinDistance: 8
   viewMaxDistance: 16
-  IsFindPlayer: 0
+  IsFindPlayer: 1
   atk: 1
   stopTime: 1
+  destoryTime: 100
 --- !u!114 &114353291868601912
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -194,7 +196,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.44955617
-  m_Height: 1.9043047
+  m_Radius: 0.8553932
+  m_Height: 1.763362
   m_Direction: 1
-  m_Center: {x: 0, y: 1.032257, z: 0.012610972}
+  m_Center: {x: 0.13194014, y: 0.83841103, z: 0.012610973}

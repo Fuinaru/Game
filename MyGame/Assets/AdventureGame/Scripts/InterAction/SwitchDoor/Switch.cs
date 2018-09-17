@@ -20,7 +20,7 @@ public class Switch : MonoBehaviour
         if (other.tag == "Bullet")
         {
             door.GetComponent<door>().performance();
-            Flowchart.BroadcastFungusMessage("openDoor");
+           // Flowchart.BroadcastFungusMessage("openDoor");
         }
     }
 }

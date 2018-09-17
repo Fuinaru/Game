@@ -8,13 +8,15 @@ public class ItemForGet : MonoBehaviour {
       
         public Var.ItemType type;
         public int num = 1;
+    public float destoryTime=30f;
 	void Start () {
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+        destoryTime -= Time.deltaTime;
+        if (destoryTime <= 0) Destroy(gameObject);
 	}
      void OnTriggerEnter(Collider other)
     {

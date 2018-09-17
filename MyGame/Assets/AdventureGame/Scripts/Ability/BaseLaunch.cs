@@ -37,5 +37,13 @@ public class BaseLuanch : MyGameObject
         else return false;
     }
 
+    public void ShootItemAtPos(Var.ItemType type,Vector3 pos)
+    {
+        GameObject go = Instantiate(Tools.GetItemGameObjectByType(type)) as GameObject;
+        go.transform.position = pos;
+        Vector3 dir = (pos-transform.position).normalized;
+        go.GetComponent<Rigidbody>().AddRelativeForce(dir*500);
+    }
+
 
 }

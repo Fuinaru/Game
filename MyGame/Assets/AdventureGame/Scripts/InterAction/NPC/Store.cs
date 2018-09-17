@@ -26,7 +26,7 @@ public class Store : MonoBehaviour {
         GameManager.GM.CloseUI();
         GameManager.isInStore = true;
         if (transform.childCount==0)InitialData();
-        NPC.SetConver("老板", "要点什么？");
+        NPC.SetConver("OldMan", "要点什么？");
     }
 
 
@@ -58,17 +58,17 @@ public class Store : MonoBehaviour {
             GameManager.player.CostCoin(n);
             if (o == Var.ItemType.Coin) { GameManager.player.GetCoin(10); }
             else GameManager.playerLaunch.getItem(o, 1);
-            NPC.SetConver("老板", "顾客就是上帝");
+            NPC.SetConver("OldMan", "顾客就是上帝");
         }
         else {
-            NPC.SetConver("老板", "没钱滚！！！");
+            NPC.SetConver("OldMan", "没钱滚！！！");
             CloseStore();
         }
     }
 
     public void CloseStore() {
         GameManager.isInStore = false;
-        NPC.SetConver("老板", "慢走");
+        NPC.SetConver("OldMan", "慢走");
         int childCount = transform.childCount;
         Debug.Log(childCount);
         for (int i = childCount-1; i >=0; i--)
