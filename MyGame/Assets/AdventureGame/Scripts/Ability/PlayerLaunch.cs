@@ -37,6 +37,7 @@ public class PlayerLaunch : BaseLuanch
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            getItem(Var.ItemType.PoisonItem, 10);
             getItem(Var.ItemType.MpPotionItem, 10);
             getItem(Var.ItemType.IceBallItem, 10);
             getItem(Var.ItemType.FireBallItem, 10);

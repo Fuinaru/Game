@@ -51,7 +51,7 @@ public class MonsterBoss : BaseMonster {
       
         if (IsFindPlayer) {
             if (launch.CoolEnd() && !isClose) {
-                AroundShootAttack(Var.ItemType.FireBallItem, Random.Range(0, 30), 30);
+                launch. AroundShootAttack(Var.ItemType.FireBallItem, Random.Range(0, 30), 30);
                 StartCoroutine(WaitSeconds(1.5f));
             }
         }
@@ -65,9 +65,9 @@ public class MonsterBoss : BaseMonster {
             float a = Random.Range(-1f, 1f);
             if (a >= 0)
             {
-                AroundShootAttack(Var.ItemType.FireBallItem, Random.Range(0, 40), 40);
+                launch. AroundShootAttack(Var.ItemType.FireBallItem, Random.Range(0, 40), 40);
             }
-            else { AroundShootAttack(Var.ItemType.IceBallItem, Random.Range(0,30), 30); }
+            else { launch.AroundShootAttack(Var.ItemType.IceBallItem, Random.Range(0,30), 30); }
             StartCoroutine(WaitSeconds(1.5f));
         }
 
@@ -82,22 +82,22 @@ public class MonsterBoss : BaseMonster {
             float a = Random.Range(-1f, 1.2f);
             if (a > 1f)
             {
-                AroundShootAttack(Var.ItemType.FireBallItem, 0, 40);
-                AroundShootAttack(Var.ItemType.IceBallItem, 20, 40);
-                StartCoroutine(AroundShootAttackWait(Var.ItemType.FireBallItem, 10, 40, 0.15f));
-                StartCoroutine(AroundShootAttackWait(Var.ItemType.IceBallItem, 30, 40, 0.15f));
+                launch.AroundShootAttack(Var.ItemType.FireBallItem, 0, 40);
+                launch.AroundShootAttack(Var.ItemType.IceBallItem, 20, 40);
+                StartCoroutine(launch.AroundShootAttackWait(Var.ItemType.FireBallItem, 10, 40, 0.15f));
+                StartCoroutine(launch.AroundShootAttackWait(Var.ItemType.IceBallItem, 30, 40, 0.15f));
             }
             else
             if (a >= 0)
             {
-                AroundShootAttack(Var.ItemType.FireBallItem, 0, 60);
-                AroundShootAttack(Var.ItemType.IceBallItem, 30, 60);
-                if(a>0.7) StartCoroutine(AroundShootAttackWait(Var.ItemType.IceBallItem, Random.Range(0, 60), 60, 0.15f));
+                launch.AroundShootAttack(Var.ItemType.FireBallItem, 0, 60);
+                launch.AroundShootAttack(Var.ItemType.IceBallItem, 30, 60);
+                if(a>0.7) StartCoroutine(launch.AroundShootAttackWait(Var.ItemType.IceBallItem, Random.Range(0, 60), 60, 0.15f));
             }
             else {
-                AroundShootAttack(Var.ItemType.FireBallItem, 0, 40);
-                StartCoroutine(AroundShootAttackWait(Var.ItemType.IceBallItem, 20,40,0.15f));
-                if(a<-0.7) StartCoroutine(AroundShootAttackWait(Var.ItemType.FireBallItem, 0, 40, 0.15f));
+                launch.AroundShootAttack(Var.ItemType.FireBallItem, 0, 40);
+                StartCoroutine(launch.AroundShootAttackWait(Var.ItemType.IceBallItem, 20,40,0.15f));
+                if(a<-0.7) StartCoroutine(launch.AroundShootAttackWait(Var.ItemType.FireBallItem, 0, 40, 0.15f));
             }
             StartCoroutine(WaitSeconds(1.5f));
         }
@@ -110,25 +110,7 @@ public class MonsterBoss : BaseMonster {
         speed = a;
     }
 
-    protected void AroundShootAttack(Var.ItemType bullet,int start, int n) {
- 
-            for (float i = start; i < 360+start; i += n)
-            {
-                launch.ShootItemAtPos(bullet, transform.position + new Vector3(Mathf.Sin(i / 180 * Mathf.PI), 0.5f, Mathf.Cos(i / 180 * Mathf.PI))*1.5f);
-             
-            }
-  
-    }
-    protected IEnumerator AroundShootAttackWait(Var.ItemType bullet, int start, int n,float waittime)
-    {
-        yield return new WaitForSeconds(waittime);
-        for (float i = start; i < 360 + start; i += n)
-        {
-            launch.ShootItemAtPos(bullet, transform.position + new Vector3(Mathf.Sin(i / 180 * Mathf.PI), 0.5f, Mathf.Cos(i / 180 * Mathf.PI)) * 1.5f);
 
-        }
-
-    }
     protected void Teleport(float n) {
         if (isTeleport) return;
         isTeleport = true;

@@ -32,6 +32,7 @@ public class BulletItem : BagItem
             if (dir.magnitude <= autoShootDis) GameManager.player.transform.eulerAngles = new Vector3(0, Mathf.Atan2(dir.x, dir.z) * 180 / Mathf.PI, 0);
         }
         GameObject go = Instantiate(GetItemObject(), PlayerLaunch.trans.position, PlayerLaunch.trans.rotation) as GameObject;
+        go.transform.SetParent(GameManager.GM.monAndItemInScene.GetChild(2));
         go.GetComponent<Rigidbody>().AddRelativeForce(0, 0, 1000);
         useUpdate();
 

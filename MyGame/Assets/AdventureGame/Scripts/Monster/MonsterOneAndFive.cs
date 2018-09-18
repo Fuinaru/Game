@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterOne : BaseMonster {
+public class MonsterOneAndFive : BaseMonster {
 
     // Use this for initialization
+    public bool hasBoom = false;
     protected void Start () {
         base.Start();
     }
@@ -18,7 +19,7 @@ public class MonsterOne : BaseMonster {
 
     protected void action() {
         moveToPlayer();
-
+        if (hasBoom && dirFromPlayer.magnitude < 1.5f) { transform.GetChild(1).GetComponent<Boom>().isStart = true; transform.GetChild(1).GetComponent<Boom>().aliveTime=1.5f; hasBoom = false;speed *= 1.5f; }
     }
 
 }

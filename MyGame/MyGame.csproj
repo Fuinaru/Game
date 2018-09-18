@@ -772,6 +772,9 @@
     <Compile Include="Assets\AdventureGame\Scripts\Ability\IceBall.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Ability\MonsterLaunch.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Ability\PlayerLaunch.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Ability\PoisonBall.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Ability\PoisonSmoke.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Ability\TeleportAbility.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Bag\BagItem.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Bag\BagSystem.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Bag\CoolTime.cs" />
@@ -782,6 +785,7 @@
     <Compile Include="Assets\AdventureGame\Scripts\Bag\Item\MaxHpUpItem.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Bag\Item\MaxMpUpItem.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Bag\Item\MpPotionItem.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Bag\Item\PoisonItem.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Bag\Item\PotionItem.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Bag\Item\SwordItem.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Bag\Item\TeleportItem.cs" />
@@ -802,11 +806,12 @@
     <Compile Include="Assets\AdventureGame\Scripts\Monster\BaseMonster.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\Drop.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterBoss.cs" />
-    <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterOne.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterOneAndFive.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterThreeAndFour.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterTwo.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\OtherHp.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\RandomMonsterCreate.cs" />
-    <Compile Include="Assets\AdventureGame\Scripts\ParticleSys.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\PlayEndDestory.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Player\Player.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Player\PlayerControl.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Player\ThirdPersonUserControl.cs" />

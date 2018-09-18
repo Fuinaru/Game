@@ -49,6 +49,7 @@ public class IceBallItem : BagItem
         yield return new WaitUntil(() => Player.playEnd == 0);
         //yield return null;
         GameObject go = Instantiate(GetItemObject(), PlayerLaunch.trans.position, PlayerLaunch.trans.rotation) as GameObject;
+        go.transform.SetParent(GameManager.GM.monAndItemInScene.GetChild(2));
         go.GetComponent<Rigidbody>().AddRelativeForce(0, 0, 500);
 
 

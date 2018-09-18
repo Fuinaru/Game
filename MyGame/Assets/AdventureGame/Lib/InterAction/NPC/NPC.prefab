@@ -66,14 +66,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1371100574140324}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: 0.87099826, z: -0, w: 0.49128613}
   m_LocalPosition: {x: 6.02, y: 0, z: 13.3}
   m_LocalScale: {x: 3.283399, y: 3.2834005, z: 3.2833989}
   m_Children:
   - {fileID: 4607463358800226}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 121.15001, z: 0}
 --- !u!4 &4607463358800226
 Transform:
   m_ObjectHideFlags: 1
@@ -115,7 +115,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ba21b4f5d89e3a44eba2a26191e41340, type: 3}
+  - {fileID: 2100000, guid: 41cb9bb970601de49a0155acbb577cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -141,7 +141,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1449315354095886}
-  m_Mesh: {fileID: 4300000, guid: ba21b4f5d89e3a44eba2a26191e41340, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 453b848130f2386458d7fb173404b517, type: 3}
 --- !u!65 &65271096210389236
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -168,5 +168,6 @@ MonoBehaviour:
   key: 101
   pressKey: 1
   m_character: {fileID: 0}
-  name: NPC1
+  m_img: {fileID: 0}
+  name: OldMan
   say: "\u4F60\u597D\u554A"

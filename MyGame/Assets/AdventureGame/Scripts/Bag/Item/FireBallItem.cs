@@ -33,7 +33,6 @@ public class FireBallItem : BagItem
         if (BaseMonster.nearestMonster != null)
         {
             Vector3 dir = BaseMonster.nearestMonster.position - GameManager.player.transform.position;
-            Debug.Log(dir.magnitude);
             if (dir.magnitude <= autoShootDis) GameManager.player.transform.eulerAngles = new Vector3(0, Mathf.Atan2(dir.x, dir.z) * 180 / Mathf.PI, 0);
         }
         PlayerControl.m_speed = 0;
@@ -48,6 +47,7 @@ public class FireBallItem : BagItem
         yield return new WaitUntil(() => Player.playEnd==0);
         //yield return null;
         GameObject go = Instantiate(GetItemObject(), PlayerLaunch.trans.position, PlayerLaunch.trans.rotation) as GameObject;
+        go.transform.SetParent(GameManager.GM.monAndItemInScene.GetChild(2));
         go.GetComponent<Rigidbody>().AddRelativeForce(0, 0, 500);
 
 

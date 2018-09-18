@@ -10,10 +10,14 @@ public class HPObject : MyGameObject {
     public Slider HpContorl;
     public bool hurted = false;
     private float time = 0;
-    protected ForInclude HurtedTool = new ForInclude();
+    protected ColorChange HurtedTool = new ColorChange();
     protected bool isDestory = false;
     public float hurtedCoolTime = 3;
     protected bool otherFlash = false;
+
+    protected int poisonedDamage = 0;
+    protected float poisonedTime = 0;
+    protected float _poisonedTime = 0;
     // Use this for initialization
     protected void Start () {
         base.Start();
@@ -25,7 +29,7 @@ public class HPObject : MyGameObject {
         {
             HpContorl = GetComponent<creatFollowingUI>().Tar.GetComponent<Slider>();
             HpContorl.maxValue = maxHp;
-            UpdateHpUI();
+            UpdateHpUI(true);
         }
 
     }
@@ -33,21 +37,22 @@ public class HPObject : MyGameObject {
     // Update is called once per frame
     protected void Update () {
         base.Update();
+        UpdateUISlowly();
         hurtCount();
-      if(!otherFlash)Flash();
+        PosionedUpdate();
+      if (!otherFlash)Flash();
         if (hp <= 0) GoDie();
     }
     public virtual void Damage(int a)
     {
         if (!hurted) { hp -= a; getHurted(); }
-        UpdateHpUI();
-
+        UpdateHpUI(false);
     }
     public void Cure(int a)
     {
         hp += a;
         if (hp > maxHp) hp = maxHp;
-        UpdateHpUI();
+        UpdateHpUI(false);
     }
     public virtual void getHurted()
     {
@@ -79,6 +84,26 @@ public class HPObject : MyGameObject {
             catch { }
         }
     }
+
+    public void GetPosioned(int atk,float time) {
+        poisonedDamage = atk;
+        poisonedTime = time;
+
+    }
+    public void PosionedUpdate()
+    {
+        if (poisonedTime > 0) {
+            _poisonedTime += Time.deltaTime;
+            FlashOther(new Color(0, 1, 0, 0.7f),8);
+            if (_poisonedTime >= 2.5f) {
+                poisonedTime -= _poisonedTime;
+                _poisonedTime = 0;
+              if(hp>1)hp -= poisonedDamage;
+            }
+
+        }
+        else if (poisonedDamage > 0) { poisonedDamage = 0; FlashOtherEnd(); }
+    }
     public void FlashOther(Color color,float speed)
     {
         otherFlash = true;
@@ -92,12 +117,15 @@ public class HPObject : MyGameObject {
         otherFlash = false;
         HurtedTool.materialBecomeWhite(transform);
     }
-    public virtual void UpdateHpUI()
+    public virtual void UpdateHpUI(bool hpUpdate)
     {
-        HpContorl.value = hp;
- 
+      if(hpUpdate)  HpContorl.value = hp;
     }
-
+    public virtual void UpdateUISlowly()
+    {
+        if (hp > HpContorl.value) HpContorl.value += 0.1f;
+        if (hp < HpContorl.value) HpContorl.value -= 0.1f;
+    }
     public virtual void GoDie()
     { 
             if (!isDestory)

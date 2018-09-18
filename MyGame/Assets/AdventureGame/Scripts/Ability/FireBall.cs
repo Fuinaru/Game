@@ -20,6 +20,7 @@ public class FireBall : Bullet {
         if (trans.tag == "Monster" || trans.tag == "Others" || trans.tag == "Player")
             trans.GetComponent<HPObject>().Damage(atk);
         Tools.PlayParticletAtPosByName("BoomEffectTwo", transform);
+        Tools.PlaySoundByName("boom", transform);
         Destroy(gameObject);
 
 

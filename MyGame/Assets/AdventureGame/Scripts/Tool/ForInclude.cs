@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 
 
-    public class ForInclude : MonoBehaviour
+    public class ColorChange : MonoBehaviour
     {
 
         public void Color2B(Material target, Color color, float speed)

@@ -67,9 +67,10 @@ public class BaseMonster : HPObject
         {
             // Debug.Log("faxian");
             // Tools.LookAt(transform, dir, 5);
-            Tools.LookAtOnlyYAxis(transform,GameManager.player.transform);
-            dirFromPlayer.y=0;
-           if(m_rigidbody!=null)  m_rigidbody.velocity = dirFromPlayer.normalized * speed*0.5f;
+      
+            //    Tools.LookAtOnlyYAxis(transform,GameManager.player.transform);
+           // dirFromPlayer.y=0;
+           if(m_rigidbody!=null)  m_rigidbody.velocity = CaculateDir().normalized * speed*0.5f;
         }
     }
 
@@ -128,4 +129,47 @@ public class BaseMonster : HPObject
 
     }
 
+    protected Vector3 CaculateDir() {
+        Tools.LookAtOnlyYAxis(transform, GameManager.player.transform);
+        Vector3 position = transform.position;
+        position.y = 0;
+        transform.position = position;
+        Vector3 dir = Vector3.zero;
+
+        //Ray ray1 = new Ray(transform.position + new Vector3(0, 0.4f, 0), transform.forward);
+        //RaycastHit HitInfo1;
+        //bool result1 = Physics.Raycast(ray1, out HitInfo1, 8);
+        //if (result1&& HitInfo1.collider.tag!="Player")
+        //{
+        //    Vector3 pos = HitInfo1.point;
+        //    pos.y = 0;
+        //    dir += pos - transform.position - transform.forward;
+        //}
+        //else
+            dir += transform.forward * 4;
+        Ray ray2 = new Ray(transform.position + new Vector3(0, 0.05f, 0), transform.right);
+        RaycastHit HitInfo2;
+        bool result2 = Physics.Raycast(ray2, out HitInfo2,  2);
+        if (result2)
+        {
+            Vector3 pos = HitInfo2.point;
+            pos.y = 0;
+            dir += pos - transform.position - transform.right;
+        }
+        else dir += transform.right * 2;
+
+        Ray ray3 = new Ray(transform.position + new Vector3(0, 0.05f, 0), -transform.right);
+        RaycastHit HitInfo3;
+        bool result3 = Physics.Raycast(ray3, out HitInfo3,  2);
+        if (result3)
+        {
+            Vector3 pos = HitInfo3.point;
+            pos.y = 0;
+            dir += pos - transform.position + transform.right;
+        }
+        else dir -=  transform.right * 2;
+
+        return dir;
+
+    }
 }

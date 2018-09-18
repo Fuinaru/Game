@@ -24,6 +24,7 @@ public class MpPotionItem : BagItem
     {
         if (!ItemCoolEnd()) return;
         Tools.PlayFollowingParticletByName(itemData.itemType.ToString(), GameManager.player.transform);
+        Tools.PlaySoundByName("drink", GameManager.player.transform);
         // if (Tools.GetParticleSystemByName(itemData.itemType.ToString()) == null) Debug.Log("??");
         GameManager.player.MpRecovery(cureAmount);
         useUpdate();

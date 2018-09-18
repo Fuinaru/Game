@@ -16,6 +16,7 @@ public class SaveData {
 
     public List<ItemData> itemDatas = new List<ItemData>();
     public List<MonsterData> monsterData = new List<MonsterData>();
+    public List<ItemInSceneData> itemInSceneData = new List<ItemInSceneData>();
 }
 [System.Serializable]
 public class MonsterData
@@ -23,5 +24,14 @@ public class MonsterData
     public int monsterNum = 0;
     public int Hp = 0;
     public float[] monsterPos = new float[3];
+
+}
+[System.Serializable]
+public class ItemInSceneData
+{
+    public Var.ItemType type;
+    public int num = 1;
+    public float time = 1;
+    public float[] itemInScenePos = new float[3];
 
 }

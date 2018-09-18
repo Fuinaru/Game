@@ -48,7 +48,8 @@ public class GameManager : MonoBehaviour
 
 
 
-    public Transform monsterGroup;
+    public Transform monAndItemInScene;
+
     //GameObject
     //bagShow
 
@@ -105,7 +106,7 @@ public class GameManager : MonoBehaviour
     }
 
     public static List<BaseMonster> Monsters=new List<BaseMonster>();
-
+    public static List<ItemForGet>  itemInScene= new List<ItemForGet>();
 
 
     void Awake()
@@ -198,6 +199,17 @@ public class GameManager : MonoBehaviour
             Destroy(Monsters[i].gameObject);
         }
         Monsters.Clear();
+        return true;
+    }
+
+    public bool DestoryAllItemsInScene()
+    {
+
+        for (int i = itemInScene.Count - 1; i >= 0; i--)
+        {
+            Destroy(itemInScene[i].gameObject);
+        }
+        itemInScene.Clear();
         return true;
     }
 }

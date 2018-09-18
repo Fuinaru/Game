@@ -11,7 +11,7 @@ public class Player : HPObject
 
     public int coinNum = 0;
     public static int playEnd = 1;
-    ForInclude LowHPTool = new ForInclude();
+    ColorChange LowHPTool = new ColorChange();
     [System.Serializable]
     public struct LowHpEffect
     {
@@ -28,8 +28,8 @@ public class Player : HPObject
     void Start()
     {
         base.Start();
-        UpdateHpUI();
-        UpdateMpUI();
+        UpdateHpUI(true);
+        UpdateMpUI(true);
         UpdateCoinUI();
     }
     // Update is called once per frame
@@ -63,14 +63,14 @@ public class Player : HPObject
     {
         if (mp < a) return false;
         mp -= a;
-        UpdateMpUI();
+        UpdateMpUI(false);
         return true;
     }
     public void MpRecovery(int a)
     {
         mp += a;
         if (mp > maxHp) mp = maxMp;
-        UpdateMpUI();
+        UpdateMpUI(false);
     }
 
 
@@ -84,21 +84,25 @@ public class Player : HPObject
     {
         maxHp += value;
         hp = maxHp;
-        UpdateHpUI();
+        UpdateHpUI(false);
     }
     public void MaxMPUp(int value)
     {
         maxMp += value;
         mp = maxMp;
-        UpdateMpUI();
+        UpdateMpUI(false);
     }
-    public override void UpdateHpUI() {
+    public override void UpdateHpUI(bool hpUpdate) {
         HpContorl.maxValue = maxHp;
-        HpContorl.value = hp;
+       if(hpUpdate) HpContorl.value = hp;
         hpText.text = hp + "/" + maxHp;
     }
-
-
+    public override void UpdateUISlowly()
+    {
+        base.UpdateUISlowly();
+        if (mp > MpContorl.value) MpContorl.value += 0.1f;
+        if (mp < MpContorl.value) MpContorl.value -= 0.1f;
+    }
     public void GetCoin(int num)
     {
         coinNum += num;
@@ -111,10 +115,10 @@ public class Player : HPObject
         UpdateCoinUI();
         return true;
     }
-    public virtual void UpdateMpUI()
+    public virtual void UpdateMpUI(bool mpUpdate)
     {
         MpContorl.maxValue = maxMp;
-        MpContorl.value = mp;
+        if(mpUpdate) MpContorl.value = mp;
         mpText.text = mp + "/" + maxMp;
 
     }
@@ -142,13 +146,13 @@ public class Player : HPObject
 
             //  m_rigidbody.AddForce((transform.position-trans.position).normalized*100,ForceMode.VelocityChange);
 
-            UpdateHpUI();
+            UpdateHpUI(false);
         }
 
     }
     public void UpDateAllUI(){
-        UpdateHpUI();
-        UpdateMpUI();
+        UpdateHpUI(true);
+        UpdateMpUI(true);
         UpdateCoinUI();
 }
 

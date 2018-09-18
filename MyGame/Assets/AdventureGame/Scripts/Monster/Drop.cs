@@ -21,8 +21,8 @@ public class Drop : MonoBehaviour {
     {
      if (transform.parent.gameObject.activeInHierarchy&&!GameManager.isLoading&& dropOrNot) { 
             GameObject o = Instantiate(DropItemCaculate(), new Vector3(transform.position.x, 0.5f, transform.position.z), transform.rotation);
-        o.transform.SetParent(transform.parent);
-    }
+            o.transform.SetParent(GameManager.GM.monAndItemInScene.GetChild(1));
+        }
     }
 
     GameObject DropItemCaculate() {

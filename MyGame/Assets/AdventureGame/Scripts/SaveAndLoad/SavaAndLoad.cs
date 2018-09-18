@@ -53,7 +53,7 @@ public class SavaAndLoad : MonoBehaviour {
            // GameManager.bagSys.SpaceInitial();
             StartCoroutine(DestroyItem(saveData));
             StartCoroutine(DestroyMonster(saveData));
-
+            StartCoroutine(DestroyItemInScene(saveData));
             GameManager.stageName = saveData.stageName ;
             MapLoad.mapload.LoadNextStage(saveData.stageName, 5, 5);
             GameManager.player.maxHp= saveData.MaxHp ;
@@ -96,11 +96,29 @@ public class SavaAndLoad : MonoBehaviour {
             GameObject o =Instantiate(Tools.GetMonsterByNum(saveData.monsterData[i].monsterNum));
             o.GetComponent<BaseMonster>().hp = saveData.monsterData[i].Hp;
             o.transform.position = new Vector3(saveData.monsterData[i].monsterPos[0], saveData.monsterData[i].monsterPos[1], saveData.monsterData[i].monsterPos[2]);
-            o.transform.SetParent(GameManager.GM.monsterGroup);
+            o.transform.SetParent(GameManager.GM.monAndItemInScene.GetChild(0));
             Debug.Log(saveData.monsterData[i].monsterNum + "/"+saveData.monsterData[i].Hp+"/"+ new Vector3(saveData.monsterData[i].monsterPos[0], saveData.monsterData[i].monsterPos[1], saveData.monsterData[i].monsterPos[2]));
         }
         GameManager.isLoading = false;
     }
+    IEnumerator DestroyItemInScene(SaveData saveData)
+    {
+
+        yield return new WaitUntil(() => GameManager.GM.DestoryAllItemsInScene());
+
+        Debug.Log(saveData.itemInSceneData.Count);
+        for (int i = 0; i < saveData.itemInSceneData.Count; i++)
+        {
+            GameObject o = Instantiate(Tools.GetItemInSceneByType(saveData.itemInSceneData[i].type));
+            o.GetComponent<ItemForGet>().num = saveData.itemInSceneData[i].num;
+            o.GetComponent<ItemForGet>().type = saveData.itemInSceneData[i].type;
+            o.GetComponent<ItemForGet>().destoryTime = saveData.itemInSceneData[i].time;
+            o.transform.position = new Vector3(saveData.itemInSceneData[i].itemInScenePos[0], saveData.itemInSceneData[i].itemInScenePos[1], saveData.itemInSceneData[i].itemInScenePos[2]);
+            o.transform.SetParent(GameManager.GM.monAndItemInScene.GetChild(1));
+        
+        }
+    }
+
 
     private SaveData CreateSaveGameObject()
     {
@@ -114,6 +132,11 @@ public class SavaAndLoad : MonoBehaviour {
         {
             saveData.monsterData.Add(GameManager.Monsters[i].GetMonsterData());
         }
+        for (int i = GameManager.itemInScene.Count - 1; i >= 0; i--)
+        {
+            saveData.itemInSceneData.Add(GameManager.itemInScene[i].GetItemInSceneData());
+        }
+       
 
         saveData.stageName = GameManager.stageName;
 

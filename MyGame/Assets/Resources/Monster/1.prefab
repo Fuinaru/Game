@@ -89,7 +89,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 1a9486d472b37ef4699d76a063dc5e84, type: 3}
+  - {fileID: 2100000, guid: 41cb9bb970601de49a0155acbb577cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_rigidbody: {fileID: 54750867579533066}
-  maxHp: 6
+  maxHp: 5
   hp: 5
   HpContorl: {fileID: 0}
   hurted: 0
@@ -170,9 +170,10 @@ MonoBehaviour:
   viewMinDistance: 8
   viewMaxDistance: 16
   IsFindPlayer: 1
-  atk: 1
+  atk: 2
   stopTime: 1
   destoryTime: 100
+  hasBoom: 0
 --- !u!114 &114353291868601912
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -196,7 +197,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.8553932
-  m_Height: 1.763362
+  m_Radius: 0.38686553
+  m_Height: 1.5265924
   m_Direction: 1
-  m_Center: {x: 0.13194014, y: 0.83841103, z: 0.012610973}
+  m_Center: {x: 0.051561236, y: 0.7200262, z: -0.025473505}

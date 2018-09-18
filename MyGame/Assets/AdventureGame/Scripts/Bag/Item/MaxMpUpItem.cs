@@ -24,6 +24,7 @@ public class MaxMpUpItem : BagItem
     {
         if (!ItemCoolEnd()) return;
         Tools.PlayFollowingParticletByName("MpPotionItem", GameManager.player.transform);
+        Tools.PlaySoundByName("drink", GameManager.player.transform);
         // if (Tools.GetParticleSystemByName(itemData.itemType.ToString()) == null) Debug.Log("??");
         GameManager.player.MaxMPUp(upAmount);
         useUpdate();

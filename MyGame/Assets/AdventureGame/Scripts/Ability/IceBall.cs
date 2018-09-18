@@ -22,7 +22,7 @@ public class IceBall : Bullet
         
             if (trans==null||trans.GetComponent<Rigidbody>() == null)
             { _iceTime = 0; Destroy(gameObject); return; }
-            trans.GetComponent<Rigidbody>().velocity /= 3;
+            trans.GetComponent<Rigidbody>().velocity /= 2;
             trans.GetComponent<HPObject>().FlashOther(new Color(0,0,1,0.7f),5);
     }
     }
@@ -39,6 +39,7 @@ public class IceBall : Bullet
         if (_iceTime > 0) return;
         Transform _trans = collision.gameObject.transform;
         Tools.PlayParticletAtPosByName("IceEffect", transform);
+        Tools.PlaySoundByName("boom", transform);
         if (_trans.tag == "Monster" || _trans.tag == "Others" || _trans.tag == "Player")
         {
             _trans.GetComponent<HPObject>().Damage(atk);

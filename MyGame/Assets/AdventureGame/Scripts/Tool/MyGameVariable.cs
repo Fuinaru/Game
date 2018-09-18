@@ -17,6 +17,7 @@ public class Var : MonoBehaviour {
         TeleportItem,
         MaxHpUpItem,
         MaxMpUpItem,
+        PoisonItem,
     }
 
 

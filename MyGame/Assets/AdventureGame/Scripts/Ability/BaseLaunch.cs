@@ -46,4 +46,29 @@ public class BaseLuanch : MyGameObject
     }
 
 
+    public void AroundShootAttack(Var.ItemType bullet, int start, int n)
+    {
+
+        for (float i = start; i < 360 + start; i += n)
+        {
+            ShootItemAtPos(bullet, transform.position + new Vector3(Mathf.Sin(i / 180 * Mathf.PI), 0.5f, Mathf.Cos(i / 180 * Mathf.PI)) * 1.5f);
+
+        }
+
+    }
+    public IEnumerator AroundShootAttackWait(Var.ItemType bullet, int start, int n, float waittime)
+    {
+        yield return new WaitForSeconds(waittime);
+        for (float i = start; i < 360 + start; i += n)
+        {
+            ShootItemAtPos(bullet, transform.position + new Vector3(Mathf.Sin(i / 180 * Mathf.PI), 0.5f, Mathf.Cos(i / 180 * Mathf.PI)) * 1.5f);
+
+        }
+
+    }
+
+
+
+
+
 }
