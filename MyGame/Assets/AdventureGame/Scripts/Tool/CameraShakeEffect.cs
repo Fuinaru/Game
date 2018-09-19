@@ -22,14 +22,14 @@ public class CameraShakeEffect : MonoBehaviour
         shakeDir = Vector3.one.normalized;
     }
 
-    public static void shakeScreen(float time,float power,float frequency)
+    public static void shakeScreen(float time,float power)
     {
         currentTime = time;
         totalTime = time;
         shakeDir = new Vector3(power, power, power);
  
     }
-    public static void shakeScreen(float time, Vector3 power, float frequency)
+    public static void shakeScreen(float time, Vector3 power)
     {
         currentTime = time;
         totalTime = time;

@@ -48,6 +48,11 @@ public class HPObject : MyGameObject {
         if (!hurted) { hp -= a; getHurted(); }
         UpdateHpUI(false);
     }
+    public virtual void Damage(int a,string s)
+    {
+        if (!hurted) { hp -= a; getHurted(); }
+        UpdateHpUI(false);
+    }
     public void Cure(int a)
     {
         hp += a;
@@ -134,6 +139,7 @@ public class HPObject : MyGameObject {
                 Destroy(gameObject.GetComponent<Collider>());
                 Destroy(m_rigidbody);
                 isDestory = true;
+            m_rigidbody = null;
             }
 
             HurtedTool.Color2B(GetComponentInChildren<Renderer>().material, new Color(1, 1, 1, 0), 30);

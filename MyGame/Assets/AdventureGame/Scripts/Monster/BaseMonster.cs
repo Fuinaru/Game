@@ -67,10 +67,11 @@ public class BaseMonster : HPObject
         {
             // Debug.Log("faxian");
             // Tools.LookAt(transform, dir, 5);
-      
+
             //    Tools.LookAtOnlyYAxis(transform,GameManager.player.transform);
-           // dirFromPlayer.y=0;
-           if(m_rigidbody!=null)  m_rigidbody.velocity = CaculateDir().normalized * speed*0.5f;
+            // dirFromPlayer.y=0;
+            transform.eulerAngles = new Vector3(0, Mathf.Atan2(CaculateDir().normalized.x, CaculateDir().normalized.z) * 180 / Mathf.PI, 0);
+           if (m_rigidbody!=null)  m_rigidbody.velocity = CaculateDir().normalized * speed*0.5f;
         }
     }
 
@@ -93,7 +94,8 @@ public class BaseMonster : HPObject
         }
     }
     protected void FindingPlayer() {
-        dirFromPlayer = GameManager.player.transform.position - transform.position; 
+        dirFromPlayer = GameManager.player.transform.position - transform.position;
+        dirFromPlayer.y = 0;
         if (dirFromPlayer.magnitude > viewMaxDistance)
             IsFindPlayer = false;
         else if (hurted || dirFromPlayer.magnitude < viewMinDistance) IsFindPlayer = true;
@@ -130,7 +132,7 @@ public class BaseMonster : HPObject
     }
 
     protected Vector3 CaculateDir() {
-        Tools.LookAtOnlyYAxis(transform, GameManager.player.transform);
+     //   Tools.LookAtOnlyYAxis(transform, GameManager.player.transform);
         Vector3 position = transform.position;
         position.y = 0;
         transform.position = position;
@@ -138,36 +140,39 @@ public class BaseMonster : HPObject
 
         //Ray ray1 = new Ray(transform.position + new Vector3(0, 0.4f, 0), transform.forward);
         //RaycastHit HitInfo1;
-        //bool result1 = Physics.Raycast(ray1, out HitInfo1, 8);
-        //if (result1&& HitInfo1.collider.tag!="Player")
+        //bool result1 = Physics.Raycast(ray1, out HitInfo1, 2);
+        //if (result1 && HitInfo1.collider.tag == "Untagged")
         //{
         //    Vector3 pos = HitInfo1.point;
         //    pos.y = 0;
         //    dir += pos - transform.position - transform.forward;
         //}
         //else
-            dir += transform.forward * 4;
-        Ray ray2 = new Ray(transform.position + new Vector3(0, 0.05f, 0), transform.right);
+            dir += dirFromPlayer.normalized * 2;
+
+        Vector3 dirleftright = new Vector3(-dirFromPlayer.normalized.z, 0, dirFromPlayer.normalized.x);
+
+        Ray ray2 = new Ray(transform.position + new Vector3(0, 0.05f, 0), dirleftright);
         RaycastHit HitInfo2;
         bool result2 = Physics.Raycast(ray2, out HitInfo2,  2);
         if (result2)
         {
             Vector3 pos = HitInfo2.point;
             pos.y = 0;
-            dir += pos - transform.position - transform.right;
+            dir += pos - transform.position - dirleftright;
         }
-        else dir += transform.right * 2;
+        else dir += dirleftright * 2;
 
-        Ray ray3 = new Ray(transform.position + new Vector3(0, 0.05f, 0), -transform.right);
+        Ray ray3 = new Ray(transform.position + new Vector3(0, 0.05f, 0), -dirleftright);
         RaycastHit HitInfo3;
         bool result3 = Physics.Raycast(ray3, out HitInfo3,  2);
         if (result3)
         {
             Vector3 pos = HitInfo3.point;
             pos.y = 0;
-            dir += pos - transform.position + transform.right;
+            dir += pos - transform.position + dirleftright;
         }
-        else dir -=  transform.right * 2;
+        else dir -= dirleftright * 2;
 
         return dir;
 

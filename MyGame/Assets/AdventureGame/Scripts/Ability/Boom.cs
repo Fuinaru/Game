@@ -50,7 +50,7 @@ public class Boom : MyGameObject
             d = transform.localScale;
             transform.localScale = new Vector3(d.x * boomSpeed, d.y * boomSpeed, d.z * boomSpeed);
 
-            CameraShakeEffect.shakeScreen();
+            CameraShakeEffect.shakeScreen(0.5f,0.5f);
             if (d.x >= radius) Destroy(gameObject);
         }
         else if(aliveTime<1.5f)
@@ -86,7 +86,7 @@ public class Boom : MyGameObject
             //dir *= 2;
             //dir.y = 0.5f;
             //hit.GetComponent<Rigidbody>().velocity = dir.normalized * flickPower;
-            hit.GetComponent<HPObject>().Damage(atk);
+            hit.GetComponent<HPObject>().Damage(atk,"Boom");
         }
     }
 }

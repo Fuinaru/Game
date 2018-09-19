@@ -10,7 +10,7 @@ public class TeleportAbility : MonoBehaviour {
         {
             isTeleport = true;
             Tools.PlayParticletAtPosByName("SmokeEffect", self);
-            yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSeconds(0.3f);
             if (self.tag == "Monster") Tools.LookAtOnlyYAxis(self, GameManager.player.transform);
             Vector3 position = self.position;
             position.y = 0;

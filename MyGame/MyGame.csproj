@@ -806,6 +806,7 @@
     <Compile Include="Assets\AdventureGame\Scripts\Monster\BaseMonster.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\Drop.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterBoss.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterLittleBossOne.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterOneAndFive.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterThreeAndFour.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterTwo.cs" />
