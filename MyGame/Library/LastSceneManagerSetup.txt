@@ -1,7 +1,4 @@
 sceneSetups:
-- path: Assets/AdventureGame/Scenes/player.unity
+- path: Assets/AdventureGame/Scenes/open.unity
   isLoaded: 1
   isActive: 1
-- path: Assets/AdventureGame/Scenes/dialog.unity
-  isLoaded: 1
-  isActive: 0

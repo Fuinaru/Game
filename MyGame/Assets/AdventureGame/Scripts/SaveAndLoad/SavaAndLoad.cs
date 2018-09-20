@@ -97,7 +97,6 @@ public class SavaAndLoad : MonoBehaviour {
             o.GetComponent<BaseMonster>().hp = saveData.monsterData[i].Hp;
             o.transform.position = new Vector3(saveData.monsterData[i].monsterPos[0], saveData.monsterData[i].monsterPos[1], saveData.monsterData[i].monsterPos[2]);
             o.transform.SetParent(GameManager.GM.monAndItemInScene.GetChild(0));
-            Debug.Log(saveData.monsterData[i].monsterNum + "/"+saveData.monsterData[i].Hp+"/"+ new Vector3(saveData.monsterData[i].monsterPos[0], saveData.monsterData[i].monsterPos[1], saveData.monsterData[i].monsterPos[2]));
         }
         GameManager.isLoading = false;
     }

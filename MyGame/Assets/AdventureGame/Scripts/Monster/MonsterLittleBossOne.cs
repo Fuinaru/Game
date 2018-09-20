@@ -11,7 +11,7 @@ public class MonsterLittleBossOne : BaseMonster
     public float leftOrRight = 1f;
 
 
-    private int isDash=-1;
+    public int isDash=-1;
 
     private float setTime=0;
     private float _setTime = 1f;

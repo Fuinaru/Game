@@ -1501,9 +1501,6 @@ GameObject:
   - component: {fileID: 1755499608}
   - component: {fileID: 1755499607}
   - component: {fileID: 1755499609}
-  - component: {fileID: 1755499611}
-  - component: {fileID: 1755499612}
-  - component: {fileID: 1755499613}
   - component: {fileID: 1755499620}
   - component: {fileID: 1755499624}
   - component: {fileID: 1755499623}
@@ -1514,8 +1511,6 @@ GameObject:
   - component: {fileID: 1755499618}
   - component: {fileID: 1755499617}
   - component: {fileID: 1755499616}
-  - component: {fileID: 1755499615}
-  - component: {fileID: 1755499614}
   m_Layer: 5
   m_Name: Flowchart
   m_TagString: chart
@@ -1548,9 +1543,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 1755499623}
+  - {fileID: 1755499608}
   selectedCommands:
-  - {fileID: 1755499621}
+  - {fileID: 1755499607}
   variables:
   - {fileID: 1755499620}
   - {fileID: 1755499618}
@@ -1598,7 +1593,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -165.60051
     y: -62.53508
-    width: 120
+    width: 123.4177
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1622,7 +1617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentBlock: {fileID: 1755499608}
-  message: openDoor
+  message: OpenScene
 --- !u!4 &1755499610
 Transform:
   m_ObjectHideFlags: 0
@@ -1636,124 +1631,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1755499611
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1755499605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nodeRect:
-    serializedVersion: 2
-    x: -23.59699
-    y: -57.00789
-    width: 120
-    height: 40
-  tint: {r: 1, g: 1, b: 1, a: 1}
-  useCustomTint: 0
-  itemId: 4
-  blockName: itemGet
-  description: 
-  eventHandler: {fileID: 1755499613}
-  commandList:
-  - {fileID: 1755499615}
-  - {fileID: 1755499612}
-  - {fileID: 1755499614}
---- !u!114 &1755499612
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1755499605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f608b8c9fb3044200aac956492d8d586, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 3
-  indentLevel: 0
-  conversationText:
-    stringRef: {fileID: 0}
-    stringVal: "john bored left: \u54C7\u54E6\uFF0C\u62FF\u5230\u9053\u5177\u4E86\u5462\u3002\nPlayer
-      bored right: (\uFFE3\u25BD\uFFE3)\"\njohn bored left:\u95EA\u4E86\njohn hide:\nPlayer
-      hide:"
---- !u!114 &1755499613
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1755499605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d7d417659cd54a6787f70f763950c34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentBlock: {fileID: 1755499611}
-  message: itemGet
---- !u!114 &1755499614
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1755499605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb77d0ce495044f6e9feb91b31798e8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 17
-  indentLevel: 0
-  variable: {fileID: 1755499618}
-  setOperator: 0
-  booleanData:
-    booleanRef: {fileID: 0}
-    booleanVal: 0
-  integerData:
-    integerRef: {fileID: 0}
-    integerVal: 0
-  floatData:
-    floatRef: {fileID: 0}
-    floatVal: 0
-  stringData:
-    stringRef: {fileID: 0}
-    stringVal: 
-  gameObjectData:
-    gameObjectRef: {fileID: 0}
-    gameObjectVal: {fileID: 0}
---- !u!114 &1755499615
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1755499605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb77d0ce495044f6e9feb91b31798e8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 16
-  indentLevel: 0
-  variable: {fileID: 1755499618}
-  setOperator: 0
-  booleanData:
-    booleanRef: {fileID: 0}
-    booleanVal: 1
-  integerData:
-    integerRef: {fileID: 0}
-    integerVal: 0
-  floatData:
-    floatRef: {fileID: 0}
-    floatVal: 0
-  stringData:
-    stringRef: {fileID: 0}
-    stringVal: 
-  gameObjectData:
-    gameObjectRef: {fileID: 0}
-    gameObjectVal: {fileID: 0}
 --- !u!114 &1755499616
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -1924,7 +1801,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: -166.31076
+    x: -167.57658
     y: -208.31868
     width: 120
     height: 40

@@ -807,11 +807,13 @@
     <Compile Include="Assets\AdventureGame\Scripts\Monster\Drop.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterBoss.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterLittleBossOne.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterLittleBossTwo.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterOneAndFive.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterThreeAndFour.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterTwo.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\OtherHp.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\RandomMonsterCreate.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Open.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\PlayEndDestory.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Player\Player.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Player\PlayerControl.cs" />

@@ -79,6 +79,26 @@ public class BaseLuanch : MyGameObject
         go.GetComponent<Rigidbody>().AddRelativeForce(dir * power);
     }
 
+    public IEnumerator ShootItemAtPosWait(Var.ItemType type, Vector3 pos,float waittime, float power, float boomTime)
+    {
+        yield return new WaitForSeconds(waittime);
+        ShootItemAtPos(type, pos,power,boomTime);
+
+    }
+    public void ShootItemAtPosWithDir(Var.ItemType type, Vector3 pos, float power, Vector3 dir)
+    {
+        GameObject go = Instantiate(Tools.GetItemGameObjectByType(type)) as GameObject;
+        go.transform.position = pos;
+        dir = dir.normalized;
+        go.GetComponent<Rigidbody>().AddRelativeForce(dir * power);
+    }
+    public void ShootItemAtPosToPlayer(Var.ItemType type, Vector3 pos, float power)
+    {
+        GameObject go = Instantiate(Tools.GetItemGameObjectByType(type)) as GameObject;
+        go.transform.position = pos;
+        Vector3 dir = (GameManager.player.transform.position-pos).normalized;
+        go.GetComponent<Rigidbody>().AddRelativeForce(dir * power);
+    }
 
 
     public void AroundShootAttack(Var.ItemType bullet, int start, int n, float power, float boomTime)
@@ -105,7 +125,31 @@ public class BaseLuanch : MyGameObject
 
     }
 
+    public GameObject ShootItemAtPosWithOutForce(Var.ItemType type, Vector3 pos)
+    {
+        GameObject go = Instantiate(Tools.GetItemGameObjectByType(type)) as GameObject;
+        go.transform.position = pos;
+        return go;
+    }
 
+    public IEnumerator AroundPlayerShootAttackWaitAddForce(Var.ItemType bullet, int start, int n,float power ,float dis,float waittime)
+    {
+        ArrayList array = new ArrayList();
+        Vector3 pos = GameManager.player.transform.position;
+        for (float i = start; i < 360 + start; i += n)
+        {
+            array.Add( ShootItemAtPosWithOutForce(bullet, pos + new Vector3(Mathf.Sin(i / 180 * Mathf.PI),0, Mathf.Cos(i / 180 * Mathf.PI)) * dis+new Vector3(0,0.5f,0)));
+           
+        }
+        yield return new WaitForSeconds(waittime);
+        
+        foreach (GameObject o in array) {
+
+            try { o.GetComponent<Rigidbody>().AddRelativeForce((pos - o.transform.position).normalized * power); }
+            catch { }
+        }
+
+    }
 
 
 

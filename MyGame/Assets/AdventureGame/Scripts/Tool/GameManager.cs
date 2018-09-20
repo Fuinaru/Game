@@ -28,8 +28,9 @@ public class GameManager : MonoBehaviour
 
     public void GameStart()
     {
-        SceneManager.LoadScene("player");
-        SceneManager.LoadSceneAsync("dialog", LoadSceneMode.Additive);
+        SceneManager.LoadScene("openDialog");
+        // SceneManager.LoadScene("player");
+        //  SceneManager.LoadSceneAsync("dialog", LoadSceneMode.Additive);
     }
     //GameProgress
     static public bool isTalking = false;
@@ -111,6 +112,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        if (SceneManager.GetActiveScene().name == "open") return;
         SetGM();
         SetShouldMapBrushBeDestroyed();
         //  isTimePause = m_isTimePause;
@@ -136,6 +138,7 @@ public class GameManager : MonoBehaviour
         // Update is called once per frame
         void Update()
     {
+        if (SceneManager.GetActiveScene().name == "open") return;
         try
         {
             GameManager.isTalking = NPC.flowchart.GetBooleanVariable("isTalking");

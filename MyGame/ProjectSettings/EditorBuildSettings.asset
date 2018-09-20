@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/AdventureGame/Scenes/open.unity
     guid: 4a079d3d52805974598596f7825f3a81
   - enabled: 1
+    path: Assets/AdventureGame/Scenes/openDialog.unity
+    guid: 7393e0ad12918f2469c3e9e966e63f34
+  - enabled: 1
     path: Assets/AdventureGame/Scenes/dialog.unity
     guid: 15b151d2ab006ad4092c8945d6b8cae0
   - enabled: 1
