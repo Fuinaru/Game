@@ -14,7 +14,7 @@ public class HPObject : MyGameObject {
     protected bool isDestory = false;
     public float hurtedCoolTime = 3;
     protected bool otherFlash = false;
-
+    public bool isInIce = false;
     protected int poisonedDamage = 0;
     protected float poisonedTime = 0;
     protected float _poisonedTime = 0;

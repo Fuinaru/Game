@@ -12,7 +12,7 @@ public class Store : MonoBehaviour {
     private float width;
     // Use this for initialization
     void Start () {
-        
+        transform.localScale = new Vector3(Screen.width / 1280f, Screen.width / 1280f, Screen.width / 1280f);
         //InitialData();
     }
 	
@@ -43,7 +43,8 @@ public class Store : MonoBehaviour {
         go.transform.GetChild(0).GetComponent<Image>().sprite = Tools.GetItemImgByType(o);
         go.transform.GetChild(1).GetComponent<Text>().text = goodsPrice[n].ToString()+"$";
         go.transform.SetParent(transform);
-        go.transform.localPosition = new Vector3(n * width, 0);
+  
+        go.transform.position = new Vector3(n * width, 0)+transform.position;
         go.GetComponent<Button>().onClick.AddListener(delegate ()
         {
             this.OnClick(o);

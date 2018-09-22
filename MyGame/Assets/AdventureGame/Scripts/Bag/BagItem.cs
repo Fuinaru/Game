@@ -6,7 +6,6 @@ public class BagItem : MonoBehaviour
 {
     public bool consumAble = true;
     public bool isMouseDown = false;
-    private Vector2 size;
 
     public ItemData itemData = new ItemData();
 
@@ -23,8 +22,6 @@ public class BagItem : MonoBehaviour
     protected void Start()
     {
 
-        size.x = GetComponent<RectTransform>().sizeDelta.x;
-        size.y = GetComponent<RectTransform>().sizeDelta.y;
         transform.GetChild(0).GetComponent<Image>().sprite = GetItemImg();
         coolImg = transform.GetChild(3).GetComponent<Image>();
         coolImg.fillAmount = 0;
@@ -73,8 +70,8 @@ public class BagItem : MonoBehaviour
         if (isMouseDown)
         {
             Vector3 pos;
-            pos.x = Input.mousePosition.x - size.x / 2;
-            pos.y = Input.mousePosition.y + size.y / 2;
+            pos.x = Input.mousePosition.x - BagSystem.spaceSize.x / 2;
+            pos.y = Input.mousePosition.y + BagSystem.spaceSize.y/ 2;
             pos.z = transform.position.z;
             transform.position = pos;
         }
@@ -83,7 +80,7 @@ public class BagItem : MonoBehaviour
     {
         Vector2 pos = Input.mousePosition - transform.position;
         pos.y *= -1;
-        if (pos.x > 0 && pos.y > 0 && pos.x < size.x && pos.y < size.y) return true;
+        if (pos.x > 0 && pos.y > 0 && pos.x < BagSystem.spaceSize.x&& pos.y < BagSystem.spaceSize.y) return true;
         else return false;
 
     }
@@ -111,6 +108,7 @@ public class BagItem : MonoBehaviour
                 }
                 if (GameManager.bagSys.IsInEquipArea())
                 {
+                    Debug.Log(GameManager.bagSys.GetItemNumInEquip());
                     GameObject obj = GameManager.bagSys.equipObj.transform.GetChild(GameManager.bagSys.GetItemNumInEquip()).gameObject;
                     //obj.GetComponent<Image>().color = Color.red;
                     Swap(obj);
@@ -137,10 +135,9 @@ public class BagItem : MonoBehaviour
 
     bool isInEquip(GameObject o)
     {
-        Vector2 size = o.GetComponent<RectTransform>().sizeDelta;
         Vector2 pos = Input.mousePosition - o.transform.position;
         pos.y *= -1;
-        if (pos.x > 0 && pos.y > 0 && pos.x < size.x && pos.y < size.y) return true;
+        if (pos.x > 0 && pos.y > 0 && pos.x < BagSystem.spaceSize.x && pos.y < BagSystem.spaceSize.y) return true;
         else return false;
 
     }

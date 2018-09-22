@@ -233,6 +233,12 @@
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/ProgramData/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
     </Reference>
+    <Reference Include="ChannelPurchase">
+      <HintPath>C:/ProgramData/Unity/cache/packages/packages.unity.com/com.unity.xiaomi@1.0.0/UnityChannel/ChannelPurchase.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityStore">
+      <HintPath>C:/ProgramData/Unity/cache/packages/packages.unity.com/com.unity.xiaomi@1.0.0/UnityChannel/UnityStore.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="MyGame.Plugins.csproj">
@@ -807,6 +813,7 @@
     <Compile Include="Assets\AdventureGame\Scripts\Monster\Drop.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterBoss.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterLittleBossOne.cs" />
+    <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterLittleBossThree.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterLittleBossTwo.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterOneAndFive.cs" />
     <Compile Include="Assets\AdventureGame\Scripts\Monster\MonsterThreeAndFour.cs" />
@@ -832,6 +839,7 @@
     <Compile Include="Assets\AdventureGame\Scripts\Tool\UnLoadResources.cs" />
     <Compile Include="Assets\Tools\Scripts\MapBrush.cs" />
     <Compile Include="Assets\TreasureChestMaker\Example\Scripts\CameraControl.cs" />
+    <Compile Include="Packages\com.unity.xiaomi\UnityChannel\XiaomiSupport\AppStoreSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AdventureGame\Complement\readme.txt" />

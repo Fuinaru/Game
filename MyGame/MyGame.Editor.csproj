@@ -287,6 +287,12 @@
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/ProgramData/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
     </Reference>
+    <Reference Include="ChannelPurchase">
+      <HintPath>C:/ProgramData/Unity/cache/packages/packages.unity.com/com.unity.xiaomi@1.0.0/UnityChannel/ChannelPurchase.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityStore">
+      <HintPath>C:/ProgramData/Unity/cache/packages/packages.unity.com/com.unity.xiaomi@1.0.0/UnityChannel/UnityStore.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="MyGame.Plugins.csproj">
@@ -359,6 +365,10 @@
     <Compile Include="Assets\AdventureGame\Plugins\Fungus\Thirdparty\FungusLua\Scripts\Editor\MenuItems.cs" />
     <Compile Include="Assets\AdventureGame\Plugins\Fungus\Thirdparty\LineEndings\Editor\LineEndingsEditMenu.cs" />
     <Compile Include="Assets\AdventureGame\Plugins\Fungus\Thirdparty\Usfxr\Editor\SfxrGenerator.cs" />
+    <Compile Include="Packages\com.unity.xiaomi\UnityChannel\XiaomiSupport\Editor\AppStoreModel.cs" />
+    <Compile Include="Packages\com.unity.xiaomi\UnityChannel\XiaomiSupport\Editor\AppStoreOnboardApi.cs" />
+    <Compile Include="Packages\com.unity.xiaomi\UnityChannel\XiaomiSupport\Editor\AppStoreSettingsEditor.cs" />
+    <Compile Include="Packages\com.unity.xiaomi\UnityChannel\XiaomiSupport\Editor\XiaomiPackageNameExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AdventureGame\Complement\readme.txt" />

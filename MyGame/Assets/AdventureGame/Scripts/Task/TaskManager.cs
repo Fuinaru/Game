@@ -12,6 +12,7 @@ public class TaskManager : MonoBehaviour {
     public Transform taskUI;
     void Start () {
         toggleHeight = taskToggle.GetComponent<RectTransform>().sizeDelta.y;
+    //    toggleHeight = (toggleHeight / 1280) * Screen.width;
         AddTask("完成新手教学");
         AddTask("获得火之魂");
         AddTask("获得冰之魂");
@@ -20,9 +21,6 @@ public class TaskManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.F1)) CompleteTask(0);
-        if (Input.GetKeyDown(KeyCode.F2)) CompleteTask(1);
-        if (Input.GetKeyDown(KeyCode.F3)) CompleteTask(2);
 
     }
     public void AddTask(string str) {
@@ -31,7 +29,10 @@ public class TaskManager : MonoBehaviour {
     public void AddTaskWithUpdateUI(string str)
     {
         taskList.Add(new Task(taskList.Count, str));
-        Instantiate(taskToggle).transform.SetParent(taskUI);
+        Toggle o = Instantiate(taskToggle);
+       
+        o.transform.SetParent(taskUI);
+        o.transform.localScale = Vector3.one;
         UpdateTaskUI(taskList.Count);
     }
     public void CompleteTask(int num)
@@ -53,7 +54,7 @@ public class TaskManager : MonoBehaviour {
     public void UpdateTaskUI(int n)
     {
         if (n >= taskList.Count) return;
-            taskUI.GetChild(n).transform.localPosition = new Vector2(0, -taskList[n].num * toggleHeight);
+            taskUI.GetChild(n).transform.position = new Vector3(0, -taskList[n].num * toggleHeight / 1280 * Screen.width,0)+ taskUI.position;
  
             taskUI.GetChild(n).GetChild(1).GetComponent<Text>().text = taskList[n].taskText;
             taskUI.GetChild(n).GetComponent<Toggle>().isOn = taskList[n].isCompleted;
@@ -61,12 +62,14 @@ public class TaskManager : MonoBehaviour {
 
     public void UpdateTaskUIBackground() {
         taskUIHeight = taskList.Count * toggleHeight;
-        taskUI.GetComponent<RectTransform>().sizeDelta = new Vector2(100, taskUIHeight);
+        taskUI.GetComponent<RectTransform>().sizeDelta = new Vector2(300, taskUIHeight);
     }
     public void InitialAllTaskUI() {
         UpdateTaskUIBackground();
         foreach (Task o in taskList) {
-            Instantiate(taskToggle).transform.SetParent(taskUI);
+            Toggle oj = Instantiate(taskToggle);
+             oj.transform.SetParent(taskUI);
+            oj.transform.localScale = Vector3.one;
             UpdateTaskUI(o.num);
         }
     }

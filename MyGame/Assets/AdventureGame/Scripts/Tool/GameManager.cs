@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
 {
     public static bool isLoading = false;
 
-
     public static int stageName = 1;
 
     public static GameManager GM;
@@ -129,7 +128,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-
+        if (isLoading) { LoadGame(); OpenOrCloseSettingUI(); }
        
     }
 
@@ -186,13 +185,25 @@ public class GameManager : MonoBehaviour
         Application.Quit();
 
     }
-    public void LoadGame()
+    public  void LoadGame()
     {
-        OpenOrCloseSettingUI();
-        SavaAndLoad.saveload.LoadGame();
 
+        if (SceneManager.GetActiveScene().name == "open")
+        {
+            isLoading = true;
+
+            SceneManager.LoadScene("player");
+           SceneManager.LoadSceneAsync("dialog", LoadSceneMode.Additive);
+        }
+        else
+        {
+            isLoading = false;
+            OpenOrCloseSettingUI();
+            SavaAndLoad.saveload.LoadGame();
+        }
 
     }
+
 
     public bool DestoryAllMonsters() {
 

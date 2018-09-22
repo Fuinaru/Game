@@ -151,6 +151,135 @@ public class BaseLuanch : MyGameObject
 
     }
 
+    public IEnumerator AroundPlayerShootAttackWaitAddForceTwice(Var.ItemType bullet, int start, int n, float power, float dis, float waittime,float waittime2)
+    {
+        ArrayList array = new ArrayList();
+        Vector3 pos = GameManager.player.transform.position;
+        for (float i = start; i < 360 + start; i += n)
+        {
+            array.Add(ShootItemAtPosWithOutForce(bullet, pos + new Vector3(Mathf.Sin(i / 180 * Mathf.PI), 0, Mathf.Cos(i / 180 * Mathf.PI)) * dis + new Vector3(0, 0.5f, 0)));
+
+        }
+        yield return new WaitForSeconds(waittime);
+
+        foreach (GameObject o in array)
+        {
+
+            try { o.GetComponent<Rigidbody>().AddRelativeForce((pos - o.transform.position).normalized * power); }
+            catch { }
+        }
+        yield return new WaitForSeconds(waittime2);
+
+        foreach (GameObject o in array)
+        {
+
+            try { o.GetComponent<Rigidbody>().velocity = Vector3.zero; }
+            catch { }
+        }
+        yield return new WaitForSeconds(1f);
+        foreach (GameObject o in array)
+        {
+            yield return new WaitForSeconds(0.1f);
+            try {
+                Vector3 _dir = o.transform.position - pos;
+                _dir.y = 0;
+                o.GetComponent<Rigidbody>().AddRelativeForce((new Vector3(_dir.z,0,_dir.x)).normalized * power); }
+            catch { }
+        }
+
+    }
+
+
+
+
+
+
+    public IEnumerator ShootAttackAtPosWaitAddForce(Var.ItemType bullet, Vector3 pos, float power, float waittime)
+    {
+   GameObject o=ShootItemAtPosWithOutForce(bullet, pos);
+   yield return new WaitForSeconds(waittime);
+            try { o.GetComponent<Rigidbody>().AddRelativeForce(( GameManager.player.transform.position-pos).normalized * power); }
+            catch { }
+
+
+    }
+
+
+    public IEnumerator ShootAttackAtPosWaitAddForceTwice(Var.ItemType bullet, Vector3 pos, float power, float waittime, float waittime2)
+    {
+        GameObject o = ShootItemAtPosWithOutForce(bullet, pos);
+        yield return new WaitForSeconds(waittime);
+        try { o.GetComponent<Rigidbody>().AddRelativeForce((GameManager.player.transform.position - pos).normalized * power); }
+        catch { }
+        yield return new WaitForSeconds(0.5f);
+        try
+        {
+            o.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
+        catch { }
+        yield return new WaitForSeconds(waittime2);
+        try {
+           o.GetComponent<Rigidbody>().AddRelativeForce((GameManager.player.transform.position - o.transform.position).normalized * power); }
+        catch { }
+    }
+
+    public IEnumerator ShootAttackAtPosWaitAddForceTriple(Var.ItemType bullet, Vector3 pos, float power, float waittime, float waittime2, float waittime3)
+    {
+        GameObject o = ShootItemAtPosWithOutForce(bullet, pos);
+        yield return new WaitForSeconds(waittime);
+        try { o.GetComponent<Rigidbody>().AddRelativeForce((GameManager.player.transform.position - pos).normalized * power); }
+        catch { }
+        yield return new WaitForSeconds(0.5f);
+        try
+        {
+            o.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
+        catch { }
+        yield return new WaitForSeconds(waittime2);
+        try
+        {
+            o.GetComponent<Rigidbody>().AddRelativeForce((GameManager.player.transform.position - o.transform.position).normalized * power);
+        }
+        catch { }
+        yield return new WaitForSeconds(0.5f);
+        try
+        {
+            o.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
+        catch { }
+
+        yield return new WaitForSeconds(waittime3);
+        try
+        {
+            o.GetComponent<Rigidbody>().AddRelativeForce((GameManager.player.transform.position - o.transform.position).normalized * power);
+        }
+        catch { }
+
+
+    }
+
+
+    public IEnumerator ShootAttackAtPosWaitAddForceDirAndPlayerTwice(Var.ItemType bullet, Vector3 pos, float power, Vector3 dir, float waittime, float waittime2)
+    {
+        GameObject o = ShootItemAtPosWithOutForce(bullet, pos);
+        yield return new WaitForSeconds(waittime);
+        try { o.GetComponent<Rigidbody>().AddRelativeForce(dir.normalized * power); }
+        catch { }
+        yield return new WaitForSeconds(0.5f);
+        try
+        {
+            o.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
+        catch { }
+        yield return new WaitForSeconds(waittime2);
+        try
+        {
+            o.GetComponent<Rigidbody>().AddRelativeForce((GameManager.player.transform.position - o.transform.position).normalized * power);
+        }
+        catch { }
+    }
+
+
 
 
 }
