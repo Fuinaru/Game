@@ -102,6 +102,7 @@ public class BaseMonster : HPObject
       //  else IsFindPlayer = false;
     }
 
+
     public override void Damage(int a)
     {
        if (!hurted) { hp -= a; getHurted(); }
@@ -122,6 +123,13 @@ public class BaseMonster : HPObject
         HurtedTool.Color2B(GetComponentInChildren<Renderer>().material, new Color(1, 1, 1, 0), 30);
         if (HurtedTool.isChildrenColorB(transform, new Color(1, 1, 1, 0))) { GameManager.Monsters.Remove(this); Destroy(gameObject); }
     }
+
+    protected void OnDestroy()
+    {
+        try { GameManager.Monsters.Remove(this); }
+        catch { }
+    }
+
     protected IEnumerator  StopForSeconds(float a)
     {
         float _speed = speed;

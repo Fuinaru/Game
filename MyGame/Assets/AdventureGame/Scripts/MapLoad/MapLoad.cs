@@ -15,7 +15,7 @@ public class MapLoad : MonoBehaviour {
     private int length;
     public GameObject map;
 
-
+    public bool mapIsLoad = false;
     // Use this for initialization
     void Awake (){
         mapload = this;
@@ -95,7 +95,7 @@ public class MapLoad : MonoBehaviour {
 
             LoadMapIntoScene(maps[n]);
         }
-
+        mapIsLoad = true;
     }
 
     void UnloadMapByPlayerPos()
@@ -128,7 +128,7 @@ public class MapLoad : MonoBehaviour {
         UnloadALLMapInScene();
         maps.Clear();
         MapDataInitial();
-
+        mapIsLoad = false;
     }
 
 

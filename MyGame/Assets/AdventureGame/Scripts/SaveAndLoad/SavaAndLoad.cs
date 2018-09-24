@@ -86,8 +86,9 @@ public class SavaAndLoad : MonoBehaviour {
         }
     }
     IEnumerator DestroyMonster(SaveData saveData)
-    { 
-
+    {
+        GameManager.isTimePause = true;
+        yield return new WaitUntil(() => MapLoad.mapload);
         yield return new WaitUntil(() => GameManager.GM.DestoryAllMonsters());
 
         Debug.Log(saveData.monsterData.Count);
@@ -99,10 +100,11 @@ public class SavaAndLoad : MonoBehaviour {
             o.transform.SetParent(GameManager.GM.monAndItemInScene.GetChild(0));
         }
         GameManager.isLoading = false;
+        GameManager.isTimePause =false;
     }
     IEnumerator DestroyItemInScene(SaveData saveData)
     {
-
+        yield return new WaitUntil(() => MapLoad.mapload);
         yield return new WaitUntil(() => GameManager.GM.DestoryAllItemsInScene());
 
         Debug.Log(saveData.itemInSceneData.Count);

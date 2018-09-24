@@ -21,6 +21,6 @@ public class Teleport : PressKeyButton {
         GameManager.GM.DestoryAllItemsInScene();
         if (TwirlScripts.angle==360f) TwirlScripts.angle = 0;
         MapLoad.mapload.LoadNextStage(stageNum, size.x, size.y);
-
+        GameManager.player.transform.position = new Vector3(10, 0, 5);
     }
 }
