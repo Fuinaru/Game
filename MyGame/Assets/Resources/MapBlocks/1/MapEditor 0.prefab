@@ -37430,7 +37430,9 @@ MonoBehaviour:
   m_character: {fileID: 0}
   m_img: {fileID: 0}
   name: OldMan
-  say: "\u4F60\u597D\u554A"
+  say: "\u5C0F\u5B50\uFF0C\u6211\u770B\u4F60\u9AA8\u9ABC\u7CBE\u5947\uFF0C\u5FC5\u662F\u4E3B\u89D2\uFF0C\u8FD9\u662F\u7956\u4F20\u5B9D\u5251\uFF0C\u5C31\u4EA4\u7ED9\u4F60\u4E86\u3002"
+  addItem: 7
+  addItemNum: 1
 --- !u!114 &114265086543453806
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -37458,7 +37460,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: 101
   pressKey: 1
-  stageNum: 3
+  stageNum: 5
   size: {x: 1, y: 1}
 --- !u!114 &114517153959312242
 MonoBehaviour:

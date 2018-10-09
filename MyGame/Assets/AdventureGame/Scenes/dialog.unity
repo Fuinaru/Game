@@ -1832,6 +1832,8 @@ MonoBehaviour:
   m_img: {fileID: 2050377792}
   name: 
   say: 
+  addItem: 0
+  addItemNum: 0
 --- !u!114 &1755499625
 MonoBehaviour:
   m_ObjectHideFlags: 2

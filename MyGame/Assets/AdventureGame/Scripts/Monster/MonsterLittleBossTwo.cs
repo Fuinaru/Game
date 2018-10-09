@@ -14,6 +14,7 @@ public class MonsterLittleBossTwo : BaseMonster
     // Use this for initialization
     void Start()
     {
+        if (GameManager.GM.hasFire) Destroy(gameObject);
         base.Start();
         launch = GetComponent<MonsterLaunch>();
 
@@ -239,6 +240,43 @@ public class MonsterLittleBossTwo : BaseMonster
             if (m_rigidbody != null) m_rigidbody.velocity = dir.normalized * speed * 0.5f;
         }
     }
+
+    public override void GoDie()
+    {
+        if (!isDestory)
+        {
+            Tools.PlayFollowingParticletByName("SmokeEffect", transform);
+            Destroy(gameObject.GetComponent<Collider>());
+            Destroy(m_rigidbody);
+            isDestory = true;
+            if (!GameManager.GM.PlayerHaveKeyItem(Var.ItemType.FireBallItem))
+            {
+                GameManager.playerLaunch.GetItem(Var.ItemType.FireBallItem, 1);
+                NPC.SetConver("天之声", "你获得了火球");
+                TaskManager.taskManager.CompleteTask(1);
+            }
+        }
+
+        HurtedTool.Color2B(GetComponentInChildren<Renderer>().material, new Color(1, 1, 1, 0), 30);
+        if (HurtedTool.isChildrenColorB(transform, new Color(1, 1, 1, 0))) { GameManager.Monsters.Remove(this); Destroy(gameObject); }
+    }
+
+    protected void OnDestroy()
+    {
+        try
+        {
+            GameManager.Monsters.Remove(this);
+            GameObject o = Instantiate(Tools.GetItemInSceneByStr("Teleport"));
+            o.transform.position = new Vector3(10, 0, 18);
+            o.transform.SetParent(GameManager.GM.monAndItemInScene.GetChild(2));
+            if (hp <= 0)
+            {
+                GameManager.GM.DefeatBoss(Var.ItemType.FireBallItem, gameObject);
+            }
+        }
+        catch { }
+    }
+
 
 
 }

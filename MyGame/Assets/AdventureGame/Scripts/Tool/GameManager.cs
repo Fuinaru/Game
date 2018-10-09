@@ -5,7 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static bool isLoading = false;
+    public Vector3 playerPos =-Vector3.one;
+
+    public bool hasSword = false;
+    public bool hasFire= false;
+    public bool hasIce = false;
+    public bool hasPoison = false;
+    public bool hasTeleport = false;
+    public bool PlayerHaveKeyItem(Var.ItemType key) {
+        switch (key) {
+            case Var.ItemType.SwordItem :if (hasSword) return true;else hasSword = true; return false; 
+            case Var.ItemType.FireBallItem: if (hasFire) return true; else hasFire = true; return false;
+            case Var.ItemType.IceBallItem: if (hasIce) return true; else hasIce = true; return false;
+            case Var.ItemType.PoisonItem: if (hasPoison) return true; else hasPoison = true; return false;
+            case Var.ItemType.TeleportItem: if (hasTeleport) return true; else hasTeleport = true; return false;
+        }
+        return false;
+    }
+
+   public static bool isLoading = false;
 
     public static int stageName = 1;
 
@@ -227,4 +245,34 @@ public class GameManager : MonoBehaviour
         itemInScene.Clear();
         return true;
     }
+    public void DestoryOther()
+    {
+
+        for (int i = monAndItemInScene.GetChild(2).childCount - 1; i >= 0; i--)
+        {
+            Destroy(monAndItemInScene.GetChild(2).GetChild(i).gameObject);
+        }
+    }
+    public void DefeatBoss(Var.ItemType item,GameObject o) {
+
+        StartCoroutine(BossDefeat(item,o));
+
+    }
+
+    IEnumerator BossDefeat(Var.ItemType item, GameObject o) {
+        yield return new WaitUntil(() => o == null);
+        if (!PlayerHaveKeyItem(item))
+        {
+            playerLaunch.GetItem(item, 1);
+            switch (item)
+            {
+                case Var.ItemType.TeleportItem: NPC.SetConver("天之声", "你获得了闪现"); TaskManager.taskManager.CompleteTask(0); break;
+                case Var.ItemType.FireBallItem: NPC.SetConver("天之声", "你获得了火球"); TaskManager.taskManager.CompleteTask(1); break;
+                case Var.ItemType.IceBallItem: NPC.SetConver("天之声", "你获得了冰球"); TaskManager.taskManager.CompleteTask(2); break;
+            }
+
+        }
+
+    }
+
 }

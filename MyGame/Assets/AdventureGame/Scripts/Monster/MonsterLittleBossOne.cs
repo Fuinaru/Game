@@ -20,6 +20,7 @@ public class MonsterLittleBossOne : BaseMonster
     // Use this for initialization
     void Start()
     {
+        if (GameManager.GM.hasTeleport) Destroy(gameObject);
         base.Start();
         setTime = _setTime;
         launch = GetComponent<MonsterLaunch>();
@@ -144,6 +145,23 @@ public class MonsterLittleBossOne : BaseMonster
         base.Damage(a);
         if (hp <= maxHp / 2) ActionMode = 1;
     }
+
+
+    protected void OnDestroy()
+    {
+        try {
+            GameManager.Monsters.Remove(this);
+          GameObject o=Instantiate(Tools.GetItemInSceneByStr("Teleport"));
+            o.transform.position = new Vector3(10, 0, 18);
+            o.transform.SetParent(GameManager.GM.monAndItemInScene.GetChild(2));
+            if (hp <= 0)
+            {
+                GameManager.GM.DefeatBoss(Var.ItemType.TeleportItem,gameObject);
+            }
+        }
+        catch { }
+    }
+
 
 
     protected void moveAroundPlayer()

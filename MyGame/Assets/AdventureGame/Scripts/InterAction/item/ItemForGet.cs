@@ -25,7 +25,7 @@ public class ItemForGet : MonoBehaviour {
         if (other.tag == "Player")
         {
             if (type==Var.ItemType.Coin) { GameManager.player.GetCoin(num); }
-             else other.GetComponentInChildren<PlayerLaunch>().getItem(type, num);
+             else other.GetComponentInChildren<PlayerLaunch>().GetItem(type, num);
 
             Destroy(gameObject); 
         }

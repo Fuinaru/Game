@@ -58,7 +58,7 @@ public class Store : MonoBehaviour {
         {
             GameManager.player.CostCoin(n);
             if (o == Var.ItemType.Coin) { GameManager.player.GetCoin(10); }
-            else GameManager.playerLaunch.getItem(o, 1);
+            else GameManager.playerLaunch.GetItem(o, 1);
             NPC.SetConver("OldMan", "顾客就是上帝");
         }
         else {

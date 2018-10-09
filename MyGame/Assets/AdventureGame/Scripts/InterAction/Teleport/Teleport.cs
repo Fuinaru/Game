@@ -17,10 +17,23 @@ public class Teleport : PressKeyButton {
 	}
     protected override void InterAction()
     {
-        GameManager.GM.DestoryAllMonsters();
-        GameManager.GM.DestoryAllItemsInScene();
-        if (TwirlScripts.angle==360f) TwirlScripts.angle = 0;
-        MapLoad.mapload.LoadNextStage(stageNum, size.x, size.y);
-        GameManager.player.transform.position = new Vector3(10, 0, 5);
+        if (stageNum!=1)
+        {
+            GameManager.GM.DestoryAllMonsters();
+            GameManager.GM.DestoryAllItemsInScene();
+            if (TwirlScripts.angle == 360f) TwirlScripts.angle = 0;
+            MapLoad.mapload.LoadNextStage(stageNum, size.x, size.y);
+            GameManager.GM.playerPos = GameManager.player.transform.position;
+            GameManager.player.transform.position = new Vector3(10, 0, 5);
+        }
+        else {
+
+            if (TwirlScripts.angle == 360f) TwirlScripts.angle = 0;
+            MapLoad.mapload.LoadNextStage(1,5,5);
+            GameManager.player.transform.position = GameManager.GM.playerPos;
+            GameManager.GM.DestoryAllMonsters();
+            GameManager.GM.DestoryAllItemsInScene();
+            GameManager.GM.DestoryOther();
+        }
     }
 }

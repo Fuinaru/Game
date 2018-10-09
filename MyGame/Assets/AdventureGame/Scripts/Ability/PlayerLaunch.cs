@@ -37,17 +37,17 @@ public class PlayerLaunch : BaseLuanch
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            getItem(Var.ItemType.PoisonItem, 10);
-            getItem(Var.ItemType.MpPotionItem, 10);
-            getItem(Var.ItemType.IceBallItem, 10);
-            getItem(Var.ItemType.FireBallItem, 10);
-            getItem(Var.ItemType.SwordItem, 10);
-            getItem(Var.ItemType.PotionItem, 10);
-            getItem(Var.ItemType.BoomItem, 10);
-            getItem(Var.ItemType.BulletItem, 10);
-            getItem(Var.ItemType.TeleportItem, 10);
-            getItem(Var.ItemType.MaxHpUpItem, 10);
-            getItem(Var.ItemType.MaxMpUpItem, 10);
+            GetItem(Var.ItemType.PoisonItem, 10);
+            GetItem(Var.ItemType.MpPotionItem, 10);
+            GetItem(Var.ItemType.IceBallItem, 10);
+            GetItem(Var.ItemType.FireBallItem, 10);
+            GetItem(Var.ItemType.SwordItem, 10);
+            GetItem(Var.ItemType.PotionItem, 10);
+            GetItem(Var.ItemType.BoomItem, 10);
+            GetItem(Var.ItemType.BulletItem, 10);
+            GetItem(Var.ItemType.TeleportItem, 10);
+            GetItem(Var.ItemType.MaxHpUpItem, 10);
+            GetItem(Var.ItemType.MaxMpUpItem, 10);
         }
   
     }
@@ -60,7 +60,7 @@ public class PlayerLaunch : BaseLuanch
         } catch { }
      
     }
-    public void getItem(Var.ItemType type, int a)
+    public void GetItem(Var.ItemType type, int a)
     {
         GameManager.bagSys.AddItem(type, a);
     }

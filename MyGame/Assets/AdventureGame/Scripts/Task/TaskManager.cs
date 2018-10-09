@@ -10,13 +10,19 @@ public class TaskManager : MonoBehaviour {
     private float toggleHeight;
     private float taskUIHeight;
     public Transform taskUI;
+    public static TaskManager taskManager;
     void Start () {
+        taskManager = this;
         toggleHeight = taskToggle.GetComponent<RectTransform>().sizeDelta.y;
     //    toggleHeight = (toggleHeight / 1280) * Screen.width;
-        AddTask("完成新手教学");
+        AddTask("获得地之魂");
         AddTask("获得火之魂");
         AddTask("获得冰之魂");
+        AddTask("打倒BOSS");
         InitialAllTaskUI();
+        if (GameManager.GM.hasTeleport) CompleteTask(0);
+        if (GameManager.GM.hasFire) CompleteTask(1);
+        if (GameManager.GM.hasIce) CompleteTask(2);
     }
 	
 	// Update is called once per frame

@@ -13,6 +13,7 @@ public class MonsterLittleBossThree : BaseMonster
     // Use this for initialization
     void Start()
     {
+        if (GameManager.GM.hasIce) Destroy(gameObject);
         base.Start();
         launch = GetComponent<MonsterLaunch>();
 
@@ -228,4 +229,20 @@ public class MonsterLittleBossThree : BaseMonster
     }
 
 
+
+    protected void OnDestroy()
+    {
+        try
+        {
+            GameManager.Monsters.Remove(this);
+            GameObject o = Instantiate(Tools.GetItemInSceneByStr("Teleport"));
+            o.transform.position = new Vector3(10, 0, 18);
+            o.transform.SetParent(GameManager.GM.monAndItemInScene.GetChild(2));
+            if (hp <= 0)
+            {
+                GameManager.GM.DefeatBoss(Var.ItemType.IceBallItem, gameObject);
+            }
+        }
+        catch { }
+    }
 }

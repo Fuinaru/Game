@@ -216,6 +216,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d84b10b6ddab62244be4c51c3fc9d221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPos: {x: -1, y: -1, z: -1}
+  hasSword: 0
+  hasFire: 0
+  hasIce: 0
+  hasPoison: 0
+  hasTeleport: 0
   m_shouldMapBrushBeDestroyed: 1
   m_gameover: {fileID: 460635215}
   monAndItemInScene: {fileID: 356769935}

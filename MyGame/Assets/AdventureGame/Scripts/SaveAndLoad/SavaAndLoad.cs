@@ -48,9 +48,10 @@ public class SavaAndLoad : MonoBehaviour {
             file.Close();
 
             // 3
-        
-          
-           // GameManager.bagSys.SpaceInitial();
+
+
+            // GameManager.bagSys.SpaceInitial();
+            
             StartCoroutine(DestroyItem(saveData));
             StartCoroutine(DestroyMonster(saveData));
             StartCoroutine(DestroyItemInScene(saveData));
@@ -63,6 +64,12 @@ public class SavaAndLoad : MonoBehaviour {
           GameManager.player.coinNum =saveData.coin ;
             GameManager.player.transform.position=new Vector3( saveData.playerPos[0], saveData.playerPos[1], saveData.playerPos[2]) ;
 
+            GameManager.GM.hasSword = saveData.hasSword;
+            GameManager.GM.hasFire = saveData.hasFire;
+            GameManager.GM.hasIce = saveData.hasIce;
+            GameManager.GM.hasPoison=saveData.hasPoison;
+            GameManager.GM.hasTeleport = saveData.hasTeleport;
+            GameManager.GM.DestoryOther();
             GameManager.player.UpDateAllUI();
 
             Debug.Log("Game Loaded");
@@ -149,6 +156,13 @@ public class SavaAndLoad : MonoBehaviour {
         saveData.playerPos[0] = GameManager.player.transform.position.x;
         saveData.playerPos[1] = GameManager.player.transform.position.y;
         saveData.playerPos[2] = GameManager.player.transform.position.z;
+
+        saveData.hasSword = GameManager.GM.hasSword;
+        saveData.hasFire = GameManager.GM.hasFire;
+        saveData.hasIce = GameManager.GM.hasIce;
+        saveData.hasPoison = GameManager.GM.hasPoison;
+        saveData.hasTeleport = GameManager.GM.hasTeleport;
+
         return saveData;
     }
 

@@ -7600,7 +7600,7 @@ Transform:
   m_GameObject: {fileID: 1345683401126670}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 15.6, y: 0, z: 14.1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4933226547447226}
   m_Father: {fileID: 4369739542048382}
@@ -21819,7 +21819,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: 101
   pressKey: 1
-  stageNum: 5
+  stageNum: 3
   size: {x: 1, y: 1}
 --- !u!114 &114999663625058268
 MonoBehaviour:

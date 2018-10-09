@@ -13,7 +13,11 @@ public class SaveData {
     public int Mp = 0;
     public int coin=0;
    public float[] playerPos =new float[3];
-
+    public bool hasSword = false;
+    public bool hasFire = false;
+    public bool hasIce = false;
+    public bool hasPoison = false;
+    public bool hasTeleport = false;
     public List<ItemData> itemDatas = new List<ItemData>();
     public List<MonsterData> monsterData = new List<MonsterData>();
     public List<ItemInSceneData> itemInSceneData = new List<ItemInSceneData>();

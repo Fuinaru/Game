@@ -13,7 +13,8 @@ public class NPC : PressKeyButton
     public Image m_img;
     public string name;
     public string say;
-
+    public Var.ItemType addItem;
+    public int addItemNum;
     void Start () {
         if (transform.tag == "chart") {
             flowchart = GetComponent<Fungus.Flowchart>();
@@ -36,7 +37,17 @@ public class NPC : PressKeyButton
         character.SetStandardText(name);
         try { img.sprite = Tools.GetCharaImgByStr(name); }
         catch { }
-        flowchart.SetStringVariable("str", say);
+     
+        if (addItem != Var.ItemType.Coin && !GameManager.GM.PlayerHaveKeyItem(addItem))
+        {
+            flowchart.SetStringVariable("str", say);
+            GameManager.playerLaunch.GetItem(addItem, addItemNum);
+          
+        }
+        else {
+            flowchart.SetStringVariable("str", "东西已经给你了，滚！！");
+        }
+
         Fungus.Flowchart.BroadcastFungusMessage("say");
     }
     public static void SetConver(string NPCName,string sayWhat)

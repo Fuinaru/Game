@@ -43,6 +43,10 @@ public class Tools : MonoBehaviour {
     {
         return GetGameObjectByPath(itemInScenePath + type.ToString());
     }
+    public static GameObject GetItemInSceneByStr(string str)
+    {
+        return GetGameObjectByPath(itemInScenePath + str);
+    }
     public static Sprite GetImgByPath(string path)
     {
         Texture2D tex = (Texture2D)Resources.Load(path);
